@@ -6,15 +6,18 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <ImportedNamespaces>MaterialSkin=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,VBCrm=True</ImportedNamespaces>
   </PropertyGroup>
 
   <ItemGroup>
+    <Import Include="MaterialSkin" />
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
 

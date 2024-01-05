@@ -10,6 +10,19 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbOperations = New ClsDbOperations()
         dbOperations.CreateCustomersTable()
+
+        ' Create a MaterialSkinManager instance
+        Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
+
+        ' Set the color scheme
+        materialSkinManager.AddFormToManage(Me)
+        materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT ' Set theme to LIGHT or DARK
+
+        ' Define primary and accent colors
+        materialSkinManager.ColorScheme = New ColorScheme(
+            Primary.Blue600, Primary.Blue700, Primary.Blue500,
+            Accent.LightBlue200, TextShade.WHITE
+        )
     End Sub
 
     ''' <summary>

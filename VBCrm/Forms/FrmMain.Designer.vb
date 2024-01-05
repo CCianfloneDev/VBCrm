@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmMain
-    Inherits System.Windows.Forms.Form
+    Inherits MaterialSkin.Controls.MaterialForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -22,38 +22,48 @@ Partial Class FrmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
-        lblSearchCriteria = New Label()
         pnlSearchCriteria = New Panel()
-        btnClear = New Button()
-        btnSearch = New Button()
-        txtPhoneNumber = New TextBox()
-        lblPhoneNumber = New Label()
-        txtName = New TextBox()
-        lblName = New Label()
+        lblName = New Controls.MaterialLabel()
+        lblPhoneNumber = New Controls.MaterialLabel()
+        txtName = New Controls.MaterialTextBox()
+        txtPhoneNumber = New Controls.MaterialTextBox()
+        btnClear = New Controls.MaterialButton()
+        btnSearch = New Controls.MaterialButton()
         pnlBottom = New Panel()
-        btnEdit = New Button()
-        btnNew = New Button()
+        btnEdit = New Controls.MaterialButton()
+        btnNew = New Controls.MaterialButton()
         pnlBody = New Panel()
         dgvResults = New DataGridView()
+        ContactIdDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactNameDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactPhoneDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactEmailDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactBindingSource = New BindingSource(components)
+        lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
         pnlSearchCriteria.SuspendLayout()
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' mnuMenuStrip
         ' 
         mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp})
-        mnuMenuStrip.Location = New Point(0, 0)
+        mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
-        mnuMenuStrip.Size = New Size(800, 24)
+        mnuMenuStrip.Size = New Size(794, 24)
         mnuMenuStrip.TabIndex = 0
         mnuMenuStrip.Text = "MenuStrip1"
         ' 
@@ -89,149 +99,282 @@ Partial Class FrmMain
         ' 
         ' staStatusStrip
         ' 
-        staStatusStrip.Location = New Point(0, 428)
+        staStatusStrip.Location = New Point(3, 494)
         staStatusStrip.Name = "staStatusStrip"
-        staStatusStrip.Size = New Size(800, 22)
+        staStatusStrip.Size = New Size(794, 22)
         staStatusStrip.TabIndex = 1
         staStatusStrip.Text = "StatusStrip1"
         ' 
-        ' lblSearchCriteria
-        ' 
-        lblSearchCriteria.AutoSize = True
-        lblSearchCriteria.Dock = DockStyle.Top
-        lblSearchCriteria.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSearchCriteria.Location = New Point(0, 24)
-        lblSearchCriteria.Name = "lblSearchCriteria"
-        lblSearchCriteria.Size = New Size(121, 21)
-        lblSearchCriteria.TabIndex = 2
-        lblSearchCriteria.Text = "Search Criteria"
-        ' 
         ' pnlSearchCriteria
         ' 
-        pnlSearchCriteria.Controls.Add(btnClear)
-        pnlSearchCriteria.Controls.Add(btnSearch)
-        pnlSearchCriteria.Controls.Add(txtPhoneNumber)
+        pnlSearchCriteria.Controls.Add(lblName)
         pnlSearchCriteria.Controls.Add(lblPhoneNumber)
         pnlSearchCriteria.Controls.Add(txtName)
-        pnlSearchCriteria.Controls.Add(lblName)
+        pnlSearchCriteria.Controls.Add(txtPhoneNumber)
+        pnlSearchCriteria.Controls.Add(btnClear)
+        pnlSearchCriteria.Controls.Add(btnSearch)
         pnlSearchCriteria.Dock = DockStyle.Top
-        pnlSearchCriteria.Location = New Point(0, 45)
+        pnlSearchCriteria.Location = New Point(3, 112)
         pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(800, 84)
+        pnlSearchCriteria.Size = New Size(794, 104)
         pnlSearchCriteria.TabIndex = 3
-        ' 
-        ' btnClear
-        ' 
-        btnClear.Cursor = Cursors.Hand
-        btnClear.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnClear.Location = New Point(713, 35)
-        btnClear.Name = "btnClear"
-        btnClear.Size = New Size(75, 23)
-        btnClear.TabIndex = 5
-        btnClear.Text = "Clear"
-        btnClear.UseVisualStyleBackColor = True
-        ' 
-        ' btnSearch
-        ' 
-        btnSearch.Cursor = Cursors.Hand
-        btnSearch.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnSearch.Location = New Point(632, 35)
-        btnSearch.Name = "btnSearch"
-        btnSearch.Size = New Size(75, 23)
-        btnSearch.TabIndex = 4
-        btnSearch.Text = "Search"
-        btnSearch.UseVisualStyleBackColor = True
-        ' 
-        ' txtPhoneNumber
-        ' 
-        txtPhoneNumber.Location = New Point(69, 51)
-        txtPhoneNumber.Name = "txtPhoneNumber"
-        txtPhoneNumber.Size = New Size(159, 23)
-        txtPhoneNumber.TabIndex = 3
-        ' 
-        ' lblPhoneNumber
-        ' 
-        lblPhoneNumber.AutoSize = True
-        lblPhoneNumber.Location = New Point(12, 54)
-        lblPhoneNumber.Name = "lblPhoneNumber"
-        lblPhoneNumber.Size = New Size(51, 15)
-        lblPhoneNumber.TabIndex = 2
-        lblPhoneNumber.Text = "Phone #"
-        ' 
-        ' txtName
-        ' 
-        txtName.Location = New Point(69, 17)
-        txtName.Name = "txtName"
-        txtName.Size = New Size(159, 23)
-        txtName.TabIndex = 1
         ' 
         ' lblName
         ' 
         lblName.AutoSize = True
-        lblName.Location = New Point(24, 20)
+        lblName.Depth = 0
+        lblName.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblName.Location = New Point(41, 12)
+        lblName.MouseState = MouseState.HOVER
         lblName.Name = "lblName"
-        lblName.Size = New Size(39, 15)
-        lblName.TabIndex = 0
+        lblName.Size = New Size(43, 19)
+        lblName.TabIndex = 15
         lblName.Text = "Name"
+        ' 
+        ' lblPhoneNumber
+        ' 
+        lblPhoneNumber.AutoSize = True
+        lblPhoneNumber.Depth = 0
+        lblPhoneNumber.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblPhoneNumber.Location = New Point(24, 62)
+        lblPhoneNumber.MouseState = MouseState.HOVER
+        lblPhoneNumber.Name = "lblPhoneNumber"
+        lblPhoneNumber.Size = New Size(60, 19)
+        lblPhoneNumber.TabIndex = 14
+        lblPhoneNumber.Text = "Phone #"
+        ' 
+        ' txtName
+        ' 
+        txtName.AnimateReadOnly = False
+        txtName.BorderStyle = BorderStyle.None
+        txtName.Depth = 0
+        txtName.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtName.LeadingIcon = Nothing
+        txtName.Location = New Point(90, 10)
+        txtName.MaxLength = 50
+        txtName.MouseState = MouseState.OUT
+        txtName.Multiline = False
+        txtName.Name = "txtName"
+        txtName.Size = New Size(157, 36)
+        txtName.TabIndex = 13
+        txtName.Text = ""
+        txtName.TrailingIcon = Nothing
+        txtName.UseTallSize = False
+        ' 
+        ' txtPhoneNumber
+        ' 
+        txtPhoneNumber.AnimateReadOnly = False
+        txtPhoneNumber.BorderStyle = BorderStyle.None
+        txtPhoneNumber.Depth = 0
+        txtPhoneNumber.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtPhoneNumber.LeadingIcon = Nothing
+        txtPhoneNumber.Location = New Point(90, 62)
+        txtPhoneNumber.MaxLength = 50
+        txtPhoneNumber.MouseState = MouseState.OUT
+        txtPhoneNumber.Multiline = False
+        txtPhoneNumber.Name = "txtPhoneNumber"
+        txtPhoneNumber.Size = New Size(157, 36)
+        txtPhoneNumber.TabIndex = 12
+        txtPhoneNumber.Text = ""
+        txtPhoneNumber.TrailingIcon = Nothing
+        txtPhoneNumber.UseTallSize = False
+        ' 
+        ' btnClear
+        ' 
+        btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnClear.BackColor = SystemColors.Control
+        btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnClear.Depth = 0
+        btnClear.ForeColor = SystemColors.ControlText
+        btnClear.HighEmphasis = True
+        btnClear.Icon = Nothing
+        btnClear.Location = New Point(705, 24)
+        btnClear.Margin = New Padding(4, 6, 4, 6)
+        btnClear.MouseState = MouseState.HOVER
+        btnClear.Name = "btnClear"
+        btnClear.NoAccentTextColor = Color.Empty
+        btnClear.Size = New Size(66, 36)
+        btnClear.TabIndex = 11
+        btnClear.Text = "Clear"
+        btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        btnClear.UseAccentColor = False
+        btnClear.UseVisualStyleBackColor = False
+        ' 
+        ' btnSearch
+        ' 
+        btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnSearch.BackColor = SystemColors.Control
+        btnSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnSearch.Depth = 0
+        btnSearch.ForeColor = SystemColors.ControlText
+        btnSearch.HighEmphasis = True
+        btnSearch.Icon = Nothing
+        btnSearch.Location = New Point(616, 24)
+        btnSearch.Margin = New Padding(4, 6, 4, 6)
+        btnSearch.MouseState = MouseState.HOVER
+        btnSearch.Name = "btnSearch"
+        btnSearch.NoAccentTextColor = Color.Empty
+        btnSearch.Size = New Size(78, 36)
+        btnSearch.TabIndex = 10
+        btnSearch.Text = "Search"
+        btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        btnSearch.UseAccentColor = False
+        btnSearch.UseVisualStyleBackColor = False
         ' 
         ' pnlBottom
         ' 
         pnlBottom.Controls.Add(btnEdit)
         pnlBottom.Controls.Add(btnNew)
         pnlBottom.Dock = DockStyle.Bottom
-        pnlBottom.Location = New Point(0, 363)
+        pnlBottom.Location = New Point(3, 429)
         pnlBottom.Name = "pnlBottom"
-        pnlBottom.Size = New Size(800, 65)
+        pnlBottom.Size = New Size(794, 65)
         pnlBottom.TabIndex = 4
         ' 
         ' btnEdit
         ' 
-        btnEdit.Cursor = Cursors.Hand
-        btnEdit.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnEdit.Location = New Point(403, 21)
+        btnEdit.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnEdit.BackColor = SystemColors.Control
+        btnEdit.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnEdit.Depth = 0
+        btnEdit.ForeColor = SystemColors.ControlText
+        btnEdit.HighEmphasis = True
+        btnEdit.Icon = Nothing
+        btnEdit.Location = New Point(410, 14)
+        btnEdit.Margin = New Padding(4, 6, 4, 6)
+        btnEdit.MouseState = MouseState.HOVER
         btnEdit.Name = "btnEdit"
-        btnEdit.Size = New Size(75, 23)
-        btnEdit.TabIndex = 7
+        btnEdit.NoAccentTextColor = Color.Empty
+        btnEdit.Size = New Size(64, 36)
+        btnEdit.TabIndex = 9
         btnEdit.Text = "Edit"
-        btnEdit.UseVisualStyleBackColor = True
+        btnEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        btnEdit.UseAccentColor = False
+        btnEdit.UseVisualStyleBackColor = False
         ' 
         ' btnNew
         ' 
-        btnNew.Cursor = Cursors.Hand
-        btnNew.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        btnNew.Location = New Point(322, 21)
+        btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnNew.BackColor = SystemColors.Control
+        btnNew.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnNew.Depth = 0
+        btnNew.ForeColor = SystemColors.ControlText
+        btnNew.HighEmphasis = True
+        btnNew.Icon = Nothing
+        btnNew.Location = New Point(321, 14)
+        btnNew.Margin = New Padding(4, 6, 4, 6)
+        btnNew.MouseState = MouseState.HOVER
         btnNew.Name = "btnNew"
-        btnNew.Size = New Size(75, 23)
-        btnNew.TabIndex = 6
+        btnNew.NoAccentTextColor = Color.Empty
+        btnNew.Size = New Size(64, 36)
+        btnNew.TabIndex = 8
         btnNew.Text = "New"
-        btnNew.UseVisualStyleBackColor = True
+        btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        btnNew.UseAccentColor = False
+        btnNew.UseVisualStyleBackColor = False
         ' 
         ' pnlBody
         ' 
         pnlBody.Controls.Add(dgvResults)
         pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(0, 129)
+        pnlBody.Location = New Point(3, 216)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(800, 234)
+        pnlBody.Size = New Size(794, 213)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
         ' 
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
-        dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(238), CByte(239), CByte(249))
+        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        dgvResults.AutoGenerateColumns = False
+        dgvResults.BorderStyle = BorderStyle.None
+        dgvResults.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(20), CByte(25), CByte(70))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = Color.WhiteSmoke
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        dgvResults.ColumnHeadersHeight = 40
+        dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dgvResults.Columns.AddRange(New DataGridViewColumn() {ContactIdDataGridViewTextBoxColumn, ContactNameDataGridViewTextBoxColumn, ContactPhoneDataGridViewTextBoxColumn, ContactEmailDataGridViewTextBoxColumn})
+        dgvResults.DataSource = ContactBindingSource
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = SystemColors.Window
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle3.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = Color.ForestGreen
+        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
+        dgvResults.DefaultCellStyle = DataGridViewCellStyle3
         dgvResults.Dock = DockStyle.Fill
+        dgvResults.EnableHeadersVisualStyles = False
         dgvResults.Location = New Point(0, 0)
         dgvResults.Name = "dgvResults"
         dgvResults.ReadOnly = True
-        dgvResults.Size = New Size(800, 234)
+        dgvResults.Size = New Size(794, 213)
         dgvResults.TabIndex = 0
+        ' 
+        ' ContactIdDataGridViewTextBoxColumn
+        ' 
+        ContactIdDataGridViewTextBoxColumn.DataPropertyName = "ContactId"
+        ContactIdDataGridViewTextBoxColumn.HeaderText = "ID"
+        ContactIdDataGridViewTextBoxColumn.Name = "ContactIdDataGridViewTextBoxColumn"
+        ContactIdDataGridViewTextBoxColumn.ReadOnly = True
+        ContactIdDataGridViewTextBoxColumn.Width = 50
+        ' 
+        ' ContactNameDataGridViewTextBoxColumn
+        ' 
+        ContactNameDataGridViewTextBoxColumn.DataPropertyName = "ContactName"
+        ContactNameDataGridViewTextBoxColumn.HeaderText = "Name"
+        ContactNameDataGridViewTextBoxColumn.Name = "ContactNameDataGridViewTextBoxColumn"
+        ContactNameDataGridViewTextBoxColumn.ReadOnly = True
+        ContactNameDataGridViewTextBoxColumn.Width = 370
+        ' 
+        ' ContactPhoneDataGridViewTextBoxColumn
+        ' 
+        ContactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone"
+        ContactPhoneDataGridViewTextBoxColumn.HeaderText = "Phone #"
+        ContactPhoneDataGridViewTextBoxColumn.Name = "ContactPhoneDataGridViewTextBoxColumn"
+        ContactPhoneDataGridViewTextBoxColumn.ReadOnly = True
+        ContactPhoneDataGridViewTextBoxColumn.Width = 125
+        ' 
+        ' ContactEmailDataGridViewTextBoxColumn
+        ' 
+        ContactEmailDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        ContactEmailDataGridViewTextBoxColumn.DataPropertyName = "ContactEmail"
+        ContactEmailDataGridViewTextBoxColumn.HeaderText = "Email"
+        ContactEmailDataGridViewTextBoxColumn.Name = "ContactEmailDataGridViewTextBoxColumn"
+        ContactEmailDataGridViewTextBoxColumn.ReadOnly = True
+        ' 
+        ' ContactBindingSource
+        ' 
+        ContactBindingSource.DataSource = GetType(Contact)
+        ' 
+        ' lblSearchCriteria
+        ' 
+        lblSearchCriteria.AutoSize = True
+        lblSearchCriteria.Depth = 0
+        lblSearchCriteria.Dock = DockStyle.Top
+        lblSearchCriteria.Font = New Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel)
+        lblSearchCriteria.FontType = MaterialSkinManager.fontType.H6
+        lblSearchCriteria.Location = New Point(3, 88)
+        lblSearchCriteria.MouseState = MouseState.HOVER
+        lblSearchCriteria.Name = "lblSearchCriteria"
+        lblSearchCriteria.Size = New Size(134, 24)
+        lblSearchCriteria.TabIndex = 16
+        lblSearchCriteria.Text = "Search Criteria"
         ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(800, 519)
         Controls.Add(pnlBody)
         Controls.Add(pnlBottom)
         Controls.Add(pnlSearchCriteria)
@@ -240,14 +383,17 @@ Partial Class FrmMain
         Controls.Add(mnuMenuStrip)
         MainMenuStrip = mnuMenuStrip
         Name = "FrmMain"
-        Text = "VBCrm - Main Form"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Your personal CRM"
         mnuMenuStrip.ResumeLayout(False)
         mnuMenuStrip.PerformLayout()
         pnlSearchCriteria.ResumeLayout(False)
         pnlSearchCriteria.PerformLayout()
         pnlBottom.ResumeLayout(False)
+        pnlBottom.PerformLayout()
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
+        CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -258,18 +404,28 @@ Partial Class FrmMain
     Friend WithEvents mnuItmHelp As ToolStripMenuItem
     Friend WithEvents mnuItmAbout As ToolStripMenuItem
     Friend WithEvents staStatusStrip As StatusStrip
-    Friend WithEvents lblSearchCriteria As Label
     Friend WithEvents pnlSearchCriteria As Panel
     Friend WithEvents pnlBottom As Panel
     Friend WithEvents pnlBody As Panel
-    Friend WithEvents txtPhoneNumber As TextBox
-    Friend WithEvents lblPhoneNumber As Label
-    Friend WithEvents txtName As TextBox
-    Friend WithEvents lblName As Label
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnSearch As Button
+    Friend WithEvents txtPhoneNumber1 As TextBox
+    Friend WithEvents lblPhoneNumber1 As Label
+    Friend WithEvents txtName2 As TextBox
+    Friend WithEvents lblName1 As Label
     Friend WithEvents dgvResults As DataGridView
-    Friend WithEvents btnEdit As Button
-    Friend WithEvents btnNew As Button
+    Friend WithEvents ContactnNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactBindingSource As BindingSource
+    Friend WithEvents ContactIdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactPhoneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactEmailDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents btnNew As Controls.MaterialButton
+    Friend WithEvents btnEdit As Controls.MaterialButton
+    Friend WithEvents btnSearch As Controls.MaterialButton
+    Friend WithEvents btnClear As Controls.MaterialButton
+    Friend WithEvents txtPhoneNumber As Controls.MaterialTextBox
+    Friend WithEvents lblPhoneNumber As Controls.MaterialLabel
+    Friend WithEvents txtName As Controls.MaterialTextBox
+    Friend WithEvents lblName As Controls.MaterialLabel
+    Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
 
 End Class
