@@ -23,9 +23,6 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
@@ -44,10 +41,10 @@ Partial Class FrmMain
         btnNew = New Controls.MaterialButton()
         pnlBody = New Panel()
         dgvResults = New DataGridView()
-        ContactIdDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
-        ContactNameDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
-        ContactPhoneDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
-        ContactEmailDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactidDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactnameDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactphoneDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
+        ContactemailDataGridViewTextBoxColumn = New DataGridViewTextBoxColumn()
         ContactBindingSource = New BindingSource(components)
         lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
@@ -286,71 +283,44 @@ Partial Class FrmMain
         ' 
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(238), CByte(239), CByte(249))
-        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.AutoGenerateColumns = False
-        dgvResults.BorderStyle = BorderStyle.None
-        dgvResults.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = Color.Aquamarine
-        DataGridViewCellStyle2.Font = New Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DataGridViewCellStyle2.ForeColor = Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        dgvResults.ColumnHeadersHeight = 40
-        dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        dgvResults.Columns.AddRange(New DataGridViewColumn() {ContactIdDataGridViewTextBoxColumn, ContactNameDataGridViewTextBoxColumn, ContactPhoneDataGridViewTextBoxColumn, ContactEmailDataGridViewTextBoxColumn})
+        dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        dgvResults.Columns.AddRange(New DataGridViewColumn() {ContactidDataGridViewTextBoxColumn, ContactnameDataGridViewTextBoxColumn, ContactphoneDataGridViewTextBoxColumn, ContactemailDataGridViewTextBoxColumn})
         dgvResults.DataSource = ContactBindingSource
-        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = SystemColors.Window
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle3.ForeColor = SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = Color.ForestGreen
-        DataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        dgvResults.DefaultCellStyle = DataGridViewCellStyle3
         dgvResults.Dock = DockStyle.Fill
-        dgvResults.EnableHeadersVisualStyles = False
         dgvResults.Location = New Point(0, 0)
         dgvResults.Name = "dgvResults"
         dgvResults.ReadOnly = True
         dgvResults.Size = New Size(794, 213)
         dgvResults.TabIndex = 0
         ' 
-        ' ContactIdDataGridViewTextBoxColumn
+        ' ContactidDataGridViewTextBoxColumn
         ' 
-        ContactIdDataGridViewTextBoxColumn.DataPropertyName = "ContactId"
-        ContactIdDataGridViewTextBoxColumn.HeaderText = "ID"
-        ContactIdDataGridViewTextBoxColumn.Name = "ContactIdDataGridViewTextBoxColumn"
-        ContactIdDataGridViewTextBoxColumn.ReadOnly = True
-        ContactIdDataGridViewTextBoxColumn.Width = 50
+        ContactidDataGridViewTextBoxColumn.DataPropertyName = "Contact_id"
+        ContactidDataGridViewTextBoxColumn.HeaderText = "Contact_id"
+        ContactidDataGridViewTextBoxColumn.Name = "ContactidDataGridViewTextBoxColumn"
+        ContactidDataGridViewTextBoxColumn.ReadOnly = True
         ' 
-        ' ContactNameDataGridViewTextBoxColumn
+        ' ContactnameDataGridViewTextBoxColumn
         ' 
-        ContactNameDataGridViewTextBoxColumn.DataPropertyName = "ContactName"
-        ContactNameDataGridViewTextBoxColumn.HeaderText = "Name"
-        ContactNameDataGridViewTextBoxColumn.Name = "ContactNameDataGridViewTextBoxColumn"
-        ContactNameDataGridViewTextBoxColumn.ReadOnly = True
-        ContactNameDataGridViewTextBoxColumn.Width = 370
+        ContactnameDataGridViewTextBoxColumn.DataPropertyName = "Contact_name"
+        ContactnameDataGridViewTextBoxColumn.HeaderText = "Contact_name"
+        ContactnameDataGridViewTextBoxColumn.Name = "ContactnameDataGridViewTextBoxColumn"
+        ContactnameDataGridViewTextBoxColumn.ReadOnly = True
         ' 
-        ' ContactPhoneDataGridViewTextBoxColumn
+        ' ContactphoneDataGridViewTextBoxColumn
         ' 
-        ContactPhoneDataGridViewTextBoxColumn.DataPropertyName = "ContactPhone"
-        ContactPhoneDataGridViewTextBoxColumn.HeaderText = "Phone #"
-        ContactPhoneDataGridViewTextBoxColumn.Name = "ContactPhoneDataGridViewTextBoxColumn"
-        ContactPhoneDataGridViewTextBoxColumn.ReadOnly = True
-        ContactPhoneDataGridViewTextBoxColumn.Width = 125
+        ContactphoneDataGridViewTextBoxColumn.DataPropertyName = "Contact_phone"
+        ContactphoneDataGridViewTextBoxColumn.HeaderText = "Contact_phone"
+        ContactphoneDataGridViewTextBoxColumn.Name = "ContactphoneDataGridViewTextBoxColumn"
+        ContactphoneDataGridViewTextBoxColumn.ReadOnly = True
         ' 
-        ' ContactEmailDataGridViewTextBoxColumn
+        ' ContactemailDataGridViewTextBoxColumn
         ' 
-        ContactEmailDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        ContactEmailDataGridViewTextBoxColumn.DataPropertyName = "ContactEmail"
-        ContactEmailDataGridViewTextBoxColumn.HeaderText = "Email"
-        ContactEmailDataGridViewTextBoxColumn.Name = "ContactEmailDataGridViewTextBoxColumn"
-        ContactEmailDataGridViewTextBoxColumn.ReadOnly = True
+        ContactemailDataGridViewTextBoxColumn.DataPropertyName = "Contact_email"
+        ContactemailDataGridViewTextBoxColumn.HeaderText = "Contact_email"
+        ContactemailDataGridViewTextBoxColumn.Name = "ContactemailDataGridViewTextBoxColumn"
+        ContactemailDataGridViewTextBoxColumn.ReadOnly = True
         ' 
         ' ContactBindingSource
         ' 
@@ -411,13 +381,7 @@ Partial Class FrmMain
     Friend WithEvents lblPhoneNumber1 As Label
     Friend WithEvents txtName2 As TextBox
     Friend WithEvents lblName1 As Label
-    Friend WithEvents dgvResults As DataGridView
     Friend WithEvents ContactnNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactBindingSource As BindingSource
-    Friend WithEvents ContactIdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactNameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactPhoneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactEmailDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents btnNew As Controls.MaterialButton
     Friend WithEvents btnEdit As Controls.MaterialButton
     Friend WithEvents btnSearch As Controls.MaterialButton
@@ -427,5 +391,11 @@ Partial Class FrmMain
     Friend WithEvents txtName As Controls.MaterialTextBox
     Friend WithEvents lblName As Controls.MaterialLabel
     Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
+    Friend WithEvents dgvResults As DataGridView
+    Friend WithEvents ContactBindingSource As BindingSource
+    Friend WithEvents ContactidDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactnameDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactphoneDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactemailDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
 
 End Class
