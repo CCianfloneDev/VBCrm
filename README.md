@@ -1,4 +1,4 @@
-# VB.NET CRM with SQLite and MaterialSkin.2
+# VB.NET CRM with SQLite and MaterialSkin.2 (WORK IN PROGRESS)
 
 This project is a Customer Relationship Management (CRM) application built using VB.NET, utilizing SQLite as the local database and MaterialSkin.2 for enhanced UI components.
 
