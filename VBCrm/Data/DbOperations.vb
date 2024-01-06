@@ -45,22 +45,45 @@ Public Class DbOperations
     Public Sub CreateCustomersTable()
         ' Create a table if it doesn't exist
         OpenConnection()
-        Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (contact_id INTEGER PRIMARY KEY, contact_name TEXT, contact_phone TEXT, contact_email TEXT)"
+        Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (ContactId INTEGER PRIMARY KEY, ContactName TEXT, ContactPhone TEXT, ContactEmail TEXT)"
         Dim command As New SQLiteCommand(createTableQuery, Connection)
         command.ExecuteNonQuery()
         CloseConnection()
     End Sub
 
-    Public Function SaveContact(contactName As String, phoneNumber As String, email As String) As Boolean
+    Public Function CreateContact(contactName As String, phoneNumber As String, email As String) As Boolean
         Try
             Using connection As New SQLiteConnection(ConnectionString)
                 connection.Open()
 
-                Dim query As String = "INSERT INTO Contacts (contact_name, contact_phone, contact_email) VALUES (@Name, @PhoneNumber, @Email)"
+                Dim query As String = "INSERT INTO Contacts (ContactName, ContactPhone, ContactEmail) VALUES (@Name, @PhoneNumber, @Email)"
                 Using command As New SQLiteCommand(query, connection)
                     command.Parameters.AddWithValue("@Name", contactName)
                     command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
                     command.Parameters.AddWithValue("@Email", email)
+                    command.ExecuteNonQuery()
+                End Using
+
+                connection.Close()
+                Return True
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Function UpdateContact(contactId As Integer, newContactName As String, newPhoneNumber As String, newEmail As String) As Boolean
+        Try
+            Using connection As New SQLiteConnection(ConnectionString)
+                connection.Open()
+
+                Dim query As String = "UPDATE Contacts SET ContactName = @NewName, ContactPhone = @NewPhoneNumber, ContactEmail = @NewEmail WHERE ContactId = @ContactId"
+
+                Using command As New SQLiteCommand(query, connection)
+                    command.Parameters.AddWithValue("@NewName", newContactName)
+                    command.Parameters.AddWithValue("@NewPhoneNumber", newPhoneNumber)
+                    command.Parameters.AddWithValue("@NewEmail", newEmail)
+                    command.Parameters.AddWithValue("@ContactId", contactId)
                     command.ExecuteNonQuery()
                 End Using
 
@@ -79,22 +102,21 @@ Public Class DbOperations
             Using connection As New SQLiteConnection(ConnectionString)
                 connection.Open()
 
-                Dim queryBuilder As New StringBuilder("SELECT contact_id, contact_name, contact_phone, contact_email FROM Contacts WHERE 1=1 ")
+                Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail FROM Contacts WHERE 1=1 ")
 
-                ' Create parameters and append to the query if search criteria are provided
                 Using command As New SQLiteCommand(connection)
                     If Not String.IsNullOrEmpty(name) Then
-                        queryBuilder.Append("AND contact_name = @ContactName ")
+                        queryBuilder.Append("AND ContactName = @ContactName ")
                         command.Parameters.AddWithValue("@ContactName", name)
                     End If
 
                     If Not String.IsNullOrEmpty(phoneNumber) Then
-                        queryBuilder.Append("AND contact_phone = @ContactPhone ")
+                        queryBuilder.Append("AND ContactPhone = @ContactPhone ")
                         command.Parameters.AddWithValue("@ContactPhone", phoneNumber)
                     End If
 
                     If Not String.IsNullOrEmpty(email) Then
-                        queryBuilder.Append("AND contact_email = @ContactEmail ")
+                        queryBuilder.Append("AND ContactEmail = @ContactEmail ")
                         command.Parameters.AddWithValue("@ContactEmail", email)
                     End If
 

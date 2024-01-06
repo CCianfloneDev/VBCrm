@@ -36,8 +36,8 @@ Partial Class FrmCreateEdit
         ' 
         lblName.AutoSize = True
         lblName.Depth = 0
-        lblName.Font = New Font("Roboto", 14.0F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblName.Location = New Point(70, 93)
+        lblName.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblName.Location = New Point(34, 93)
         lblName.MouseState = MouseState.HOVER
         lblName.Name = "lblName"
         lblName.Size = New Size(43, 19)
@@ -48,8 +48,8 @@ Partial Class FrmCreateEdit
         ' 
         lblPhoneNumber.AutoSize = True
         lblPhoneNumber.Depth = 0
-        lblPhoneNumber.Font = New Font("Roboto", 14.0F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblPhoneNumber.Location = New Point(53, 143)
+        lblPhoneNumber.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblPhoneNumber.Location = New Point(17, 143)
         lblPhoneNumber.MouseState = MouseState.HOVER
         lblPhoneNumber.Name = "lblPhoneNumber"
         lblPhoneNumber.Size = New Size(60, 19)
@@ -61,9 +61,9 @@ Partial Class FrmCreateEdit
         txtName.AnimateReadOnly = False
         txtName.BorderStyle = BorderStyle.None
         txtName.Depth = 0
-        txtName.Font = New Font("Roboto", 16.0F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtName.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtName.LeadingIcon = Nothing
-        txtName.Location = New Point(119, 91)
+        txtName.Location = New Point(83, 91)
         txtName.MaxLength = 50
         txtName.MouseState = MouseState.OUT
         txtName.Multiline = False
@@ -79,9 +79,9 @@ Partial Class FrmCreateEdit
         txtPhoneNumber.AnimateReadOnly = False
         txtPhoneNumber.BorderStyle = BorderStyle.None
         txtPhoneNumber.Depth = 0
-        txtPhoneNumber.Font = New Font("Roboto", 16.0F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtPhoneNumber.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtPhoneNumber.LeadingIcon = Nothing
-        txtPhoneNumber.Location = New Point(119, 143)
+        txtPhoneNumber.Location = New Point(83, 143)
         txtPhoneNumber.MaxLength = 50
         txtPhoneNumber.MouseState = MouseState.OUT
         txtPhoneNumber.Multiline = False
@@ -96,8 +96,8 @@ Partial Class FrmCreateEdit
         ' 
         lblEmail.AutoSize = True
         lblEmail.Depth = 0
-        lblEmail.Font = New Font("Roboto", 14.0F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblEmail.Location = New Point(72, 194)
+        lblEmail.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblEmail.Location = New Point(36, 194)
         lblEmail.MouseState = MouseState.HOVER
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(41, 19)
@@ -109,9 +109,9 @@ Partial Class FrmCreateEdit
         txtEmail.AnimateReadOnly = False
         txtEmail.BorderStyle = BorderStyle.None
         txtEmail.Depth = 0
-        txtEmail.Font = New Font("Roboto", 16.0F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtEmail.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtEmail.LeadingIcon = Nothing
-        txtEmail.Location = New Point(119, 194)
+        txtEmail.Location = New Point(83, 194)
         txtEmail.MaxLength = 50
         txtEmail.MouseState = MouseState.OUT
         txtEmail.Multiline = False
@@ -132,7 +132,7 @@ Partial Class FrmCreateEdit
         btnCancel.ForeColor = SystemColors.ControlText
         btnCancel.HighEmphasis = True
         btnCancel.Icon = Nothing
-        btnCancel.Location = New Point(186, 299)
+        btnCancel.Location = New Point(175, 259)
         btnCancel.Margin = New Padding(4, 6, 4, 6)
         btnCancel.MouseState = MouseState.HOVER
         btnCancel.Name = "btnCancel"
@@ -154,7 +154,7 @@ Partial Class FrmCreateEdit
         btnSave.ForeColor = SystemColors.ControlText
         btnSave.HighEmphasis = True
         btnSave.Icon = Nothing
-        btnSave.Location = New Point(87, 299)
+        btnSave.Location = New Point(76, 259)
         btnSave.Margin = New Padding(4, 6, 4, 6)
         btnSave.MouseState = MouseState.HOVER
         btnSave.Name = "btnSave"
@@ -168,9 +168,9 @@ Partial Class FrmCreateEdit
         ' 
         ' FrmCreateEdit
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(345, 386)
+        ClientSize = New Size(324, 331)
         Controls.Add(btnCancel)
         Controls.Add(btnSave)
         Controls.Add(lblEmail)

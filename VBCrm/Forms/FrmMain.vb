@@ -1,4 +1,9 @@
-﻿''' <summary>
+﻿Imports System.Reflection
+
+Imports System.Text
+Imports System.Environment
+
+''' <summary>
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
@@ -14,6 +19,9 @@ Public Class FrmMain
         dbOperations = New DbOperations()
         dbOperations.CreateCustomersTable()
 
+        btnSearch.PerformClick()
+        dgvResults.ClearSelection()
+
         ApplyDarkModeColorScheme()
         'ApplyLightModeColorScheme()
     End Sub
@@ -27,6 +35,9 @@ Public Class FrmMain
 #End Region
 
 #Region "Grid events"
+    Private Sub dgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
+        btnEdit.PerformClick()
+    End Sub
 
 #End Region
 
@@ -36,7 +47,7 @@ Public Class FrmMain
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim name As String = txtName.Text.Trim()
         Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
-        Dim email As String
+        Dim email As String = txtEmail.Text.Trim()
 
         Try
             Dim dataTable As DataTable = dbOperations.SearchContacts(name, phoneNumber)
@@ -44,7 +55,7 @@ Public Class FrmMain
 
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
         Catch ex As Exception
-            MessageBox.Show("An error occurred while searching contacts: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show(Me, "An error occurred while searching contacts: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -57,11 +68,33 @@ Public Class FrmMain
         btnSearch.PerformClick()
     End Sub
 
-    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        Dim contact As New Contact
-        Dim createForm As New FrmCreateEdit
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        If dgvResults.SelectedRows.Count <= 0 Then
+            MessageBox.Show(Me, "Please select a Contact to edit...",
+                            My.Application.Info.Title & " - No Contact selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
 
-        createForm.Contact = contact
+        Dim selectedRow As DataGridViewRow = dgvResults.SelectedRows(0)
+
+        Dim contact As New Contact With {
+            .ContactId = CInt(selectedRow.Cells(colId.Index).Value.ToString().Trim()),
+            .ContactName = selectedRow.Cells(colName.Index).Value.ToString().Trim(),
+            .ContactPhone = selectedRow.Cells(colPhone.Index).Value.ToString().Trim(),
+            .ContactEmail = selectedRow.Cells(colEmail.Index).Value.ToString().Trim()
+        }
+
+        Dim editForm As New FrmCreateEdit With {
+            .Contact = contact,
+            .IsNewRecord = False
+        }
+
+        editForm.ShowDialog(Me)
+        btnSearch.PerformClick()
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        ClearFormControls(Me)
     End Sub
 #End Region
 
@@ -104,6 +137,52 @@ Public Class FrmMain
         )
 
         dgvResults.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue
+    End Sub
+
+    Public Sub ClearFormControls(container As Control)
+        For Each ctrl As Control In container.Controls
+            If TypeOf ctrl Is TextBox Then
+                DirectCast(ctrl, TextBox).Clear()
+            ElseIf TypeOf ctrl Is ComboBox Then
+                DirectCast(ctrl, ComboBox).SelectedIndex = -1
+            ElseIf TypeOf ctrl Is DataGridView Then
+                DirectCast(ctrl, DataGridView).DataSource = Nothing
+            ElseIf TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Panel Then
+                ' Recursively clear controls inside GroupBox or Panel
+                ClearFormControls(ctrl)
+            End If
+        Next
+    End Sub
+    Public Function GetAppInfo() As String
+        Dim assembly As Assembly = Assembly.GetExecutingAssembly()
+        Dim version As Version = assembly.GetName().Version
+        Dim title As String = assembly.GetCustomAttributes(GetType(AssemblyTitleAttribute), False).OfType(Of AssemblyTitleAttribute)().FirstOrDefault()?.Title
+        Dim description As String = assembly.GetCustomAttributes(GetType(AssemblyDescriptionAttribute), False).OfType(Of AssemblyDescriptionAttribute)().FirstOrDefault()?.Description
+        Dim companyName As String = assembly.GetCustomAttributes(GetType(AssemblyCompanyAttribute), False).OfType(Of AssemblyCompanyAttribute)().FirstOrDefault()?.Company
+
+        Dim appInfo As New StringBuilder()
+        appInfo.AppendLine($"Application Title: {title}{NewLine}")
+        appInfo.AppendLine($"Version: {version}{NewLine}")
+        appInfo.AppendLine($"Description: {description}{NewLine}")
+        appInfo.AppendLine($"Made by: {companyName}{NewLine}")
+
+        Return appInfo.ToString()
+    End Function
+
+    Private Sub MnuItmExit_Click(sender As Object, e As EventArgs) Handles mnuItmExit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
+        'Dim appInformation As String = GetAppInfo()
+        ShowAboutForm()
+        'MessageBox.Show(Me, appInformation, "About VBCRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub ShowAboutForm()
+        Dim customDialog As New FrmAbout()
+        customDialog.SetMessage(GetAppInfo())
+        customDialog.ShowDialog()
     End Sub
 
 

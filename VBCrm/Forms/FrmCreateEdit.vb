@@ -13,6 +13,16 @@ Public Class FrmCreateEdit
     Private Sub FrmCreateEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplyDarkModeColorScheme()
         'ApplyLightModeColorScheme()
+
+        If IsNewRecord Then
+            Return
+        End If
+
+        With Contact
+            txtName.Text = .ContactName
+            txtEmail.Text = .ContactEmail
+            txtPhoneNumber.Text = .ContactPhone
+        End With
     End Sub
 
     ''' <summary>
@@ -52,7 +62,7 @@ Public Class FrmCreateEdit
         )
     End Sub
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim contactName As String = txtName.Text.Trim()
         Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
         Dim email As String = txtEmail.Text.Trim()
@@ -63,14 +73,21 @@ Public Class FrmCreateEdit
         End If
 
         Try
-            ' Call the method in ClsDbOperations to save contact
-            If dbOperations.SaveContact(contactName, phoneNumber, email) Then
-                MessageBox.Show("Contact saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If IsNewRecord Then
+                If dbOperations.CreateContact(contactName, phoneNumber, email) Then
+                    MessageBox.Show("Contact created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Failed to create contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             Else
-                MessageBox.Show("Failed to save contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If dbOperations.UpdateContact(Contact.ContactId, contactName, phoneNumber, email) Then
+                    MessageBox.Show("Contact saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Failed to save contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
         Catch ex As Exception
-            MessageBox.Show("An error occurred while saving the contact: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("An error occurred while saving/creating the contact: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

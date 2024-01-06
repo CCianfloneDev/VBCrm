@@ -7,6 +7,21 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <ImportedNamespaces>MaterialSkin=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,VBCrm=True</ImportedNamespaces>
+    <Description>This VB.NET CRM project is a Customer Relationship Management application that employs SQLite as the local database and leverages MaterialSkin.2 for an intuitive and modern user interface.</Description>
+    <PackageProjectUrl>https://github.com/CCianfloneDev/VBCrm</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/CCianfloneDev/VBCrm</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>visual-studio; database; material-design; dotnet; nuget; sqlite; winforms; crm; user-interface; vb-net; customer-management;</PackageTags>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <OptionStrict>On</OptionStrict>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Company>Cole Cianflone</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +29,13 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
