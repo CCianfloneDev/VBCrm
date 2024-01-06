@@ -2,7 +2,7 @@
 
 This project is a Customer Relationship Management (CRM) application built using VB.NET, utilizing SQLite as the local database and MaterialSkin.2 for enhanced UI components.
 
-###### note - for some reason the recording didnt pick up the menu strip items but they work in the app I promise.
+###### note - for some reason the recording didnt pick up the menu strip sub-items but they work in the app I promise.
 https://github.com/CCianfloneDev/VBCrm/assets/24930067/c98bae17-7eb9-4be2-a41a-1ef8a01327df
 
 ## Features
