@@ -41,6 +41,7 @@ Public Class FrmMain
 
     Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
         ShowAboutForm()
+        ApplyDarkModeColorScheme(dgvResults, Me)
     End Sub
 #End Region
 
