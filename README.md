@@ -2,8 +2,31 @@
 
 This project is a Customer Relationship Management (CRM) application built using VB.NET, utilizing SQLite as the local database and MaterialSkin.2 for enhanced UI components.
 
-###### note - for some reason the recording didnt pick up the menu strip sub-items but they work in the app I promise.
-https://github.com/CCianfloneDev/VBCrm/assets/24930067/c98bae17-7eb9-4be2-a41a-1ef8a01327df
+## Themes
+
+### Dark Mode - Purple:
+| Main form | Create/edit form | About form |
+|--------------------|--------------------|--------------------|
+| ![image1](https://github.com/CCianfloneDev/VBCrm/assets/24930067/4304db86-e05a-4724-b31b-036b6043d19f) | ![image2](https://github.com/CCianfloneDev/VBCrm/assets/24930067/f0dae951-41f1-4f83-9bf6-fb37024da326) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/48a8b5dd-1ddc-439a-9dbc-a3a841dffb15) |
+
+
+
+### Dark Mode - Green:
+
+| Main form | Create/edit form | About form |
+|--------------------|--------------------|--------------------|
+| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/1a82b2fa-ec83-4915-95fd-b3146cb6b996)| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/61d86038-8948-4317-8701-f5dd15f368eb) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/64afe2f0-74b9-4ae3-b70c-01748e1ffe5f) |
+
+### Light Mode - Blue:
+| Main form | Create/edit form | About form |
+|--------------------|--------------------|--------------------|
+| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/79852e53-ec61-4f9f-884d-e22fef894774)| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/1b621844-cfb0-4b74-9e08-5b51bec9ed2f) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/54bfffce-caff-4b57-8c0e-a5768fa5ceb0) |
+
+
+### Light Mode - Green:
+| Main form | Create/edit form | About form |
+|--------------------|--------------------|--------------------|
+| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/1c9544b5-2552-4fbc-b81b-9ba556044b76)| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/45fcd7e7-62d5-4995-8d20-99ad28111c75) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/db26ce71-8bc5-45b7-9793-5418e00d6682) |
 
 ## Features
 
