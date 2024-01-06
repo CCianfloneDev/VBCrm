@@ -18,10 +18,8 @@ Module Utilities
         dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Aquamarine
 
         Dim menuItemTextColor As Color = Color.Black
-        'Dim subMenuItemBackColor As Color = Color.
 
         frm.MainMenuStrip.ForeColor = menuItemTextColor
-        'frm.MainMenuStrip.BackColor = subMenuItemBackColor
     End Sub
 
     Public Sub ApplyLightModeColorScheme(dgv As DataGridView, frm As MaterialForm)
