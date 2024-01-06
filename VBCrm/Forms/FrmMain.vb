@@ -2,7 +2,14 @@
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
+
+#Region "Properties"
+    ''' <summary>
+    ''' Represents the currently selected Theme.
+    ''' </summary>
+    ''' <returns>Color theme.</returns>
     Private Property CurrentTheme As Themes
+#End Region
 
 #Region "Events"
 
@@ -13,9 +20,9 @@ Public Class FrmMain
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Utilities.DbOperations = New DbOperations()
 
-        ' will default to dark mode - purple if not set
+        ' will default to dark mode purple if not set
         CurrentTheme = Utilities.DbOperations.GetSelectedTheme()
-        ApplyColorScheme(frm:=Me, CurrentTheme)
+        ApplyColorScheme(frm:=Me, theme:=CurrentTheme)
 
         btnSearch.PerformClick()
         dgvResults.ClearSelection()
@@ -30,15 +37,24 @@ Public Class FrmMain
 #End Region
 
 #Region "Menu events"
+    ''' <summary>
+    ''' Handles the exit menu item click event.
+    ''' </summary>
     Private Sub MnuItmExit_Click(sender As Object, e As EventArgs) Handles mnuItmExit.Click
         Me.Close()
     End Sub
 
+    ''' <summary>
+    ''' Handles the about menu item click event.
+    ''' </summary>
     Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
         ShowAboutForm(CurrentTheme)
         ApplyColorScheme(frm:=Me, CurrentTheme)
     End Sub
 
+    ''' <summary>
+    ''' Handles the attached theme setting menu item click events.
+    ''' </summary>
     Private Sub ThemeMenuItem_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModeGreen.Click, mnuItmDarkModePurple.Click, mnuItmLightModeBlue.Click, mnuItmLightModeGreen.Click
         Dim selectedTheme As Themes = Themes.DarkModePurple
         Dim menuItem = DirectCast(sender, ToolStripMenuItem)
@@ -61,6 +77,10 @@ Public Class FrmMain
 #End Region
 
 #Region "Grid events"
+
+    ''' <summary>
+    ''' Handles the results grid cell double click event.
+    ''' </summary>
     Private Sub DgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
         btnEdit.PerformClick()
     End Sub
@@ -69,8 +89,10 @@ Public Class FrmMain
 
 #Region "Button events"
 
-
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    ''' <summary>
+    ''' Handles the search button click event.
+    ''' </summary>
+    Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Dim name As String = txtName.Text.Trim()
         Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
         Dim email As String = txtEmail.Text.Trim()
@@ -85,6 +107,9 @@ Public Class FrmMain
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Handles the new button click event.
+    ''' </summary>
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Dim createForm As New FrmCreateEdit With {
             .IsNewRecord = True,
@@ -95,6 +120,9 @@ Public Class FrmMain
         btnSearch.PerformClick()
     End Sub
 
+    ''' <summary>
+    ''' Handles the edit button click event.
+    ''' </summary>
     Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         If dgvResults.SelectedRows.Count <= 0 Then
             MessageBox.Show(Me, "Please select a Contact to edit...",
@@ -121,20 +149,28 @@ Public Class FrmMain
         btnSearch.PerformClick()
     End Sub
 
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    ''' <summary>
+    ''' Handles the clear button click event.
+    ''' </summary>
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ClearFormControls(Me)
     End Sub
 #End Region
 
 #Region "Textbox events"
-    Private Sub txtPhoneNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown, txtName.KeyDown, txtPhoneNumber.KeyDown
+
+#End Region
+
+#Region "Generic events"
+    ''' <summary>
+    ''' Handles the attached search textboxs key down event.
+    ''' </summary>
+    ''' <remarks>Presses the search button if they pressed enter in the control.</remarks>
+    Private Sub SearchFields_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown, txtName.KeyDown, txtPhoneNumber.KeyDown
         If e.KeyCode = Keys.Enter Then
             btnSearch.PerformClick()
         End If
     End Sub
-
-
-
 
 #End Region
 
@@ -142,10 +178,6 @@ Public Class FrmMain
 
 #Region "Functions and subs"
 
-
-
 #End Region
-
-
 
 End Class
