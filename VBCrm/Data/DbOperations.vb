@@ -106,18 +106,18 @@ Public Class DbOperations
 
                 Using command As New SQLiteCommand(connection)
                     If Not String.IsNullOrEmpty(name) Then
-                        queryBuilder.Append("AND ContactName = @ContactName ")
-                        command.Parameters.AddWithValue("@ContactName", name)
+                        queryBuilder.Append("AND LOWER(ContactName) = @ContactName ")
+                        command.Parameters.AddWithValue("@ContactName", name.ToLower)
                     End If
 
                     If Not String.IsNullOrEmpty(phoneNumber) Then
-                        queryBuilder.Append("AND ContactPhone = @ContactPhone ")
-                        command.Parameters.AddWithValue("@ContactPhone", phoneNumber)
+                        queryBuilder.Append("AND LOWER(ContactPhone) = @ContactPhone ")
+                        command.Parameters.AddWithValue("@ContactPhone", phoneNumber.ToLower)
                     End If
 
                     If Not String.IsNullOrEmpty(email) Then
-                        queryBuilder.Append("AND ContactEmail = @ContactEmail ")
-                        command.Parameters.AddWithValue("@ContactEmail", email)
+                        queryBuilder.Append("AND LOWER(ContactEmail) = @ContactEmail ")
+                        command.Parameters.AddWithValue("@ContactEmail", email.ToLower)
                     End If
 
                     command.CommandText = queryBuilder.ToString()

@@ -2,6 +2,7 @@
 
 Imports System.Text
 Imports System.Environment
+Imports MaterialSkin.Controls
 
 ''' <summary>
 ''' Represents the main form.
@@ -50,7 +51,7 @@ Public Class FrmMain
         Dim email As String = txtEmail.Text.Trim()
 
         Try
-            Dim dataTable As DataTable = dbOperations.SearchContacts(name, phoneNumber)
+            Dim dataTable As DataTable = dbOperations.SearchContacts(name, phoneNumber, email)
             dgvResults.DataSource = dataTable
 
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
@@ -141,8 +142,8 @@ Public Class FrmMain
 
     Public Sub ClearFormControls(container As Control)
         For Each ctrl As Control In container.Controls
-            If TypeOf ctrl Is TextBox Then
-                DirectCast(ctrl, TextBox).Clear()
+            If TypeOf ctrl Is MaterialTextBox Then
+                DirectCast(ctrl, MaterialTextBox).Clear()
             ElseIf TypeOf ctrl Is ComboBox Then
                 DirectCast(ctrl, ComboBox).SelectedIndex = -1
             ElseIf TypeOf ctrl Is DataGridView Then
