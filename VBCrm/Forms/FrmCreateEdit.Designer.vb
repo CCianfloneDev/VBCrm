@@ -69,7 +69,7 @@ Partial Class FrmCreateEdit
         txtName.Multiline = False
         txtName.Name = "txtName"
         txtName.Size = New Size(157, 36)
-        txtName.TabIndex = 17
+        txtName.TabIndex = 0
         txtName.Text = ""
         txtName.TrailingIcon = Nothing
         txtName.UseTallSize = False
@@ -87,7 +87,7 @@ Partial Class FrmCreateEdit
         txtPhoneNumber.Multiline = False
         txtPhoneNumber.Name = "txtPhoneNumber"
         txtPhoneNumber.Size = New Size(157, 36)
-        txtPhoneNumber.TabIndex = 16
+        txtPhoneNumber.TabIndex = 1
         txtPhoneNumber.Text = ""
         txtPhoneNumber.TrailingIcon = Nothing
         txtPhoneNumber.UseTallSize = False
@@ -117,7 +117,7 @@ Partial Class FrmCreateEdit
         txtEmail.Multiline = False
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(157, 36)
-        txtEmail.TabIndex = 20
+        txtEmail.TabIndex = 2
         txtEmail.Text = ""
         txtEmail.TrailingIcon = Nothing
         txtEmail.UseTallSize = False
@@ -138,7 +138,7 @@ Partial Class FrmCreateEdit
         btnCancel.Name = "btnCancel"
         btnCancel.NoAccentTextColor = Color.Empty
         btnCancel.Size = New Size(73, 36)
-        btnCancel.TabIndex = 23
+        btnCancel.TabIndex = 4
         btnCancel.Text = "Cancel"
         btnCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnCancel.UseAccentColor = False
@@ -160,7 +160,7 @@ Partial Class FrmCreateEdit
         btnSave.Name = "btnSave"
         btnSave.NoAccentTextColor = Color.Empty
         btnSave.Size = New Size(73, 36)
-        btnSave.TabIndex = 22
+        btnSave.TabIndex = 3
         btnSave.Text = "Save"
         btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnSave.UseAccentColor = False
@@ -168,6 +168,7 @@ Partial Class FrmCreateEdit
         ' 
         ' FrmCreateEdit
         ' 
+        AcceptButton = btnSave
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(324, 331)

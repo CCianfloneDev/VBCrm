@@ -146,7 +146,7 @@ Partial Class FrmMain
         txtEmail.Multiline = False
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(157, 36)
-        txtEmail.TabIndex = 16
+        txtEmail.TabIndex = 1
         txtEmail.Text = ""
         txtEmail.TrailingIcon = Nothing
         txtEmail.UseTallSize = False
@@ -188,7 +188,7 @@ Partial Class FrmMain
         txtName.Multiline = False
         txtName.Name = "txtName"
         txtName.Size = New Size(157, 36)
-        txtName.TabIndex = 13
+        txtName.TabIndex = 0
         txtName.Text = ""
         txtName.TrailingIcon = Nothing
         txtName.UseTallSize = False
@@ -206,7 +206,7 @@ Partial Class FrmMain
         txtPhoneNumber.Multiline = False
         txtPhoneNumber.Name = "txtPhoneNumber"
         txtPhoneNumber.Size = New Size(157, 36)
-        txtPhoneNumber.TabIndex = 12
+        txtPhoneNumber.TabIndex = 2
         txtPhoneNumber.Text = ""
         txtPhoneNumber.TrailingIcon = Nothing
         txtPhoneNumber.UseTallSize = False
@@ -226,7 +226,7 @@ Partial Class FrmMain
         btnClear.Name = "btnClear"
         btnClear.NoAccentTextColor = Color.Empty
         btnClear.Size = New Size(66, 36)
-        btnClear.TabIndex = 11
+        btnClear.TabIndex = 4
         btnClear.Text = "Clear"
         btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnClear.UseAccentColor = False
@@ -247,7 +247,7 @@ Partial Class FrmMain
         btnSearch.Name = "btnSearch"
         btnSearch.NoAccentTextColor = Color.Empty
         btnSearch.Size = New Size(78, 36)
-        btnSearch.TabIndex = 10
+        btnSearch.TabIndex = 3
         btnSearch.Text = "Search"
         btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnSearch.UseAccentColor = False
@@ -278,7 +278,7 @@ Partial Class FrmMain
         btnEdit.Name = "btnEdit"
         btnEdit.NoAccentTextColor = Color.Empty
         btnEdit.Size = New Size(64, 36)
-        btnEdit.TabIndex = 9
+        btnEdit.TabIndex = 1
         btnEdit.Text = "Edit"
         btnEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnEdit.UseAccentColor = False
@@ -299,7 +299,7 @@ Partial Class FrmMain
         btnNew.Name = "btnNew"
         btnNew.NoAccentTextColor = Color.Empty
         btnNew.Size = New Size(64, 36)
-        btnNew.TabIndex = 8
+        btnNew.TabIndex = 0
         btnNew.Text = "New"
         btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnNew.UseAccentColor = False

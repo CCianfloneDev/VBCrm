@@ -35,6 +35,16 @@ Public Class FrmMain
     End Sub
 #End Region
 
+#Region "Menu events"
+    Private Sub MnuItmExit_Click(sender As Object, e As EventArgs) Handles mnuItmExit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
+        ShowAboutForm()
+    End Sub
+#End Region
+
 #Region "Grid events"
     Private Sub dgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
         btnEdit.PerformClick()
@@ -100,7 +110,11 @@ Public Class FrmMain
 #End Region
 
 #Region "Textbox events"
-
+    Private Sub txtPhoneNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown, txtName.KeyDown, txtPhoneNumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btnSearch.PerformClick()
+        End If
+    End Sub
 #End Region
 
 #End Region
@@ -170,22 +184,11 @@ Public Class FrmMain
         Return appInfo.ToString()
     End Function
 
-    Private Sub MnuItmExit_Click(sender As Object, e As EventArgs) Handles mnuItmExit.Click
-        Me.Close()
-    End Sub
-
-    Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
-        'Dim appInformation As String = GetAppInfo()
-        ShowAboutForm()
-        'MessageBox.Show(Me, appInformation, "About VBCRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
-
     Private Sub ShowAboutForm()
         Dim customDialog As New FrmAbout()
         customDialog.SetMessage(GetAppInfo())
         customDialog.ShowDialog()
     End Sub
-
 
 
 #End Region

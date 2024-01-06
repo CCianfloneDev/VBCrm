@@ -86,6 +86,8 @@ Public Class FrmCreateEdit
                     MessageBox.Show("Failed to save contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
+
+            Me.Close()
         Catch ex As Exception
             MessageBox.Show("An error occurred while saving/creating the contact: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

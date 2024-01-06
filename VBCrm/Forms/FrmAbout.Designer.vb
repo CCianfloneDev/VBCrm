@@ -35,7 +35,7 @@ Partial Class FrmAbout
         lblMessage.MouseState = MouseState.HOVER
         lblMessage.Name = "lblMessage"
         lblMessage.Size = New Size(331, 220)
-        lblMessage.TabIndex = 1
+        lblMessage.TabIndex = 0
         lblMessage.Text = "message goes here"
         ' 
         ' lnkLbl
@@ -46,7 +46,7 @@ Partial Class FrmAbout
         lnkLbl.Location = New Point(164, 343)
         lnkLbl.Name = "lnkLbl"
         lnkLbl.Size = New Size(97, 21)
-        lnkLbl.TabIndex = 3
+        lnkLbl.TabIndex = 1
         lnkLbl.TabStop = True
         lnkLbl.Text = "Github Repo"
         ' 
@@ -66,7 +66,7 @@ Partial Class FrmAbout
         btnClose.Name = "btnClose"
         btnClose.NoAccentTextColor = Color.Empty
         btnClose.Size = New Size(73, 36)
-        btnClose.TabIndex = 24
+        btnClose.TabIndex = 2
         btnClose.Text = "Cancel"
         btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnClose.UseAccentColor = False
@@ -74,9 +74,10 @@ Partial Class FrmAbout
         ' 
         ' FrmAbout
         ' 
+        AcceptButton = btnClose
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(424, 463)
+        ClientSize = New Size(456, 541)
         Controls.Add(btnClose)
         Controls.Add(lnkLbl)
         Controls.Add(lblMessage)
