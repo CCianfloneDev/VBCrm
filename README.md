@@ -2,7 +2,7 @@
 
 This project is a Customer Relationship Management (CRM) application built using VB.NET, utilizing SQLite as the local database and MaterialSkin.2 for enhanced UI components.
 
-## Themes
+## Themes (which save to the database to persist your chosen theme)
 
 ### Dark Mode - Purple:
 | Main form | Create/edit form | About form |
