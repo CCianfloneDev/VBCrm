@@ -39,29 +39,29 @@ Public Class FrmMain
         ApplyColorScheme(frm:=Me, CurrentTheme)
     End Sub
 
-    Private Sub mnuItmDarkModeGreen_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModeGreen.Click
-        ApplyColorScheme(frm:=Me, Themes.DarkModeGreen)
-        CurrentTheme = Themes.DarkModeGreen
+    Private Sub ThemeMenuItem_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModeGreen.Click, mnuItmDarkModePurple.Click, mnuItmLightModeBlue.Click, mnuItmLightModeGreen.Click
+        Dim selectedTheme As Themes = Themes.DarkModePurple
+        Dim menuItem = DirectCast(sender, ToolStripMenuItem)
+
+        Select Case menuItem.Name
+            Case "mnuItmDarkModePurple"
+                selectedTheme = Themes.DarkModePurple
+            Case "mnuItmDarkModeGreen"
+                selectedTheme = Themes.DarkModeGreen
+            Case "mnuItmLightModeBlue"
+                selectedTheme = Themes.LightModeBlue
+            Case "mnuItmLightModeGreen"
+                selectedTheme = Themes.LightModeGreen
+        End Select
+
+        ApplyColorScheme(Me, selectedTheme)
+        CurrentTheme = selectedTheme
     End Sub
 
-    Private Sub mnuItmDarkModePurple_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModePurple.Click
-        ApplyColorScheme(frm:=Me, Themes.DarkModePurple)
-        CurrentTheme = Themes.DarkModePurple
-    End Sub
-
-    Private Sub mnuItmLightModeblue_Click(sender As Object, e As EventArgs) Handles mnuItmLightModeBlue.Click
-        ApplyColorScheme(frm:=Me, Themes.LightModeBlue)
-        CurrentTheme = Themes.LightModeBlue
-    End Sub
-
-    Private Sub mnuItmLightModeGreen_Click(sender As Object, e As EventArgs) Handles mnuItmLightModeGreen.Click
-        ApplyColorScheme(frm:=Me, Themes.LightModeGreen)
-        CurrentTheme = Themes.LightModeGreen
-    End Sub
 #End Region
 
 #Region "Grid events"
-    Private Sub dgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
+    Private Sub DgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
         btnEdit.PerformClick()
     End Sub
 

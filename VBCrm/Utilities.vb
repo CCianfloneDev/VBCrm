@@ -65,6 +65,7 @@ Module Utilities
             End If
         Next
     End Sub
+
     Public Function GetAppInfo() As String
         Dim assembly As Assembly = Assembly.GetExecutingAssembly()
         Dim version As Version = assembly.GetName().Version
@@ -88,4 +89,5 @@ Module Utilities
         aboutFrm.SetMessage(GetAppInfo())
         aboutFrm.ShowDialog()
     End Sub
+
 End Module
