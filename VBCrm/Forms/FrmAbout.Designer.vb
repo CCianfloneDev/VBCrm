@@ -31,7 +31,7 @@ Partial Class FrmAbout
         ' 
         lblMessage.Depth = 0
         lblMessage.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblMessage.Location = New Point(47, 111)
+        lblMessage.Location = New Point(48, 111)
         lblMessage.MouseState = MouseState.HOVER
         lblMessage.Name = "lblMessage"
         lblMessage.Size = New Size(331, 220)
@@ -43,7 +43,7 @@ Partial Class FrmAbout
         lnkLbl.AutoSize = True
         lnkLbl.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lnkLbl.LinkColor = Color.Green
-        lnkLbl.Location = New Point(164, 343)
+        lnkLbl.Location = New Point(165, 343)
         lnkLbl.Name = "lnkLbl"
         lnkLbl.Size = New Size(97, 21)
         lnkLbl.TabIndex = 1
@@ -60,7 +60,7 @@ Partial Class FrmAbout
         btnClose.ForeColor = SystemColors.ControlText
         btnClose.HighEmphasis = True
         btnClose.Icon = Nothing
-        btnClose.Location = New Point(176, 373)
+        btnClose.Location = New Point(177, 373)
         btnClose.Margin = New Padding(4, 6, 4, 6)
         btnClose.MouseState = MouseState.HOVER
         btnClose.Name = "btnClose"
@@ -77,7 +77,7 @@ Partial Class FrmAbout
         AcceptButton = btnClose
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(456, 541)
+        ClientSize = New Size(427, 443)
         Controls.Add(btnClose)
         Controls.Add(lnkLbl)
         Controls.Add(lblMessage)

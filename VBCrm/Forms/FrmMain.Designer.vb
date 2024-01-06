@@ -29,6 +29,10 @@ Partial Class FrmMain
         mnuItmExit = New ToolStripMenuItem()
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
+        mnuItmPreferences = New ToolStripMenuItem()
+        mnuItmTheme = New ToolStripMenuItem()
+        mnuItmDarkMode = New ToolStripMenuItem()
+        mnuItmLightMode = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -60,7 +64,7 @@ Partial Class FrmMain
         ' 
         ' mnuMenuStrip
         ' 
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp})
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences})
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(794, 24)
@@ -96,6 +100,32 @@ Partial Class FrmMain
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
         mnuItmAbout.Size = New Size(145, 22)
         mnuItmAbout.Text = "&About"
+        ' 
+        ' mnuItmPreferences
+        ' 
+        mnuItmPreferences.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme})
+        mnuItmPreferences.Name = "mnuItmPreferences"
+        mnuItmPreferences.Size = New Size(80, 20)
+        mnuItmPreferences.Text = "&Preferences"
+        ' 
+        ' mnuItmTheme
+        ' 
+        mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkMode, mnuItmLightMode})
+        mnuItmTheme.Name = "mnuItmTheme"
+        mnuItmTheme.Size = New Size(110, 22)
+        mnuItmTheme.Text = "&Theme"
+        ' 
+        ' mnuItmDarkMode
+        ' 
+        mnuItmDarkMode.Name = "mnuItmDarkMode"
+        mnuItmDarkMode.Size = New Size(135, 22)
+        mnuItmDarkMode.Text = "&Dark mode"
+        ' 
+        ' mnuItmLightMode
+        ' 
+        mnuItmLightMode.Name = "mnuItmLightMode"
+        mnuItmLightMode.Size = New Size(135, 22)
+        mnuItmLightMode.Text = "&Light mode"
         ' 
         ' staStatusStrip
         ' 
@@ -449,5 +479,9 @@ Partial Class FrmMain
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
     Friend WithEvents lblEmail As Controls.MaterialLabel
     Friend WithEvents txtEmail As Controls.MaterialTextBox
+    Friend WithEvents mnuItmPreferences As ToolStripMenuItem
+    Friend WithEvents mnuItmTheme As ToolStripMenuItem
+    Friend WithEvents mnuItmDarkMode As ToolStripMenuItem
+    Friend WithEvents mnuItmLightMode As ToolStripMenuItem
 
 End Class

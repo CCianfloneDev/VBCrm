@@ -20,11 +20,10 @@ Public Class FrmMain
         dbOperations = New DbOperations()
         dbOperations.CreateCustomersTable()
 
+        ApplyDarkModeColorScheme(dgvResults, frm:=Me)
+
         btnSearch.PerformClick()
         dgvResults.ClearSelection()
-
-        ApplyDarkModeColorScheme()
-        'ApplyLightModeColorScheme()
     End Sub
 
     ''' <summary>
@@ -115,80 +114,21 @@ Public Class FrmMain
             btnSearch.PerformClick()
         End If
     End Sub
+
+    Private Sub mnuItmDarkMode_Click(sender As Object, e As EventArgs) Handles mnuItmDarkMode.Click
+        ApplyDarkModeColorScheme(dgvResults, frm:=Me)
+    End Sub
+
+    Private Sub mnuItmLightMode_Click(sender As Object, e As EventArgs) Handles mnuItmLightMode.Click
+        ApplyLightModeColorScheme(dgvResults, frm:=Me)
+    End Sub
+
 #End Region
 
 #End Region
 
 #Region "Functions and subs"
-    Private Sub ApplyDarkModeColorScheme()
-        ' Create a MaterialSkinManager instance
-        Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
 
-        ' Set the color scheme for dark mode
-        materialSkinManager.AddFormToManage(Me)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.DARK ' Set theme to DARK
-
-        ' Define primary and accent colors for dark mode
-        materialSkinManager.ColorScheme = New ColorScheme(
-            Primary.Teal500, Primary.Teal700, Primary.Teal200,
-            Accent.Yellow200, TextShade.WHITE
-        )
-
-        dgvResults.ColumnHeadersDefaultCellStyle.BackColor = Color.Aquamarine
-    End Sub
-
-    Private Sub ApplyLightModeColorScheme()
-        ' Create a MaterialSkinManager instance
-        Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
-
-        ' Set the color scheme for light mode
-        materialSkinManager.AddFormToManage(Me)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT ' Set theme to LIGHT
-
-        ' Define primary and accent colors for light mode
-        materialSkinManager.ColorScheme = New ColorScheme(
-            Primary.Blue600, Primary.Blue700, Primary.Blue500,
-            Accent.LightBlue200, TextShade.WHITE
-        )
-
-        dgvResults.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue
-    End Sub
-
-    Public Sub ClearFormControls(container As Control)
-        For Each ctrl As Control In container.Controls
-            If TypeOf ctrl Is MaterialTextBox Then
-                DirectCast(ctrl, MaterialTextBox).Clear()
-            ElseIf TypeOf ctrl Is ComboBox Then
-                DirectCast(ctrl, ComboBox).SelectedIndex = -1
-            ElseIf TypeOf ctrl Is DataGridView Then
-                DirectCast(ctrl, DataGridView).DataSource = Nothing
-            ElseIf TypeOf ctrl Is GroupBox OrElse TypeOf ctrl Is Panel Then
-                ' Recursively clear controls inside GroupBox or Panel
-                ClearFormControls(ctrl)
-            End If
-        Next
-    End Sub
-    Public Function GetAppInfo() As String
-        Dim assembly As Assembly = Assembly.GetExecutingAssembly()
-        Dim version As Version = assembly.GetName().Version
-        Dim title As String = assembly.GetCustomAttributes(GetType(AssemblyTitleAttribute), False).OfType(Of AssemblyTitleAttribute)().FirstOrDefault()?.Title
-        Dim description As String = assembly.GetCustomAttributes(GetType(AssemblyDescriptionAttribute), False).OfType(Of AssemblyDescriptionAttribute)().FirstOrDefault()?.Description
-        Dim companyName As String = assembly.GetCustomAttributes(GetType(AssemblyCompanyAttribute), False).OfType(Of AssemblyCompanyAttribute)().FirstOrDefault()?.Company
-
-        Dim appInfo As New StringBuilder()
-        appInfo.AppendLine($"Application Title: {title}{NewLine}")
-        appInfo.AppendLine($"Version: {version}{NewLine}")
-        appInfo.AppendLine($"Description: {description}{NewLine}")
-        appInfo.AppendLine($"Made by: {companyName}{NewLine}")
-
-        Return appInfo.ToString()
-    End Function
-
-    Private Sub ShowAboutForm()
-        Dim customDialog As New FrmAbout()
-        customDialog.SetMessage(GetAppInfo())
-        customDialog.ShowDialog()
-    End Sub
 
 
 #End Region
