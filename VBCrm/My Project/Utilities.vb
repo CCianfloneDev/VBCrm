@@ -4,43 +4,69 @@ Imports System.Text
 Imports System.Environment
 
 Module Utilities
-    Public Sub ApplyDarkModeColorScheme(dgv As DataGridView, frm As MaterialForm)
+    Public Sub ApplyColorScheme(dgv As DataGridView, frm As MaterialForm, isDarkMode As Boolean)
         Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
 
         materialSkinManager.AddFormToManage(frm)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.DARK
 
-        materialSkinManager.ColorScheme = New ColorScheme(
+        If isDarkMode Then
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK
+            materialSkinManager.ColorScheme = New ColorScheme(
             Primary.Teal500, Primary.Teal700, Primary.Teal200,
             Accent.Yellow200, TextShade.WHITE
         )
-
-        dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Aquamarine
-
-        Dim menuItemTextColor As Color = Color.Black
-
-        frm.MainMenuStrip.ForeColor = menuItemTextColor
-    End Sub
-
-    Public Sub ApplyLightModeColorScheme(dgv As DataGridView, frm As MaterialForm)
-        Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
-
-        materialSkinManager.AddFormToManage(frm)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
-
-        materialSkinManager.ColorScheme = New ColorScheme(
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Aquamarine
+        Else
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+            materialSkinManager.ColorScheme = New ColorScheme(
             Primary.Blue600, Primary.Blue700, Primary.Blue500,
             Accent.LightBlue200, TextShade.WHITE
         )
-
-        dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue
+        End If
 
         Dim menuItemTextColor As Color = Color.Black
-        Dim subMenuItemBackColor As Color = Color.White
 
         frm.MainMenuStrip.ForeColor = menuItemTextColor
-        frm.MainMenuStrip.BackColor = subMenuItemBackColor
     End Sub
+
+    'Public Sub ApplyDarkModeColorScheme(dgv As DataGridView, frm As MaterialForm)
+    '    Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
+
+    '    materialSkinManager.AddFormToManage(frm)
+    '    materialSkinManager.Theme = MaterialSkinManager.Themes.DARK
+
+    '    materialSkinManager.ColorScheme = New ColorScheme(
+    '        Primary.Teal500, Primary.Teal700, Primary.Teal200,
+    '        Accent.Yellow200, TextShade.WHITE
+    '    )
+
+    '    dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.Aquamarine
+
+    '    Dim menuItemTextColor As Color = Color.Black
+
+    '    frm.MainMenuStrip.ForeColor = menuItemTextColor
+    'End Sub
+
+    'Public Sub ApplyLightModeColorScheme(dgv As DataGridView, frm As MaterialForm)
+    '    Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
+
+    '    materialSkinManager.AddFormToManage(frm)
+    '    materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
+
+    '    materialSkinManager.ColorScheme = New ColorScheme(
+    '        Primary.Blue600, Primary.Blue700, Primary.Blue500,
+    '        Accent.LightBlue200, TextShade.WHITE
+    '    )
+
+    '    dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.RoyalBlue
+
+    '    Dim menuItemTextColor As Color = Color.Black
+    '    Dim subMenuItemBackColor As Color = Color.White
+
+    '    frm.MainMenuStrip.ForeColor = menuItemTextColor
+    '    frm.MainMenuStrip.BackColor = subMenuItemBackColor
+    'End Sub
 
     Public Sub ClearFormControls(container As Control)
         For Each ctrl As Control In container.Controls

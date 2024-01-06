@@ -98,7 +98,7 @@ Partial Class FrmMain
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(180, 22)
+        mnuItmAbout.Size = New Size(145, 22)
         mnuItmAbout.Text = "&About"
         ' 
         ' mnuItmPreferences

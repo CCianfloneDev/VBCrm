@@ -20,7 +20,7 @@ Public Class FrmMain
         dbOperations = New DbOperations()
         dbOperations.CreateCustomersTable()
 
-        ApplyDarkModeColorScheme(dgvResults, frm:=Me)
+        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=True)
 
         btnSearch.PerformClick()
         dgvResults.ClearSelection()
@@ -41,7 +41,15 @@ Public Class FrmMain
 
     Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
         ShowAboutForm()
-        ApplyDarkModeColorScheme(dgvResults, Me)
+        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=False)
+    End Sub
+
+    Private Sub mnuItmDarkMode_Click(sender As Object, e As EventArgs) Handles mnuItmDarkMode.Click
+        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=True)
+    End Sub
+
+    Private Sub mnuItmLightMode_Click(sender As Object, e As EventArgs) Handles mnuItmLightMode.Click
+        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=False)
     End Sub
 #End Region
 
@@ -116,13 +124,6 @@ Public Class FrmMain
         End If
     End Sub
 
-    Private Sub mnuItmDarkMode_Click(sender As Object, e As EventArgs) Handles mnuItmDarkMode.Click
-        ApplyDarkModeColorScheme(dgvResults, frm:=Me)
-    End Sub
-
-    Private Sub mnuItmLightMode_Click(sender As Object, e As EventArgs) Handles mnuItmLightMode.Click
-        ApplyLightModeColorScheme(dgvResults, frm:=Me)
-    End Sub
 
 #End Region
 
