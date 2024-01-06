@@ -1,8 +1,12 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Reflection.Emit
+Imports System.Windows.Forms
 
 Public Class FrmAbout
+
+    Public Property Theme As Themes
     Private Sub FrmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ApplyDarkModeColorScheme()
+        ApplyColorScheme(frm:=Me, theme:=Theme)
+        lnkLbl.Font = New Font(lnkLbl.Font.FontFamily, 16, lnkLbl.Font.Style)
     End Sub
     Public Sub SetMessage(messageText As String)
         lblMessage.Text = messageText
@@ -11,7 +15,6 @@ Public Class FrmAbout
     Private Sub lnkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkLbl.LinkClicked
         Dim url As String = "https://www.github.com/CCianfloneDev/VBCrm"
 
-        ' Open the URL in the default browser
         Process.Start(New ProcessStartInfo(url) With {
         .UseShellExecute = True,
         .Verb = "open"
@@ -20,18 +23,6 @@ Public Class FrmAbout
 
     Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
         Me.Close()
-    End Sub
-
-    Private Sub ApplyDarkModeColorScheme()
-        Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
-
-        materialSkinManager.AddFormToManage(Me)
-        materialSkinManager.Theme = MaterialSkinManager.Themes.DARK
-
-        materialSkinManager.ColorScheme = New ColorScheme(
-            Primary.Teal500, Primary.Teal700, Primary.Teal200,
-            Accent.Yellow200, TextShade.WHITE
-        )
     End Sub
 
 

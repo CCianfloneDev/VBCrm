@@ -31,8 +31,10 @@ Partial Class FrmMain
         mnuItmAbout = New ToolStripMenuItem()
         mnuItmPreferences = New ToolStripMenuItem()
         mnuItmTheme = New ToolStripMenuItem()
-        mnuItmDarkMode = New ToolStripMenuItem()
-        mnuItmLightMode = New ToolStripMenuItem()
+        mnuItmDarkModePurple = New ToolStripMenuItem()
+        mnuItmDarkModeGreen = New ToolStripMenuItem()
+        mnuItmLightModeBlue = New ToolStripMenuItem()
+        mnuItmLightModeGreen = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -52,6 +54,7 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
+        ContactBindingSource1 = New BindingSource(components)
         ContactBindingSource = New BindingSource(components)
         lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
@@ -59,6 +62,7 @@ Partial Class FrmMain
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
+        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).BeginInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -105,27 +109,45 @@ Partial Class FrmMain
         ' 
         mnuItmPreferences.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme})
         mnuItmPreferences.Name = "mnuItmPreferences"
+        mnuItmPreferences.ShortcutKeys = Keys.Alt Or Keys.P
         mnuItmPreferences.Size = New Size(80, 20)
         mnuItmPreferences.Text = "&Preferences"
         ' 
         ' mnuItmTheme
         ' 
-        mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkMode, mnuItmLightMode})
+        mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.Size = New Size(110, 22)
+        mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
+        mnuItmTheme.Size = New Size(146, 22)
         mnuItmTheme.Text = "&Theme"
         ' 
-        ' mnuItmDarkMode
+        ' mnuItmDarkModePurple
         ' 
-        mnuItmDarkMode.Name = "mnuItmDarkMode"
-        mnuItmDarkMode.Size = New Size(135, 22)
-        mnuItmDarkMode.Text = "&Dark mode"
+        mnuItmDarkModePurple.Name = "mnuItmDarkModePurple"
+        mnuItmDarkModePurple.ShortcutKeys = Keys.Alt Or Keys.P
+        mnuItmDarkModePurple.Size = New Size(214, 22)
+        mnuItmDarkModePurple.Text = "Dark mode - &Purple"
         ' 
-        ' mnuItmLightMode
+        ' mnuItmDarkModeGreen
         ' 
-        mnuItmLightMode.Name = "mnuItmLightMode"
-        mnuItmLightMode.Size = New Size(135, 22)
-        mnuItmLightMode.Text = "&Light mode"
+        mnuItmDarkModeGreen.Name = "mnuItmDarkModeGreen"
+        mnuItmDarkModeGreen.ShortcutKeys = Keys.Alt Or Keys.G
+        mnuItmDarkModeGreen.Size = New Size(214, 22)
+        mnuItmDarkModeGreen.Text = "Dark mode - &Green"
+        ' 
+        ' mnuItmLightModeBlue
+        ' 
+        mnuItmLightModeBlue.Name = "mnuItmLightModeBlue"
+        mnuItmLightModeBlue.ShortcutKeys = Keys.Alt Or Keys.B
+        mnuItmLightModeBlue.Size = New Size(214, 22)
+        mnuItmLightModeBlue.Text = "Light mode - &Blue"
+        ' 
+        ' mnuItmLightModeGreen
+        ' 
+        mnuItmLightModeGreen.Name = "mnuItmLightModeGreen"
+        mnuItmLightModeGreen.ShortcutKeys = Keys.Alt Or Keys.R
+        mnuItmLightModeGreen.Size = New Size(214, 22)
+        mnuItmLightModeGreen.Text = "Light mode - G&reen"
         ' 
         ' staStatusStrip
         ' 
@@ -360,7 +382,7 @@ Partial Class FrmMain
         dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail})
-        dgvResults.DataSource = ContactBindingSource
+        dgvResults.DataSource = ContactBindingSource1
         dgvResults.Dock = DockStyle.Fill
         dgvResults.Location = New Point(0, 0)
         dgvResults.MultiSelect = False
@@ -402,9 +424,9 @@ Partial Class FrmMain
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
         ' 
-        ' ContactBindingSource
+        ' ContactBindingSource1
         ' 
-        ContactBindingSource.DataSource = GetType(Contact)
+        ContactBindingSource1.DataSource = GetType(Contact)
         ' 
         ' lblSearchCriteria
         ' 
@@ -443,6 +465,7 @@ Partial Class FrmMain
         pnlBottom.PerformLayout()
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
+        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -473,15 +496,18 @@ Partial Class FrmMain
     Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
     Friend WithEvents dgvResults As DataGridView
     Friend WithEvents ContactBindingSource As BindingSource
-    Friend WithEvents colId As DataGridViewTextBoxColumn
-    Friend WithEvents colName As DataGridViewTextBoxColumn
-    Friend WithEvents colPhone As DataGridViewTextBoxColumn
-    Friend WithEvents colEmail As DataGridViewTextBoxColumn
     Friend WithEvents lblEmail As Controls.MaterialLabel
     Friend WithEvents txtEmail As Controls.MaterialTextBox
     Friend WithEvents mnuItmPreferences As ToolStripMenuItem
     Friend WithEvents mnuItmTheme As ToolStripMenuItem
-    Friend WithEvents mnuItmDarkMode As ToolStripMenuItem
-    Friend WithEvents mnuItmLightMode As ToolStripMenuItem
+    Friend WithEvents mnuItmDarkModeGreen As ToolStripMenuItem
+    Friend WithEvents mnuItmLightModeBlue As ToolStripMenuItem
+    Friend WithEvents mnuItmDarkModePurple As ToolStripMenuItem
+    Friend WithEvents mnuItmLightModeGreen As ToolStripMenuItem
+    Friend WithEvents ContactBindingSource1 As BindingSource
+    Friend WithEvents colId As DataGridViewTextBoxColumn
+    Friend WithEvents colName As DataGridViewTextBoxColumn
+    Friend WithEvents colPhone As DataGridViewTextBoxColumn
+    Friend WithEvents colEmail As DataGridViewTextBoxColumn
 
 End Class

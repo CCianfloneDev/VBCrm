@@ -1,14 +1,10 @@
-﻿Imports System.Reflection
-
-Imports System.Text
-Imports System.Environment
-Imports MaterialSkin.Controls
-
-''' <summary>
+﻿''' <summary>
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
     Private dbOperations As DbOperations
+
+    Private Property CurrentTheme As Themes
 
 #Region "Events"
 
@@ -20,7 +16,8 @@ Public Class FrmMain
         dbOperations = New DbOperations()
         dbOperations.CreateCustomersTable()
 
-        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=True)
+        ApplyColorScheme(frm:=Me, Themes.DarkModePurple)
+        CurrentTheme = Themes.DarkModePurple
 
         btnSearch.PerformClick()
         dgvResults.ClearSelection()
@@ -40,16 +37,28 @@ Public Class FrmMain
     End Sub
 
     Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
-        ShowAboutForm()
-        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=False)
+        ShowAboutForm(CurrentTheme)
+        ApplyColorScheme(frm:=Me, CurrentTheme)
     End Sub
 
-    Private Sub mnuItmDarkMode_Click(sender As Object, e As EventArgs) Handles mnuItmDarkMode.Click
-        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=True)
+    Private Sub mnuItmDarkModeGreen_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModeGreen.Click
+        ApplyColorScheme(frm:=Me, Themes.DarkModeGreen)
+        CurrentTheme = Themes.DarkModeGreen
     End Sub
 
-    Private Sub mnuItmLightMode_Click(sender As Object, e As EventArgs) Handles mnuItmLightMode.Click
-        ApplyColorScheme(dgvResults, frm:=Me, isDarkMode:=False)
+    Private Sub mnuItmDarkModePurple_Click(sender As Object, e As EventArgs) Handles mnuItmDarkModePurple.Click
+        ApplyColorScheme(frm:=Me, Themes.DarkModePurple)
+        CurrentTheme = Themes.DarkModePurple
+    End Sub
+
+    Private Sub mnuItmLightModeblue_Click(sender As Object, e As EventArgs) Handles mnuItmLightModeBlue.Click
+        ApplyColorScheme(frm:=Me, Themes.LightModeBlue)
+        CurrentTheme = Themes.LightModeBlue
+    End Sub
+
+    Private Sub mnuItmLightModeGreen_Click(sender As Object, e As EventArgs) Handles mnuItmLightModeGreen.Click
+        ApplyColorScheme(frm:=Me, Themes.LightModeGreen)
+        CurrentTheme = Themes.LightModeGreen
     End Sub
 #End Region
 
@@ -80,7 +89,8 @@ Public Class FrmMain
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         Dim createForm As New FrmCreateEdit With {
-            .IsNewRecord = True
+            .IsNewRecord = True,
+            .Theme = CurrentTheme
         }
 
         createForm.ShowDialog(Me)
@@ -105,7 +115,8 @@ Public Class FrmMain
 
         Dim editForm As New FrmCreateEdit With {
             .Contact = contact,
-            .IsNewRecord = False
+            .IsNewRecord = False,
+            .Theme = CurrentTheme
         }
 
         editForm.ShowDialog(Me)
@@ -123,6 +134,8 @@ Public Class FrmMain
             btnSearch.PerformClick()
         End If
     End Sub
+
+
 
 
 #End Region

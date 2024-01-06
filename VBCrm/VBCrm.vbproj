@@ -6,7 +6,7 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
-    <ImportedNamespaces>MaterialSkin=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,VBCrm=True</ImportedNamespaces>
+    <ImportedNamespaces>MaterialSkin=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,VBCrm.My=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,VBCrm=True</ImportedNamespaces>
     <Description>This VB.NET CRM project is a Customer Relationship Management application that employs SQLite as the local database and leverages MaterialSkin.2 for an intuitive and modern user interface.</Description>
     <PackageProjectUrl>https://github.com/CCianfloneDev/VBCrm</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -29,6 +29,7 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
+    <Import Include="VBCrm.My" />
   </ItemGroup>
 
   <ItemGroup>
