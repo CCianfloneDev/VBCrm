@@ -4,17 +4,21 @@ Imports System.Text
 Imports System.Environment
 
 Public Enum Themes
-    DarkModeGreen
-    DarkModePurple
-    LightModeBlue
-    LightModeGreen
+    DarkModePurple = 1
+    LightModeBlue = 2
+    DarkModeGreen = 3
+    LightModeGreen = 4
 End Enum
 
 Module Utilities
+    Public DbOperations As DbOperations
 
     Public Sub ApplyColorScheme(frm As MaterialForm, theme As Themes)
         Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
         materialSkinManager.AddFormToManage(frm)
+
+        ' Save the selected theme in the user settings
+        DbOperations.UpdateSelectedTheme(CInt(theme))
 
         Select Case theme
             Case Themes.DarkModePurple
@@ -45,10 +49,6 @@ Module Utilities
         End Select
 
         frm.Refresh()
-
-        'If frm.MainMenuStrip IsNot Nothing Then
-        '    frm.MainMenuStrip.ForeColor = Color.Black
-        'End If
     End Sub
 
     Public Sub ClearFormControls(container As Control)

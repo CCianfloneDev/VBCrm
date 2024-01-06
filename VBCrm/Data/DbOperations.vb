@@ -29,7 +29,8 @@ Public Class DbOperations
             SQLiteConnection.CreateFile("mydatabase.db")
         End If
 
-        CreateCustomersTable()
+        CreateContactsTable()
+        CreateThemes()
     End Sub
 #End Region
 
@@ -54,21 +55,25 @@ Public Class DbOperations
 
 #Region "CRUD operations"
 
-#Region "Creating data"
+#Region "Creating tables"
     ''' <summary>
-    ''' Creates the 'Customers' table if it doesn't exist.
+    ''' Creates the 'Contacts' table if it doesn't exist.
     ''' </summary>
     ''' <remarks>This is needed because the project is built with SQLite, SQLite is a light weight db that 
     ''' will be unique to the user running the application installed locally on their machine.</remarks>
-    Public Sub CreateCustomersTable()
+    Private Sub CreateContactsTable()
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
-            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Customers (CustomerId INTEGER PRIMARY KEY, CustomerName TEXT, CustomerPhone TEXT, CustomerEmail TEXT)"
+            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (ContactId INTEGER PRIMARY KEY, ContactName TEXT, ContactPhone TEXT, ContactEmail TEXT)"
             Using command As New SQLiteCommand(createTableQuery, connection)
                 command.ExecuteNonQuery()
             End Using
         End Using
     End Sub
+
+#End Region
+
+#Region "Creating data"
 
     ''' <summary>
     ''' Creates a new contact in the database.
@@ -97,6 +102,36 @@ Public Class DbOperations
             Return False
         End Try
     End Function
+
+    Private Sub CreateThemes()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim createThemesQuery As String = "CREATE TABLE IF NOT EXISTS Themes (ThemeId INTEGER PRIMARY KEY, ThemeName TEXT, Selected INTEGER DEFAULT 0)"
+            Using command As New SQLiteCommand(createThemesQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+
+            Dim insertThemeQuery As String = "INSERT OR IGNORE INTO Themes (ThemeName) VALUES (@ThemeName)"
+            Using command As New SQLiteCommand(insertThemeQuery, connection)
+                command.Parameters.AddWithValue("@ThemeName", "Dark Mode - Purple")
+                command.ExecuteNonQuery()
+
+                command.Parameters.Clear()
+                command.Parameters.AddWithValue("@ThemeName", "Light Mode - Blue")
+                command.ExecuteNonQuery()
+
+                command.Parameters.Clear()
+                command.Parameters.AddWithValue("@ThemeName", "Dark Mode - Green")
+                command.ExecuteNonQuery()
+
+                command.Parameters.Clear()
+                command.Parameters.AddWithValue("@ThemeName", "Light Mode - Green")
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+
 #End Region
 
 #Region "Reading data"
@@ -147,6 +182,45 @@ Public Class DbOperations
             Return dataTable
         End Try
     End Function
+
+    Public Function GetSelectedTheme() As Themes
+        Dim selectedThemeId As Integer = -1
+        Dim selectedTheme As Themes = Themes.DarkModePurple
+
+        Try
+            Using connection As New SQLiteConnection(ConnectionString)
+                connection.Open()
+
+                Dim query As String = "SELECT ThemeId FROM Themes WHERE Selected = 1"
+
+                Using command As New SQLiteCommand(query, connection)
+                    Dim result As Object = command.ExecuteScalar()
+                    If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
+                        selectedThemeId = Convert.ToInt32(result)
+                    End If
+                End Using
+
+                connection.Close()
+
+                If selectedThemeId <> -1 Then
+                    Select Case selectedThemeId
+                        Case 1
+                            Return Themes.DarkModePurple
+                        Case 2
+                            Return Themes.LightModeBlue
+                        Case 3
+                            Return Themes.DarkModeGreen
+                        Case 4
+                            Return Themes.LightModeGreen
+                    End Select
+                End If
+            End Using
+        Catch ex As Exception
+            Return selectedTheme
+        End Try
+
+        Return selectedTheme
+    End Function
 #End Region
 
 #Region "Updating data"
@@ -170,6 +244,26 @@ Public Class DbOperations
                     command.Parameters.AddWithValue("@NewPhoneNumber", newPhoneNumber)
                     command.Parameters.AddWithValue("@NewEmail", newEmail)
                     command.Parameters.AddWithValue("@ContactId", contactId)
+                    command.ExecuteNonQuery()
+                End Using
+
+                connection.Close()
+                Return True
+            End Using
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Function UpdateSelectedTheme(themeId As Integer) As Boolean
+        Try
+            Using connection As New SQLiteConnection(ConnectionString)
+                connection.Open()
+
+                Dim updateQuery As String = "UPDATE Themes SET Selected = CASE WHEN ThemeId = @ThemeId THEN 1 ELSE 0 END"
+
+                Using command As New SQLiteCommand(updateQuery, connection)
+                    command.Parameters.AddWithValue("@ThemeId", themeId)
                     command.ExecuteNonQuery()
                 End Using
 

@@ -2,8 +2,6 @@
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
-    Private dbOperations As DbOperations
-
     Private Property CurrentTheme As Themes
 
 #Region "Events"
@@ -13,11 +11,11 @@ Public Class FrmMain
     ''' Handles the main form load event.
     ''' </summary>
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dbOperations = New DbOperations()
-        dbOperations.CreateCustomersTable()
+        Utilities.DbOperations = New DbOperations()
 
-        ApplyColorScheme(frm:=Me, Themes.DarkModePurple)
-        CurrentTheme = Themes.DarkModePurple
+        ' will default to dark mode - purple if not set
+        CurrentTheme = Utilities.DbOperations.GetSelectedTheme()
+        ApplyColorScheme(frm:=Me, CurrentTheme)
 
         btnSearch.PerformClick()
         dgvResults.ClearSelection()
@@ -27,7 +25,7 @@ Public Class FrmMain
     ''' Handles the main form closing event.
     ''' </summary>
     Private Sub FrmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        dbOperations.CloseConnection()
+        Utilities.DbOperations.CloseConnection()
     End Sub
 #End Region
 
@@ -78,7 +76,7 @@ Public Class FrmMain
         Dim email As String = txtEmail.Text.Trim()
 
         Try
-            Dim dataTable As DataTable = dbOperations.SearchContacts(name, phoneNumber, email)
+            Dim dataTable As DataTable = Utilities.DbOperations.SearchContacts(name, phoneNumber, email)
             dgvResults.DataSource = dataTable
 
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
