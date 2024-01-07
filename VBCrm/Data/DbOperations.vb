@@ -186,35 +186,36 @@ Public Class DbOperations
     ''' <returns>Theme currently being used.</returns>
     Public Function GetSelectedTheme() As Themes
         Dim selectedThemeId As Integer = -1
-        Dim selectedTheme As Themes = Themes.DarkModePurple
+        Dim selectedTheme As Themes = Themes.LightModeGreen
 
         Using connection As New SQLiteConnection(ConnectionString)
-                connection.Open()
+            connection.Open()
 
-                Dim query As String = "SELECT ThemeId FROM Themes WHERE Selected = 1"
+            Dim query As String = "SELECT ThemeId FROM Themes WHERE Selected = 1"
 
-                Using command As New SQLiteCommand(query, connection)
-                    Dim result As Object = command.ExecuteScalar()
-                    If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
-                        selectedThemeId = Convert.ToInt32(result)
-                    End If
-                End Using
-
-                connection.Close()
-
-                If selectedThemeId <> -1 Then
-                    Select Case selectedThemeId
-                        Case 1
-                            Return Themes.DarkModePurple
-                        Case 2
-                            Return Themes.LightModeBlue
-                        Case 3
-                            Return Themes.DarkModeGreen
-                        Case 4
-                            Return Themes.LightModeGreen
-                    End Select
+            Using command As New SQLiteCommand(query, connection)
+                Dim result As Object = command.ExecuteScalar()
+                If result IsNot Nothing AndAlso Not DBNull.Value.Equals(result) Then
+                    selectedThemeId = Convert.ToInt32(result)
                 End If
             End Using
+
+            connection.Close()
+
+            If selectedThemeId <> -1 Then
+                Select Case selectedThemeId
+                    Case 1
+                        Return Themes.DarkModePurple
+                    Case 2
+                        Return Themes.LightModeBlue
+                    Case 3
+                        Return Themes.DarkModeGreen
+                    Case 4
+                        Return Themes.LightModeGreen
+                End Select
+            End If
+        End Using
+
         Return selectedTheme
     End Function
 #End Region
@@ -229,26 +230,22 @@ Public Class DbOperations
     ''' <param name="newEmail">The new email address for the contact.</param>
     ''' <returns>True if the contact was successfully updated, otherwise False.</returns>
     Public Function UpdateContact(contactId As Integer, newContactName As String, newPhoneNumber As String, newEmail As String) As Boolean
-        Try
-            Using connection As New SQLiteConnection(ConnectionString)
-                connection.Open()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
 
-                Dim query As String = "UPDATE Contacts SET ContactName = @NewName, ContactPhone = @NewPhoneNumber, ContactEmail = @NewEmail WHERE ContactId = @ContactId"
+            Dim query As String = "UPDATE Contacts SET ContactName = @NewName, ContactPhone = @NewPhoneNumber, ContactEmail = @NewEmail WHERE ContactId = @ContactId"
 
-                Using command As New SQLiteCommand(query, connection)
-                    command.Parameters.AddWithValue("@NewName", newContactName)
-                    command.Parameters.AddWithValue("@NewPhoneNumber", newPhoneNumber)
-                    command.Parameters.AddWithValue("@NewEmail", newEmail)
-                    command.Parameters.AddWithValue("@ContactId", contactId)
-                    command.ExecuteNonQuery()
-                End Using
-
-                connection.Close()
-                Return True
+            Using command As New SQLiteCommand(query, connection)
+                command.Parameters.AddWithValue("@NewName", newContactName)
+                command.Parameters.AddWithValue("@NewPhoneNumber", newPhoneNumber)
+                command.Parameters.AddWithValue("@NewEmail", newEmail)
+                command.Parameters.AddWithValue("@ContactId", contactId)
+                command.ExecuteNonQuery()
             End Using
-        Catch ex As Exception
-            Return False
-        End Try
+
+            connection.Close()
+            Return True
+        End Using
     End Function
 
     ''' <summary>
@@ -270,13 +267,46 @@ Public Class DbOperations
             connection.Close()
             Return True
         End Using
-
-        Return False
     End Function
 #End Region
 
 #Region "Deleting data"
 
+    ''' <summary>
+    ''' Deletes a contact by ContactId from the database.
+    ''' </summary>
+    ''' <param name="contactId">The ID of the contact to delete.</param>
+    ''' <returns>True if the contact was successfully deleted, otherwise False.</returns>
+    Public Function DeleteContactById(contactId As Integer) As Boolean
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "DELETE FROM Contacts WHERE ContactId = @ContactId"
+            Using command As New SQLiteCommand(query, connection)
+                command.Parameters.AddWithValue("@ContactId", contactId)
+                command.ExecuteNonQuery()
+            End Using
+
+            Return True
+        End Using
+    End Function
+
+    ''' <summary>
+    ''' Deletes all contacts from the database.
+    ''' </summary>
+    ''' <returns>True if all contacts were successfully deleted, otherwise False.</returns>
+    Public Function DeleteAllContacts() As Boolean
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "DELETE FROM Contacts"
+            Using command As New SQLiteCommand(query, connection)
+                command.ExecuteNonQuery()
+            End Using
+
+            Return True
+        End Using
+    End Function
 #End Region
 
 #End Region

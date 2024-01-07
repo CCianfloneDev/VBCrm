@@ -231,7 +231,7 @@ Module Utilities
         Dim emailList As New List(Of String)()
 
         For Each row As DataGridViewRow In dgv.Rows
-            If row.Cells("colEmail").Value IsNot Nothing Then
+            If row.Cells("colEmail").Value.ToString().Trim() <> "" Then
                 Dim email As String = row.Cells("colEmail").Value.ToString()
                 emailList.Add(email)
             End If

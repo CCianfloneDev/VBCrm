@@ -23,7 +23,7 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
@@ -36,11 +36,14 @@ Partial Class FrmMain
         mnuItmLightModeBlue = New ToolStripMenuItem()
         mnuItmLightModeGreen = New ToolStripMenuItem()
         mnuItmData = New ToolStripMenuItem()
-        mnuItmExportData = New ToolStripMenuItem()
         mnuItmImportData = New ToolStripMenuItem()
+        mnuItmExportData = New ToolStripMenuItem()
         mnuItmPurgeData = New ToolStripMenuItem()
         mnuItmContacts = New ToolStripMenuItem()
         mnuItmMassEmail = New ToolStripMenuItem()
+        mnuItmCreateContact = New ToolStripMenuItem()
+        mnuItmEditContact = New ToolStripMenuItem()
+        mnuItmDeleteContact = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -52,6 +55,7 @@ Partial Class FrmMain
         btnClear = New Controls.MaterialButton()
         btnSearch = New Controls.MaterialButton()
         pnlBottom = New Panel()
+        btnDelete = New Controls.MaterialButton()
         btnEdit = New Controls.MaterialButton()
         btnNew = New Controls.MaterialButton()
         pnlBody = New Panel()
@@ -75,12 +79,11 @@ Partial Class FrmMain
         ' 
         ' mnuMenuStrip
         ' 
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences, mnuItmData, mnuItmContacts})
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmContacts, mnuItmData, mnuItmPreferences, mnuItmHelp})
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(794, 24)
         mnuMenuStrip.TabIndex = 0
-        mnuMenuStrip.Text = "MenuStrip1"
         ' 
         ' mnuItmFile
         ' 
@@ -158,36 +161,36 @@ Partial Class FrmMain
         ' 
         ' mnuItmData
         ' 
-        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmExportData, mnuItmImportData, mnuItmPurgeData})
+        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurgeData})
         mnuItmData.Name = "mnuItmData"
         mnuItmData.ShortcutKeys = Keys.Alt Or Keys.D
         mnuItmData.Size = New Size(43, 20)
         mnuItmData.Text = "&Data"
         ' 
-        ' mnuItmExportData
-        ' 
-        mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmExportData.Size = New Size(170, 22)
-        mnuItmExportData.Text = "&Export data"
-        ' 
         ' mnuItmImportData
         ' 
         mnuItmImportData.Name = "mnuItmImportData"
         mnuItmImportData.ShortcutKeys = Keys.Alt Or Keys.I
-        mnuItmImportData.Size = New Size(170, 22)
+        mnuItmImportData.Size = New Size(183, 22)
         mnuItmImportData.Text = "&Import data"
+        ' 
+        ' mnuItmExportData
+        ' 
+        mnuItmExportData.Name = "mnuItmExportData"
+        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
+        mnuItmExportData.Size = New Size(183, 22)
+        mnuItmExportData.Text = "&Export data"
         ' 
         ' mnuItmPurgeData
         ' 
         mnuItmPurgeData.Name = "mnuItmPurgeData"
         mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmPurgeData.Size = New Size(170, 22)
-        mnuItmPurgeData.Text = "&Purge data"
+        mnuItmPurgeData.Size = New Size(183, 22)
+        mnuItmPurgeData.Text = "&Purge all data"
         ' 
         ' mnuItmContacts
         ' 
-        mnuItmContacts.DropDownItems.AddRange(New ToolStripItem() {mnuItmMassEmail})
+        mnuItmContacts.DropDownItems.AddRange(New ToolStripItem() {mnuItmMassEmail, mnuItmCreateContact, mnuItmEditContact, mnuItmDeleteContact})
         mnuItmContacts.Name = "mnuItmContacts"
         mnuItmContacts.ShortcutKeys = Keys.Alt Or Keys.C
         mnuItmContacts.Size = New Size(66, 20)
@@ -197,8 +200,29 @@ Partial Class FrmMain
         ' 
         mnuItmMassEmail.Name = "mnuItmMassEmail"
         mnuItmMassEmail.ShortcutKeys = Keys.Alt Or Keys.G
-        mnuItmMassEmail.Size = New Size(221, 22)
+        mnuItmMassEmail.Size = New Size(234, 22)
         mnuItmMassEmail.Text = "&Generate mass email"
+        ' 
+        ' mnuItmCreateContact
+        ' 
+        mnuItmCreateContact.Name = "mnuItmCreateContact"
+        mnuItmCreateContact.ShortcutKeys = Keys.Alt Or Keys.R
+        mnuItmCreateContact.Size = New Size(234, 22)
+        mnuItmCreateContact.Text = "C&reate Contact"
+        ' 
+        ' mnuItmEditContact
+        ' 
+        mnuItmEditContact.Name = "mnuItmEditContact"
+        mnuItmEditContact.ShortcutKeys = Keys.Alt Or Keys.D
+        mnuItmEditContact.Size = New Size(234, 22)
+        mnuItmEditContact.Text = "E&dit selected Contact"
+        ' 
+        ' mnuItmDeleteContact
+        ' 
+        mnuItmDeleteContact.Name = "mnuItmDeleteContact"
+        mnuItmDeleteContact.ShortcutKeys = Keys.Alt Or Keys.T
+        mnuItmDeleteContact.Size = New Size(234, 22)
+        mnuItmDeleteContact.Text = "Dele&te selected Contact"
         ' 
         ' staStatusStrip
         ' 
@@ -360,6 +384,7 @@ Partial Class FrmMain
         ' 
         ' pnlBottom
         ' 
+        pnlBottom.Controls.Add(btnDelete)
         pnlBottom.Controls.Add(btnEdit)
         pnlBottom.Controls.Add(btnNew)
         pnlBottom.Dock = DockStyle.Bottom
@@ -368,8 +393,28 @@ Partial Class FrmMain
         pnlBottom.Size = New Size(794, 65)
         pnlBottom.TabIndex = 4
         ' 
+        ' btnDelete
+        ' 
+        btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnDelete.Depth = 0
+        btnDelete.HighEmphasis = True
+        btnDelete.Icon = Nothing
+        btnDelete.Location = New Point(528, 14)
+        btnDelete.Margin = New Padding(4, 6, 4, 6)
+        btnDelete.MouseState = MouseState.HOVER
+        btnDelete.Name = "btnDelete"
+        btnDelete.NoAccentTextColor = Color.Empty
+        btnDelete.Size = New Size(73, 36)
+        btnDelete.TabIndex = 2
+        btnDelete.Text = "Delete"
+        btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
+        btnDelete.UseAccentColor = False
+        btnDelete.UseVisualStyleBackColor = True
+        ' 
         ' btnEdit
         ' 
+        btnEdit.AutoSize = False
         btnEdit.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnEdit.BackColor = SystemColors.Control
         btnEdit.Cursor = Cursors.Hand
@@ -378,12 +423,12 @@ Partial Class FrmMain
         btnEdit.ForeColor = SystemColors.ControlText
         btnEdit.HighEmphasis = True
         btnEdit.Icon = Nothing
-        btnEdit.Location = New Point(410, 14)
+        btnEdit.Location = New Point(361, 14)
         btnEdit.Margin = New Padding(4, 6, 4, 6)
         btnEdit.MouseState = MouseState.HOVER
         btnEdit.Name = "btnEdit"
         btnEdit.NoAccentTextColor = Color.Empty
-        btnEdit.Size = New Size(64, 36)
+        btnEdit.Size = New Size(73, 36)
         btnEdit.TabIndex = 1
         btnEdit.Text = "Edit"
         btnEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -392,6 +437,7 @@ Partial Class FrmMain
         ' 
         ' btnNew
         ' 
+        btnNew.AutoSize = False
         btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnNew.BackColor = SystemColors.Control
         btnNew.Cursor = Cursors.Hand
@@ -400,12 +446,12 @@ Partial Class FrmMain
         btnNew.ForeColor = SystemColors.ControlText
         btnNew.HighEmphasis = True
         btnNew.Icon = Nothing
-        btnNew.Location = New Point(321, 14)
+        btnNew.Location = New Point(194, 14)
         btnNew.Margin = New Padding(4, 6, 4, 6)
         btnNew.MouseState = MouseState.HOVER
         btnNew.Name = "btnNew"
         btnNew.NoAccentTextColor = Color.Empty
-        btnNew.Size = New Size(64, 36)
+        btnNew.Size = New Size(73, 36)
         btnNew.TabIndex = 0
         btnNew.Text = "New"
         btnNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
@@ -428,14 +474,14 @@ Partial Class FrmMain
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Control
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Control
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail})
         dgvResults.ContextMenuStrip = cMnu
@@ -585,5 +631,9 @@ Partial Class FrmMain
     Friend WithEvents mnuItmPurgeData As ToolStripMenuItem
     Friend WithEvents mnuItmContacts As ToolStripMenuItem
     Friend WithEvents mnuItmMassEmail As ToolStripMenuItem
+    Friend WithEvents btnDelete As Controls.MaterialButton
+    Friend WithEvents mnuItmCreateContact As ToolStripMenuItem
+    Friend WithEvents mnuItmEditContact As ToolStripMenuItem
+    Friend WithEvents mnuItmDeleteContact As ToolStripMenuItem
 
 End Class

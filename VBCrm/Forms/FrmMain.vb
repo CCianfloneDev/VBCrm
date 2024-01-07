@@ -1,5 +1,4 @@
-﻿Imports System.Net.Mail
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
+﻿Imports System.Environment
 
 ''' <summary>
 ''' Represents the main form.
@@ -24,7 +23,7 @@ Public Class FrmMain
         Try
             Utilities.DbOperations = New DbOperations()
 
-            ' will default to dark mode purple if not set
+            ' will default to light mode green if not set
             CurrentTheme = Utilities.DbOperations.GetSelectedTheme()
             ApplyColorScheme(frm:=Me, theme:=CurrentTheme)
 
@@ -68,7 +67,6 @@ Public Class FrmMain
     Private Sub MnuItmAbout_Click(sender As Object, e As EventArgs) Handles mnuItmAbout.Click
         Try
             ShowAboutForm(CurrentTheme)
-            ApplyColorScheme(frm:=Me, CurrentTheme)
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -151,6 +149,61 @@ Public Class FrmMain
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Handles the create contact menu item click event.
+    ''' </summary>
+    Private Sub MnuItmCreateContact_Click(sender As Object, e As EventArgs) Handles mnuItmCreateContact.Click
+        Try
+            btnNew.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the edit contact menu item click event.
+    ''' </summary>
+    Private Sub MnuItmEditContact_Click(sender As Object, e As EventArgs) Handles mnuItmEditContact.Click
+        Try
+            btnEdit.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the delete contact menu item click event.
+    ''' </summary>
+    Private Sub MnuItmDeleteContact_Click(sender As Object, e As EventArgs) Handles mnuItmDeleteContact.Click
+        Try
+            btnDelete.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the purge data menu item click event.
+    ''' </summary>
+    Private Sub MnuItmPurgeData_Click(sender As Object, e As EventArgs) Handles mnuItmPurgeData.Click
+        Try
+            If MessageBox.Show(Me, $"WARNING: This will delete ALL data and cannot be recovered...{NewLine}{NewLine} Would you like to continue?",
+                            My.Application.Info.Title & " - Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+                Return
+            End If
+
+            Utilities.DbOperations.DeleteAllContacts()
+            btnSearch.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
 #End Region
 
 #Region "Grid events"
@@ -184,6 +237,7 @@ Public Class FrmMain
 
             dgvResults.DataSource = dataTable
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
+            dgvResults.ClearSelection()
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -214,8 +268,7 @@ Public Class FrmMain
     Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         Try
             If dgvResults.SelectedRows.Count <= 0 Then
-                MessageBox.Show(Me, "Please select a Contact to edit...",
-                            My.Application.Info.Title & " - No Contact selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(Me, "Please select a Contact to edit...", My.Application.Info.Title & " - No Contact selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
@@ -235,6 +288,26 @@ Public Class FrmMain
             }
 
             editForm.ShowDialog(Me)
+            btnSearch.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the delete button click event.
+    ''' </summary>
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Try
+            If dgvResults.SelectedRows.Count <= 0 Then
+                MessageBox.Show(Me, "Please select a Contact to delete...", My.Application.Info.Title & " - No Contact selected.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+
+            Dim selectedRow As DataGridViewRow = dgvResults.SelectedRows(0)
+
+            Utilities.DbOperations.DeleteContactById(CInt(selectedRow.Cells(colId.Index).Value))
             btnSearch.PerformClick()
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
