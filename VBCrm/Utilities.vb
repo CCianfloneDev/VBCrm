@@ -2,6 +2,7 @@
 Imports System.Reflection
 Imports System.Text
 Imports System.Environment
+Imports System.IO
 
 ''' <summary>
 ''' Represents the different themes offered in the application.
@@ -111,6 +112,38 @@ Module Utilities
         }
         aboutFrm.SetMessage(GetAppInfo())
         aboutFrm.ShowDialog()
+    End Sub
+
+    ''' <summary>
+    ''' Exports the grid data grom the passed datagridview to a .CSV in a location of the users choice.
+    ''' </summary>
+    ''' <param name="dgv">Datagridview to export.</param>
+    Public Sub ExportDataGridViewToCSV(dgv As DataGridView)
+        Dim saveFileDialog As New SaveFileDialog With {
+            .Filter = "CSV files (*.csv)|*.csv",
+            .Title = "Export to CSV"
+        }
+        saveFileDialog.ShowDialog()
+
+        If saveFileDialog.FileName <> "" Then
+            Using streamWriter As New StreamWriter(saveFileDialog.FileName)
+                For Each column As DataGridViewColumn In dgv.Columns
+                    streamWriter.Write(column.HeaderText + ",")
+                Next
+                streamWriter.WriteLine()
+
+                For Each row As DataGridViewRow In dgv.Rows
+                    For Each cell As DataGridViewCell In row.Cells
+                        If Not cell.Value Is Nothing Then
+                            streamWriter.Write(cell.Value.ToString() + ",")
+                        End If
+                    Next
+                    streamWriter.WriteLine()
+                Next
+            End Using
+
+            MessageBox.Show("CSV file exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
     End Sub
 
 End Module

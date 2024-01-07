@@ -56,12 +56,15 @@ Partial Class FrmMain
         colEmail = New DataGridViewTextBoxColumn()
         ContactBindingSource = New BindingSource(components)
         lblSearchCriteria = New Controls.MaterialLabel()
+        cMnu = New ContextMenuStrip(components)
+        cMnuExport = New ToolStripMenuItem()
         mnuMenuStrip.SuspendLayout()
         pnlSearchCriteria.SuspendLayout()
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
+        cMnu.SuspendLayout()
         SuspendLayout()
         ' 
         ' mnuMenuStrip
@@ -385,6 +388,7 @@ Partial Class FrmMain
         dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail})
+        dgvResults.ContextMenuStrip = cMnu
         dgvResults.DataSource = ContactBindingSource
         dgvResults.Dock = DockStyle.Fill
         dgvResults.Location = New Point(0, 0)
@@ -445,6 +449,18 @@ Partial Class FrmMain
         lblSearchCriteria.TabIndex = 16
         lblSearchCriteria.Text = "Search Criteria"
         ' 
+        ' cMnu
+        ' 
+        cMnu.Items.AddRange(New ToolStripItem() {cMnuExport})
+        cMnu.Name = "cMnu"
+        cMnu.Size = New Size(181, 48)
+        ' 
+        ' cMnuExport
+        ' 
+        cMnuExport.Name = "cMnuExport"
+        cMnuExport.Size = New Size(180, 22)
+        cMnuExport.Text = "Export to CSV"
+        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -469,6 +485,7 @@ Partial Class FrmMain
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
+        cMnu.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -510,5 +527,7 @@ Partial Class FrmMain
     Friend WithEvents colName As DataGridViewTextBoxColumn
     Friend WithEvents colPhone As DataGridViewTextBoxColumn
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
+    Friend WithEvents cMnu As ContextMenuStrip
+    Friend WithEvents cMnuExport As ToolStripMenuItem
 
 End Class
