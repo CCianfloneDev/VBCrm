@@ -31,6 +31,8 @@ Public Class DbOperations
 
         CreateContactsTable()
         CreateThemes()
+        CreateColumnVisibilityTable()
+        CreateColumnOrderTable()
     End Sub
 #End Region
 
@@ -64,42 +66,13 @@ Public Class DbOperations
     Private Sub CreateContactsTable()
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
-            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (ContactId INTEGER PRIMARY KEY, ContactName TEXT, ContactPhone TEXT, ContactEmail TEXT)"
+            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (ContactId INTEGER PRIMARY KEY, ContactName TEXT, ContactPhone TEXT, ContactEmail TEXT, " &
+                                             "ContactCompany TEXT, ContactJobTitle TEXT, ContactDateOfBirth DATE, ContactNotes TEXT)"
             Using command As New SQLiteCommand(createTableQuery, connection)
                 command.ExecuteNonQuery()
             End Using
         End Using
     End Sub
-
-#End Region
-
-#Region "Creating data"
-
-    ''' <summary>
-    ''' Creates a new contact in the database.
-    ''' </summary>
-    ''' <param name="contactName">The name of the contact.</param>
-    ''' <param name="phoneNumber">The phone number of the contact.</param>
-    ''' <param name="email">The email address of the contact.</param>
-    ''' <returns>True if the contact was successfully created, otherwise False.</returns>
-    Public Function CreateContact(contactName As String, phoneNumber As String, email As String) As Boolean
-        Using connection As New SQLiteConnection(ConnectionString)
-            connection.Open()
-
-            Dim query As String = "INSERT INTO Contacts (ContactName, ContactPhone, ContactEmail) VALUES (@Name, @PhoneNumber, @Email)"
-            Using command As New SQLiteCommand(query, connection)
-                command.Parameters.AddWithValue("@Name", contactName)
-                command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
-                command.Parameters.AddWithValue("@Email", email)
-                command.ExecuteNonQuery()
-            End Using
-
-            connection.Close()
-            Return True
-        End Using
-
-        Return False
-    End Function
 
     ''' <summary>
     ''' Creates the different theme options to be used by the application.
@@ -133,6 +106,135 @@ Public Class DbOperations
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Creates the table storing the columns of the grid and their visibility state.
+    ''' </summary>
+    Public Sub CreateColumnVisibilityTable()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            ' Create the ColumnVisibility table if it doesn't exist
+            Dim createColumnVisibilityQuery As String =
+            "CREATE TABLE IF NOT EXISTS ColumnVisibility (
+            ColumnName TEXT PRIMARY KEY,
+            IsVisible INTEGER DEFAULT 1)"
+
+            Using command As New SQLiteCommand(createColumnVisibilityQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+
+            ' Check if the table is empty
+            Dim checkEmptyTableQuery As String = "SELECT COUNT(*) FROM ColumnVisibility"
+            Using command As New SQLiteCommand(checkEmptyTableQuery, connection)
+                Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+                If count = 0 Then
+                    ' Insert all column names with their visibility set to 1 (visible)
+                    Dim insertColumnsQuery As String =
+                    "INSERT INTO ColumnVisibility (ColumnName, IsVisible) VALUES 
+                    ('ContactId', 0),
+                    ('ContactName', 1),
+                    ('ContactPhone', 1),
+                    ('ContactEmail', 1),
+                    ('ContactCompany', 1),
+                    ('ContactJobTitle', 1),
+                    ('ContactDateOfBirth', 1),
+                    ('ContactNotes', 1)"
+
+                    Using insertCommand As New SQLiteCommand(insertColumnsQuery, connection)
+                        insertCommand.ExecuteNonQuery()
+                    End Using
+                End If
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' Creates the table storing the columns of the grid and their order.
+    ''' </summary>
+    Public Sub CreateColumnOrderTable()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS ColumnOrder (ColumnId INTEGER PRIMARY KEY, ColumnName TEXT, DisplayIndex INTEGER);"
+
+            Using command As New SQLiteCommand(createTableQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+
+            ' Insert default display orders for columns if the table is empty
+            Dim checkTableQuery As String = "SELECT COUNT(*) FROM ColumnOrder"
+            Using command As New SQLiteCommand(checkTableQuery, connection)
+                Dim rowCount As Integer = CInt(command.ExecuteScalar())
+
+                If rowCount = 0 Then
+                    InsertDefaultColumnOrders(connection)
+                End If
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
+
+#End Region
+
+#Region "Creating data"
+
+    ''' <summary>
+    ''' Creates a new contact in the database.
+    ''' </summary>
+    ''' <param name="contactName">The name of the contact.</param>
+    ''' <param name="phoneNumber">The phone number of the contact.</param>
+    ''' <param name="email">The email address of the contact.</param>
+    ''' <returns>True if the contact was successfully created, otherwise False.</returns>
+    Public Function CreateContact(contactName As String, phoneNumber As String, email As String) As Boolean
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "INSERT INTO Contacts (ContactName, ContactPhone, ContactEmail, ContactCompany, ContactJobTitle, ContactDateOfBirth, ContactNotes) " &
+                                  "VALUES (@Name, @PhoneNumber, @Email, @Company, @JobTitle, @DateOfBirth @Notes)"
+            Using command As New SQLiteCommand(query, connection)
+                command.Parameters.AddWithValue("@Name", contactName)
+                command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
+                command.Parameters.AddWithValue("@Email", email)
+                command.ExecuteNonQuery()
+            End Using
+
+            connection.Close()
+            Return True
+        End Using
+
+        Return False
+    End Function
+
+    ''' <summary>
+    ''' Inserts the default column order of the grid.
+    ''' </summary>
+    ''' <param name="connection">Connection to use for the database action.</param>
+    Private Shared Sub InsertDefaultColumnOrders(connection As SQLiteConnection)
+        Dim defaultOrders As New Dictionary(Of String, Integer) From {
+            {"ContactId", 1},
+            {"ContactName", 2},
+            {"ContactPhone", 3},
+            {"ContactEmail", 4},
+            {"ContactCompany", 5},
+            {"ContactJobTitle", 6},
+            {"ContactDateOfBirth", 7},
+            {"ContactNotes", 8}
+        }
+
+        For Each kvp As KeyValuePair(Of String, Integer) In defaultOrders
+            Dim insertQuery As String = $"INSERT INTO ColumnOrder (ColumnName, DisplayIndex) VALUES (@ColumnName, @DisplayIndex)"
+
+            Using command As New SQLiteCommand(insertQuery, connection)
+                command.Parameters.AddWithValue("@ColumnName", kvp.Key)
+                command.Parameters.AddWithValue("@DisplayIndex", kvp.Value)
+                command.ExecuteNonQuery()
+            End Using
+        Next
+    End Sub
+
 #End Region
 
 #Region "Reading data"
@@ -149,9 +251,10 @@ Public Class DbOperations
         Using connection As New SQLiteConnection(ConnectionString)
                 connection.Open()
 
-                Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail FROM Contacts WHERE 1=1 ")
+            Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail, ContactCompany, " &
+                                                         "ContactJobTitle, ContactDateOfBirth, ContactNotes FROM Contacts WHERE 1=1 ")
 
-                Using command As New SQLiteCommand(connection)
+            Using command As New SQLiteCommand(connection)
                     If Not String.IsNullOrEmpty(name) Then
                         queryBuilder.Append("AND LOWER(ContactName) LIKE @ContactName ")
                         command.Parameters.AddWithValue("@ContactName", name.ToLower & "%")
@@ -218,6 +321,62 @@ Public Class DbOperations
 
         Return selectedTheme
     End Function
+
+    ''' <summary>
+    ''' Retrieves column visibility data from the database.
+    ''' </summary>
+    ''' <returns>A dictionary containing column names as keys and their visibility status as values.</returns>
+    Public Function GetColumnVisibility() As Dictionary(Of String, Boolean)
+        Dim visibilityData As New Dictionary(Of String, Boolean)()
+
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "SELECT ColumnName, IsVisible FROM ColumnVisibility"
+
+            Using command As New SQLiteCommand(query, connection)
+                Using reader As SQLiteDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        Dim columnName As String = reader.GetString(0)
+                        Dim isVisible As Boolean = reader.GetBoolean(1)
+                        visibilityData.Add(columnName, isVisible)
+                    End While
+                End Using
+            End Using
+
+            connection.Close()
+        End Using
+
+        Return visibilityData
+    End Function
+
+    ''' <summary>
+    ''' Retrieves column display index data from the database.
+    ''' </summary>
+    ''' <returns>A dictionary containing column names as keys and their display indices as values.</returns>
+    Public Function GetColumnDisplayIndex() As Dictionary(Of String, Integer)
+        Dim displayIndexData As New Dictionary(Of String, Integer)()
+
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "SELECT ColumnName, DisplayIndex FROM ColumnOrder"
+
+            Using command As New SQLiteCommand(query, connection)
+                Using reader As SQLiteDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        Dim columnName As String = reader.GetString(0)
+                        Dim displayIndex As Integer = reader.GetInt32(1)
+                        displayIndexData.Add(columnName, displayIndex)
+                    End While
+                End Using
+            End Using
+
+            connection.Close()
+        End Using
+
+        Return displayIndexData
+    End Function
 #End Region
 
 #Region "Updating data"
@@ -268,6 +427,55 @@ Public Class DbOperations
             Return True
         End Using
     End Function
+
+    ''' <summary>
+    ''' Updates the visibility of a column in the ColumnVisibility table.
+    ''' If the table is empty, inserts default values for column visibility.
+    ''' </summary>
+    ''' <param name="columnName">The name of the column to update.</param>
+    ''' <param name="isVisible">Boolean value indicating whether the column should be visible.</param>
+    Public Sub UpdateColumnVisibility(columnName As String, isVisible As Boolean)
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            ' Check if the ColumnVisibility table is empty
+            Dim checkTableQuery As String = "SELECT COUNT(*) FROM ColumnVisibility"
+
+            ' Update the visibility of the column
+            Dim updateColumnQuery As String = $"UPDATE ColumnVisibility SET IsVisible = @Visible WHERE ColumnName = @ColumnName"
+
+            Using updateCommand As New SQLiteCommand(updateColumnQuery, connection)
+                updateCommand.Parameters.AddWithValue("@Visible", If(isVisible, 1, 0))
+                updateCommand.Parameters.AddWithValue("@ColumnName", columnName)
+                updateCommand.ExecuteNonQuery()
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' Updates the display index of a column in the ColumnOrder table.
+    ''' If the table is empty, inserts default values for display index.
+    ''' </summary>
+    ''' <param name="columnName">The name of the column to update.</param>
+    ''' <param name="displayIndex">Display index of the column in the grid.</param>
+    Public Sub UpdateColumnDisplayIndex(columnName As String, displayIndex As Integer)
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            ' Update the display index of the column
+            Dim updateColumnQuery As String = $"UPDATE ColumnOrder SET DisplayIndex = @DisplayIndex WHERE ColumnName = @ColumnName"
+
+            Using updateCommand As New SQLiteCommand(updateColumnQuery, connection)
+                updateCommand.Parameters.AddWithValue("@DisplayIndex", displayIndex)
+                updateCommand.Parameters.AddWithValue("@ColumnName", columnName)
+                updateCommand.ExecuteNonQuery()
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
 #End Region
 
 #Region "Deleting data"

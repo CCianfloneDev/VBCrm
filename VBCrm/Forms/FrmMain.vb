@@ -1,4 +1,6 @@
-﻿Imports System.Environment
+﻿Imports System.Data.Common
+Imports System.Environment
+Imports MaterialSkin.Controls
 
 ''' <summary>
 ''' Represents the main form.
@@ -26,6 +28,8 @@ Public Class FrmMain
             ' will default to light mode green if not set
             CurrentTheme = Utilities.DbOperations.GetSelectedTheme()
             ApplyColorScheme(frm:=Me, theme:=CurrentTheme)
+            SetColumnVisibility()
+            SetColumnDisplayIndex()
 
             btnSearch.PerformClick()
             dgvResults.ClearSelection()
@@ -203,7 +207,56 @@ Public Class FrmMain
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Handles the edit grid menu item click event.
+    ''' </summary>
+    Private Sub MnuItmEditGrid_Click(sender As Object, e As EventArgs) Handles mnuItmEditGrid.Click
+        Try
+            dgvResults.AllowUserToOrderColumns = True
 
+            Dim settingsPanel As New Panel With {
+                .Dock = DockStyle.Top,
+                .AutoSize = True
+            }
+
+            For Each column As DataGridViewColumn In dgvResults.Columns
+                Dim checkBox As New CheckBox With {
+                    .Text = column.HeaderText,
+                    .Checked = column.Visible
+                }
+
+                ' Event handler for checkbox changes
+                AddHandler checkBox.CheckedChanged, Sub(chkSender As Object, args As EventArgs)
+                                                        column.Visible = checkBox.Checked
+                                                        Utilities.DbOperations.UpdateColumnVisibility(column.DataPropertyName, isVisible:=checkBox.Checked)
+                                                    End Sub
+
+                checkBox.Top = settingsPanel.Controls.Count * 30 ' Adjust checkbox position
+                settingsPanel.Controls.Add(checkBox)
+            Next
+
+            Dim closeButton As New MaterialButton
+            With closeButton
+                .Text = "Close"
+                .Left = settingsPanel.Width - closeButton.Width - 10 ' Position the Close button at the top-right corner,
+                .Top = 10
+                .Cursor = Cursors.Hand
+            End With
+
+            settingsPanel.Controls.Add(closeButton)
+
+            ' Event handler for Close button
+            AddHandler closeButton.Click, Sub(btnSender As Object, args As EventArgs)
+                                              pnlBody.Controls.Remove(settingsPanel)
+                                              dgvResults.AllowUserToOrderColumns = False
+                                          End Sub
+
+            pnlBody.Controls.Add(settingsPanel)
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 #End Region
 
 #Region "Grid events"
@@ -214,6 +267,21 @@ Public Class FrmMain
     Private Sub DgvResults_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvResults.CellDoubleClick
         Try
             btnEdit.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the column display index changed event.
+    ''' </summary>
+    Private Sub ColumnDisplayIndexChangedHandler(sender As Object, e As DataGridViewColumnEventArgs) Handles dgvResults.ColumnDisplayIndexChanged
+        Try
+            Dim columnName As String = e.Column.DataPropertyName
+            Dim newIndex As Integer = e.Column.DisplayIndex
+
+            Utilities.DbOperations.UpdateColumnDisplayIndex(columnName, newIndex)
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -348,12 +416,43 @@ Public Class FrmMain
         End Try
     End Sub
 
+
 #End Region
 
 #End Region
 
 #Region "Functions and subs"
 
+    ''' <summary>
+    ''' Sets the column visibility settings saved in the database.
+    ''' </summary>
+    Private Sub SetColumnVisibility()
+        Dim visibilityData As Dictionary(Of String, Boolean) = Utilities.DbOperations.GetColumnVisibility()
+
+        For Each column As DataGridViewColumn In dgvResults.Columns
+
+            Dim value As Boolean = Nothing
+
+            If visibilityData.TryGetValue(column.DataPropertyName, value) Then
+                column.Visible = value
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Sets the column display index settings saved in the database.
+    ''' </summary>
+    Private Sub SetColumnDisplayIndex()
+        Dim displayIndexData As Dictionary(Of String, Integer) = Utilities.DbOperations.GetColumnDisplayIndex()
+
+        For Each column As DataGridViewColumn In dgvResults.Columns
+            Dim displayIndex As Integer = Nothing
+
+            If displayIndexData.TryGetValue(column.DataPropertyName, displayIndex) Then
+                column.DisplayIndex = If(displayIndex > 0, displayIndex - 1, 0)
+            End If
+        Next
+    End Sub
 #End Region
 
 End Class

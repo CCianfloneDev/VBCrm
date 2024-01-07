@@ -23,27 +23,28 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
-        mnuItmHelp = New ToolStripMenuItem()
-        mnuItmAbout = New ToolStripMenuItem()
+        mnuItmContacts = New ToolStripMenuItem()
+        mnuItmMassEmail = New ToolStripMenuItem()
+        mnuItmCreateContact = New ToolStripMenuItem()
+        mnuItmEditContact = New ToolStripMenuItem()
+        mnuItmDeleteContact = New ToolStripMenuItem()
+        mnuItmData = New ToolStripMenuItem()
+        mnuItmImportData = New ToolStripMenuItem()
+        mnuItmExportData = New ToolStripMenuItem()
+        mnuItmPurgeData = New ToolStripMenuItem()
         mnuItmPreferences = New ToolStripMenuItem()
         mnuItmTheme = New ToolStripMenuItem()
         mnuItmDarkModePurple = New ToolStripMenuItem()
         mnuItmDarkModeGreen = New ToolStripMenuItem()
         mnuItmLightModeBlue = New ToolStripMenuItem()
         mnuItmLightModeGreen = New ToolStripMenuItem()
-        mnuItmData = New ToolStripMenuItem()
-        mnuItmImportData = New ToolStripMenuItem()
-        mnuItmExportData = New ToolStripMenuItem()
-        mnuItmPurgeData = New ToolStripMenuItem()
-        mnuItmContacts = New ToolStripMenuItem()
-        mnuItmMassEmail = New ToolStripMenuItem()
-        mnuItmCreateContact = New ToolStripMenuItem()
-        mnuItmEditContact = New ToolStripMenuItem()
-        mnuItmDeleteContact = New ToolStripMenuItem()
+        mnuItmEditGrid = New ToolStripMenuItem()
+        mnuItmHelp = New ToolStripMenuItem()
+        mnuItmAbout = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -64,6 +65,10 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
+        ContactCompany = New DataGridViewTextBoxColumn()
+        ContactJobTitle = New DataGridViewTextBoxColumn()
+        ContactDateOfBirth = New DataGridViewTextBoxColumn()
+        ContactNotes = New DataGridViewTextBoxColumn()
         cMnu = New ContextMenuStrip(components)
         cMnuExport = New ToolStripMenuItem()
         ContactBindingSource = New BindingSource(components)
@@ -99,94 +104,6 @@ Partial Class FrmMain
         mnuItmExit.ShortcutKeys = Keys.Alt Or Keys.E
         mnuItmExit.Size = New Size(129, 22)
         mnuItmExit.Text = "&Exit"
-        ' 
-        ' mnuItmHelp
-        ' 
-        mnuItmHelp.DropDownItems.AddRange(New ToolStripItem() {mnuItmAbout})
-        mnuItmHelp.Name = "mnuItmHelp"
-        mnuItmHelp.ShortcutKeys = Keys.Alt Or Keys.H
-        mnuItmHelp.Size = New Size(44, 20)
-        mnuItmHelp.Text = "&Help"
-        ' 
-        ' mnuItmAbout
-        ' 
-        mnuItmAbout.Name = "mnuItmAbout"
-        mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(145, 22)
-        mnuItmAbout.Text = "&About"
-        ' 
-        ' mnuItmPreferences
-        ' 
-        mnuItmPreferences.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme})
-        mnuItmPreferences.Name = "mnuItmPreferences"
-        mnuItmPreferences.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmPreferences.Size = New Size(80, 20)
-        mnuItmPreferences.Text = "&Preferences"
-        ' 
-        ' mnuItmTheme
-        ' 
-        mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
-        mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(146, 22)
-        mnuItmTheme.Text = "&Theme"
-        ' 
-        ' mnuItmDarkModePurple
-        ' 
-        mnuItmDarkModePurple.Name = "mnuItmDarkModePurple"
-        mnuItmDarkModePurple.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmDarkModePurple.Size = New Size(214, 22)
-        mnuItmDarkModePurple.Text = "Dark mode - &Purple"
-        ' 
-        ' mnuItmDarkModeGreen
-        ' 
-        mnuItmDarkModeGreen.Name = "mnuItmDarkModeGreen"
-        mnuItmDarkModeGreen.ShortcutKeys = Keys.Alt Or Keys.G
-        mnuItmDarkModeGreen.Size = New Size(214, 22)
-        mnuItmDarkModeGreen.Text = "Dark mode - &Green"
-        ' 
-        ' mnuItmLightModeBlue
-        ' 
-        mnuItmLightModeBlue.Name = "mnuItmLightModeBlue"
-        mnuItmLightModeBlue.ShortcutKeys = Keys.Alt Or Keys.B
-        mnuItmLightModeBlue.Size = New Size(214, 22)
-        mnuItmLightModeBlue.Text = "Light mode - &Blue"
-        ' 
-        ' mnuItmLightModeGreen
-        ' 
-        mnuItmLightModeGreen.Name = "mnuItmLightModeGreen"
-        mnuItmLightModeGreen.ShortcutKeys = Keys.Alt Or Keys.R
-        mnuItmLightModeGreen.Size = New Size(214, 22)
-        mnuItmLightModeGreen.Text = "Light mode - G&reen"
-        ' 
-        ' mnuItmData
-        ' 
-        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurgeData})
-        mnuItmData.Name = "mnuItmData"
-        mnuItmData.ShortcutKeys = Keys.Alt Or Keys.D
-        mnuItmData.Size = New Size(43, 20)
-        mnuItmData.Text = "&Data"
-        ' 
-        ' mnuItmImportData
-        ' 
-        mnuItmImportData.Name = "mnuItmImportData"
-        mnuItmImportData.ShortcutKeys = Keys.Alt Or Keys.I
-        mnuItmImportData.Size = New Size(183, 22)
-        mnuItmImportData.Text = "&Import data"
-        ' 
-        ' mnuItmExportData
-        ' 
-        mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmExportData.Size = New Size(183, 22)
-        mnuItmExportData.Text = "&Export data"
-        ' 
-        ' mnuItmPurgeData
-        ' 
-        mnuItmPurgeData.Name = "mnuItmPurgeData"
-        mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmPurgeData.Size = New Size(183, 22)
-        mnuItmPurgeData.Text = "&Purge all data"
         ' 
         ' mnuItmContacts
         ' 
@@ -224,9 +141,104 @@ Partial Class FrmMain
         mnuItmDeleteContact.Size = New Size(234, 22)
         mnuItmDeleteContact.Text = "Dele&te selected Contact"
         ' 
+        ' mnuItmData
+        ' 
+        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurgeData})
+        mnuItmData.Name = "mnuItmData"
+        mnuItmData.ShortcutKeys = Keys.Alt Or Keys.D
+        mnuItmData.Size = New Size(43, 20)
+        mnuItmData.Text = "&Data"
+        ' 
+        ' mnuItmImportData
+        ' 
+        mnuItmImportData.Name = "mnuItmImportData"
+        mnuItmImportData.ShortcutKeys = Keys.Alt Or Keys.I
+        mnuItmImportData.Size = New Size(183, 22)
+        mnuItmImportData.Text = "&Import data"
+        ' 
+        ' mnuItmExportData
+        ' 
+        mnuItmExportData.Name = "mnuItmExportData"
+        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
+        mnuItmExportData.Size = New Size(183, 22)
+        mnuItmExportData.Text = "&Export data"
+        ' 
+        ' mnuItmPurgeData
+        ' 
+        mnuItmPurgeData.Name = "mnuItmPurgeData"
+        mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
+        mnuItmPurgeData.Size = New Size(183, 22)
+        mnuItmPurgeData.Text = "&Purge all data"
+        ' 
+        ' mnuItmPreferences
+        ' 
+        mnuItmPreferences.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme, mnuItmEditGrid})
+        mnuItmPreferences.Name = "mnuItmPreferences"
+        mnuItmPreferences.ShortcutKeys = Keys.Alt Or Keys.P
+        mnuItmPreferences.Size = New Size(80, 20)
+        mnuItmPreferences.Text = "&Preferences"
+        ' 
+        ' mnuItmTheme
+        ' 
+        mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
+        mnuItmTheme.Name = "mnuItmTheme"
+        mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
+        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Text = "&Theme"
+        ' 
+        ' mnuItmDarkModePurple
+        ' 
+        mnuItmDarkModePurple.Name = "mnuItmDarkModePurple"
+        mnuItmDarkModePurple.ShortcutKeys = Keys.Alt Or Keys.P
+        mnuItmDarkModePurple.Size = New Size(214, 22)
+        mnuItmDarkModePurple.Text = "Dark mode - &Purple"
+        ' 
+        ' mnuItmDarkModeGreen
+        ' 
+        mnuItmDarkModeGreen.Name = "mnuItmDarkModeGreen"
+        mnuItmDarkModeGreen.ShortcutKeys = Keys.Alt Or Keys.G
+        mnuItmDarkModeGreen.Size = New Size(214, 22)
+        mnuItmDarkModeGreen.Text = "Dark mode - &Green"
+        ' 
+        ' mnuItmLightModeBlue
+        ' 
+        mnuItmLightModeBlue.Name = "mnuItmLightModeBlue"
+        mnuItmLightModeBlue.ShortcutKeys = Keys.Alt Or Keys.B
+        mnuItmLightModeBlue.Size = New Size(214, 22)
+        mnuItmLightModeBlue.Text = "Light mode - &Blue"
+        ' 
+        ' mnuItmLightModeGreen
+        ' 
+        mnuItmLightModeGreen.Name = "mnuItmLightModeGreen"
+        mnuItmLightModeGreen.ShortcutKeys = Keys.Alt Or Keys.R
+        mnuItmLightModeGreen.Size = New Size(214, 22)
+        mnuItmLightModeGreen.Text = "Light mode - G&reen"
+        ' 
+        ' mnuItmEditGrid
+        ' 
+        mnuItmEditGrid.Name = "mnuItmEditGrid"
+        mnuItmEditGrid.ShortcutKeys = Keys.Alt Or Keys.E
+        mnuItmEditGrid.Size = New Size(180, 22)
+        mnuItmEditGrid.Text = "&Edit grid"
+        ' 
+        ' mnuItmHelp
+        ' 
+        mnuItmHelp.DropDownItems.AddRange(New ToolStripItem() {mnuItmAbout})
+        mnuItmHelp.Name = "mnuItmHelp"
+        mnuItmHelp.ShortcutKeys = Keys.Alt Or Keys.H
+        mnuItmHelp.Size = New Size(44, 20)
+        mnuItmHelp.Text = "&Help"
+        ' 
+        ' mnuItmAbout
+        ' 
+        mnuItmAbout.Name = "mnuItmAbout"
+        mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
+        mnuItmAbout.Size = New Size(145, 22)
+        mnuItmAbout.Text = "&About"
+        ' 
         ' staStatusStrip
         ' 
-        staStatusStrip.Location = New Point(3, 494)
+        staStatusStrip.Location = New Point(3, 625)
         staStatusStrip.Name = "staStatusStrip"
         staStatusStrip.Size = New Size(794, 22)
         staStatusStrip.TabIndex = 1
@@ -245,7 +257,7 @@ Partial Class FrmMain
         pnlSearchCriteria.Dock = DockStyle.Top
         pnlSearchCriteria.Location = New Point(3, 112)
         pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(794, 104)
+        pnlSearchCriteria.Size = New Size(794, 105)
         pnlSearchCriteria.TabIndex = 3
         ' 
         ' lblEmail
@@ -388,7 +400,7 @@ Partial Class FrmMain
         pnlBottom.Controls.Add(btnEdit)
         pnlBottom.Controls.Add(btnNew)
         pnlBottom.Dock = DockStyle.Bottom
-        pnlBottom.Location = New Point(3, 429)
+        pnlBottom.Location = New Point(3, 560)
         pnlBottom.Name = "pnlBottom"
         pnlBottom.Size = New Size(794, 65)
         pnlBottom.TabIndex = 4
@@ -462,9 +474,9 @@ Partial Class FrmMain
         ' 
         pnlBody.Controls.Add(dgvResults)
         pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(3, 216)
+        pnlBody.Location = New Point(3, 217)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(794, 213)
+        pnlBody.Size = New Size(794, 343)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -474,16 +486,16 @@ Partial Class FrmMain
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = SystemColors.Control
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Control
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
-        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail})
+        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, ContactCompany, ContactJobTitle, ContactDateOfBirth, ContactNotes})
         dgvResults.ContextMenuStrip = cMnu
         dgvResults.DataSource = ContactBindingSource
         dgvResults.Dock = DockStyle.Fill
@@ -493,7 +505,7 @@ Partial Class FrmMain
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(794, 213)
+        dgvResults.Size = New Size(794, 343)
         dgvResults.TabIndex = 0
         ' 
         ' colId
@@ -502,6 +514,7 @@ Partial Class FrmMain
         colId.HeaderText = "ID"
         colId.Name = "colId"
         colId.ReadOnly = True
+        colId.Visible = False
         colId.Width = 50
         ' 
         ' colName
@@ -510,7 +523,7 @@ Partial Class FrmMain
         colName.HeaderText = "Name"
         colName.Name = "colName"
         colName.ReadOnly = True
-        colName.Width = 400
+        colName.Width = 300
         ' 
         ' colPhone
         ' 
@@ -521,11 +534,38 @@ Partial Class FrmMain
         ' 
         ' colEmail
         ' 
-        colEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         colEmail.DataPropertyName = "ContactEmail"
         colEmail.HeaderText = "Email"
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
+        ' 
+        ' ContactCompany
+        ' 
+        ContactCompany.DataPropertyName = "ContactCompany"
+        ContactCompany.HeaderText = "Company"
+        ContactCompany.Name = "ContactCompany"
+        ContactCompany.ReadOnly = True
+        ' 
+        ' ContactJobTitle
+        ' 
+        ContactJobTitle.DataPropertyName = "ContactJobTitle"
+        ContactJobTitle.HeaderText = "Job Title"
+        ContactJobTitle.Name = "ContactJobTitle"
+        ContactJobTitle.ReadOnly = True
+        ' 
+        ' ContactDateOfBirth
+        ' 
+        ContactDateOfBirth.DataPropertyName = "ContactDateOfBirth"
+        ContactDateOfBirth.HeaderText = "Date of birth"
+        ContactDateOfBirth.Name = "ContactDateOfBirth"
+        ContactDateOfBirth.ReadOnly = True
+        ' 
+        ' ContactNotes
+        ' 
+        ContactNotes.DataPropertyName = "ContactNotes"
+        ContactNotes.HeaderText = "Notes"
+        ContactNotes.Name = "ContactNotes"
+        ContactNotes.ReadOnly = True
         ' 
         ' cMnu
         ' 
@@ -561,7 +601,7 @@ Partial Class FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 519)
+        ClientSize = New Size(800, 650)
         Controls.Add(pnlBody)
         Controls.Add(pnlBottom)
         Controls.Add(pnlSearchCriteria)
@@ -619,10 +659,6 @@ Partial Class FrmMain
     Friend WithEvents mnuItmDarkModePurple As ToolStripMenuItem
     Friend WithEvents mnuItmLightModeGreen As ToolStripMenuItem
     Friend WithEvents ContactBindingSource As BindingSource
-    Friend WithEvents colId As DataGridViewTextBoxColumn
-    Friend WithEvents colName As DataGridViewTextBoxColumn
-    Friend WithEvents colPhone As DataGridViewTextBoxColumn
-    Friend WithEvents colEmail As DataGridViewTextBoxColumn
     Friend WithEvents cMnu As ContextMenuStrip
     Friend WithEvents cMnuExport As ToolStripMenuItem
     Friend WithEvents mnuItmData As ToolStripMenuItem
@@ -635,5 +671,14 @@ Partial Class FrmMain
     Friend WithEvents mnuItmCreateContact As ToolStripMenuItem
     Friend WithEvents mnuItmEditContact As ToolStripMenuItem
     Friend WithEvents mnuItmDeleteContact As ToolStripMenuItem
+    Friend WithEvents mnuItmEditGrid As ToolStripMenuItem
+    Friend WithEvents colId As DataGridViewTextBoxColumn
+    Friend WithEvents colName As DataGridViewTextBoxColumn
+    Friend WithEvents colPhone As DataGridViewTextBoxColumn
+    Friend WithEvents colEmail As DataGridViewTextBoxColumn
+    Friend WithEvents ContactCompany As DataGridViewTextBoxColumn
+    Friend WithEvents ContactJobTitle As DataGridViewTextBoxColumn
+    Friend WithEvents ContactDateOfBirth As DataGridViewTextBoxColumn
+    Friend WithEvents ContactNotes As DataGridViewTextBoxColumn
 
 End Class
