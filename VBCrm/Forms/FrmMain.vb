@@ -1,4 +1,7 @@
-﻿''' <summary>
+﻿Imports System.Net.Mail
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
+
+''' <summary>
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
@@ -118,6 +121,30 @@ Public Class FrmMain
         Try
             ImportCSVToDatabase()
             btnSearch.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the mass email menu item click event.
+    ''' </summary>
+    Private Sub MassEmailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuItmMassEmail.Click
+        Try
+            Dim emailList As List(Of String) = ExtractEmailsFromDataGridView(dgvResults)
+
+            If emailList.Count > 0 Then
+                Dim emailAddresses As String = String.Join(";", emailList)
+                Dim mailtoLink As String = $"mailto:{emailAddresses}"
+
+                Process.Start(New ProcessStartInfo(mailtoLink) With {
+                    .UseShellExecute = True,
+                    .Verb = "open"
+                })
+            Else
+                MessageBox.Show(Me, "No emails found in the grid.", "No Emails", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

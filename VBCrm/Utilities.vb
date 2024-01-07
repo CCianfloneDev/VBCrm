@@ -222,4 +222,22 @@ Module Utilities
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Extracts emails from the passed datagridview and provides them in a list of strings.
+    ''' </summary>
+    ''' <param name="dgv">Datagridview to extract emails from</param>
+    ''' <returns>List of emails.</returns>
+    Public Function ExtractEmailsFromDataGridView(dgv As DataGridView) As List(Of String)
+        Dim emailList As New List(Of String)()
+
+        For Each row As DataGridViewRow In dgv.Rows
+            If row.Cells("colEmail").Value IsNot Nothing Then
+                Dim email As String = row.Cells("colEmail").Value.ToString()
+                emailList.Add(email)
+            End If
+        Next
+
+        Return emailList
+    End Function
+
 End Module

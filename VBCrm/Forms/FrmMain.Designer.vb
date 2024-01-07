@@ -39,6 +39,8 @@ Partial Class FrmMain
         mnuItmExportData = New ToolStripMenuItem()
         mnuItmImportData = New ToolStripMenuItem()
         mnuItmPurgeData = New ToolStripMenuItem()
+        mnuItmContacts = New ToolStripMenuItem()
+        mnuItmMassEmail = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -73,7 +75,7 @@ Partial Class FrmMain
         ' 
         ' mnuMenuStrip
         ' 
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences, mnuItmData})
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences, mnuItmData, mnuItmContacts})
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(794, 24)
@@ -123,7 +125,7 @@ Partial Class FrmMain
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
         mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Size = New Size(146, 22)
         mnuItmTheme.Text = "&Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -182,6 +184,21 @@ Partial Class FrmMain
         mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
         mnuItmPurgeData.Size = New Size(170, 22)
         mnuItmPurgeData.Text = "&Purge data"
+        ' 
+        ' mnuItmContacts
+        ' 
+        mnuItmContacts.DropDownItems.AddRange(New ToolStripItem() {mnuItmMassEmail})
+        mnuItmContacts.Name = "mnuItmContacts"
+        mnuItmContacts.ShortcutKeys = Keys.Alt Or Keys.C
+        mnuItmContacts.Size = New Size(66, 20)
+        mnuItmContacts.Text = "&Contacts"
+        ' 
+        ' mnuItmMassEmail
+        ' 
+        mnuItmMassEmail.Name = "mnuItmMassEmail"
+        mnuItmMassEmail.ShortcutKeys = Keys.Alt Or Keys.G
+        mnuItmMassEmail.Size = New Size(221, 22)
+        mnuItmMassEmail.Text = "&Generate mass email"
         ' 
         ' staStatusStrip
         ' 
@@ -566,5 +583,7 @@ Partial Class FrmMain
     Friend WithEvents mnuItmExportData As ToolStripMenuItem
     Friend WithEvents mnuItmImportData As ToolStripMenuItem
     Friend WithEvents mnuItmPurgeData As ToolStripMenuItem
+    Friend WithEvents mnuItmContacts As ToolStripMenuItem
+    Friend WithEvents mnuItmMassEmail As ToolStripMenuItem
 
 End Class
