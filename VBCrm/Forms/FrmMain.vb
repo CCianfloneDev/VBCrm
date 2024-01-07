@@ -100,11 +100,24 @@ Public Class FrmMain
     End Sub
 
     ''' <summary>
-    ''' Handles the context menu export grid click event.
+    ''' Handles the context menu and menu item export grid click event.
     ''' </summary>
-    Private Sub CMnuExport_Click(sender As Object, e As EventArgs) Handles cMnuExport.Click
+    Private Sub MenuExport_Click(sender As Object, e As EventArgs) Handles cMnuExport.Click, mnuItmExportData.Click
         Try
             ExportDataGridViewToCSV(dgvResults)
+        Catch ex As Exception
+            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the import data menu item click event.
+    ''' </summary>
+    Private Sub MnuItmImportData_Click(sender As Object, e As EventArgs) Handles mnuItmImportData.Click
+        Try
+            ImportCSVToDatabase()
+            btnSearch.PerformClick()
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

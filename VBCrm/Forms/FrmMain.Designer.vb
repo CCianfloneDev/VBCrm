@@ -35,6 +35,10 @@ Partial Class FrmMain
         mnuItmDarkModeGreen = New ToolStripMenuItem()
         mnuItmLightModeBlue = New ToolStripMenuItem()
         mnuItmLightModeGreen = New ToolStripMenuItem()
+        mnuItmData = New ToolStripMenuItem()
+        mnuItmExportData = New ToolStripMenuItem()
+        mnuItmImportData = New ToolStripMenuItem()
+        mnuItmPurgeData = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -54,22 +58,22 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
-        ContactBindingSource = New BindingSource(components)
-        lblSearchCriteria = New Controls.MaterialLabel()
         cMnu = New ContextMenuStrip(components)
         cMnuExport = New ToolStripMenuItem()
+        ContactBindingSource = New BindingSource(components)
+        lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
         pnlSearchCriteria.SuspendLayout()
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         cMnu.SuspendLayout()
+        CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' mnuMenuStrip
         ' 
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences})
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmHelp, mnuItmPreferences, mnuItmData})
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(794, 24)
@@ -119,7 +123,7 @@ Partial Class FrmMain
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
         mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(146, 22)
+        mnuItmTheme.Size = New Size(180, 22)
         mnuItmTheme.Text = "&Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -149,6 +153,35 @@ Partial Class FrmMain
         mnuItmLightModeGreen.ShortcutKeys = Keys.Alt Or Keys.R
         mnuItmLightModeGreen.Size = New Size(214, 22)
         mnuItmLightModeGreen.Text = "Light mode - G&reen"
+        ' 
+        ' mnuItmData
+        ' 
+        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmExportData, mnuItmImportData, mnuItmPurgeData})
+        mnuItmData.Name = "mnuItmData"
+        mnuItmData.ShortcutKeys = Keys.Alt Or Keys.D
+        mnuItmData.Size = New Size(43, 20)
+        mnuItmData.Text = "&Data"
+        ' 
+        ' mnuItmExportData
+        ' 
+        mnuItmExportData.Name = "mnuItmExportData"
+        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
+        mnuItmExportData.Size = New Size(170, 22)
+        mnuItmExportData.Text = "&Export data"
+        ' 
+        ' mnuItmImportData
+        ' 
+        mnuItmImportData.Name = "mnuItmImportData"
+        mnuItmImportData.ShortcutKeys = Keys.Alt Or Keys.I
+        mnuItmImportData.Size = New Size(170, 22)
+        mnuItmImportData.Text = "&Import data"
+        ' 
+        ' mnuItmPurgeData
+        ' 
+        mnuItmPurgeData.Name = "mnuItmPurgeData"
+        mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
+        mnuItmPurgeData.Size = New Size(170, 22)
+        mnuItmPurgeData.Text = "&Purge data"
         ' 
         ' staStatusStrip
         ' 
@@ -431,6 +464,18 @@ Partial Class FrmMain
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
         ' 
+        ' cMnu
+        ' 
+        cMnu.Items.AddRange(New ToolStripItem() {cMnuExport})
+        cMnu.Name = "cMnu"
+        cMnu.Size = New Size(147, 26)
+        ' 
+        ' cMnuExport
+        ' 
+        cMnuExport.Name = "cMnuExport"
+        cMnuExport.Size = New Size(146, 22)
+        cMnuExport.Text = "Export to CSV"
+        ' 
         ' ContactBindingSource
         ' 
         ContactBindingSource.DataSource = GetType(Contact)
@@ -448,18 +493,6 @@ Partial Class FrmMain
         lblSearchCriteria.Size = New Size(134, 24)
         lblSearchCriteria.TabIndex = 16
         lblSearchCriteria.Text = "Search Criteria"
-        ' 
-        ' cMnu
-        ' 
-        cMnu.Items.AddRange(New ToolStripItem() {cMnuExport})
-        cMnu.Name = "cMnu"
-        cMnu.Size = New Size(181, 48)
-        ' 
-        ' cMnuExport
-        ' 
-        cMnuExport.Name = "cMnuExport"
-        cMnuExport.Size = New Size(180, 22)
-        cMnuExport.Text = "Export to CSV"
         ' 
         ' FrmMain
         ' 
@@ -484,8 +517,8 @@ Partial Class FrmMain
         pnlBottom.PerformLayout()
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
-        CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         cMnu.ResumeLayout(False)
+        CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -529,5 +562,9 @@ Partial Class FrmMain
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
     Friend WithEvents cMnu As ContextMenuStrip
     Friend WithEvents cMnuExport As ToolStripMenuItem
+    Friend WithEvents mnuItmData As ToolStripMenuItem
+    Friend WithEvents mnuItmExportData As ToolStripMenuItem
+    Friend WithEvents mnuItmImportData As ToolStripMenuItem
+    Friend WithEvents mnuItmPurgeData As ToolStripMenuItem
 
 End Class

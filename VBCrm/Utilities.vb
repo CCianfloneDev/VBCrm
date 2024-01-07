@@ -3,6 +3,7 @@ Imports System.Reflection
 Imports System.Text
 Imports System.Environment
 Imports System.IO
+Imports Microsoft.VisualBasic.FileIO
 
 ''' <summary>
 ''' Represents the different themes offered in the application.
@@ -127,14 +128,15 @@ Module Utilities
 
         If saveFileDialog.FileName <> "" Then
             Using streamWriter As New StreamWriter(saveFileDialog.FileName)
-                For Each column As DataGridViewColumn In dgv.Columns
-                    streamWriter.Write(column.HeaderText + ",")
-                Next
-                streamWriter.WriteLine()
+                If dgv.DataSource IsNot Nothing AndAlso dgv.RowCount > 0 Then
+                    Dim headers As List(Of String) = (From column As DataGridViewColumn In dgv.Columns.Cast(Of DataGridViewColumn)()
+                                                      Select CType(dgv.DataSource, DataTable).Columns(column.DataPropertyName).ColumnName).ToList()
+                    streamWriter.WriteLine(String.Join(",", headers))
+                End If
 
                 For Each row As DataGridViewRow In dgv.Rows
                     For Each cell As DataGridViewCell In row.Cells
-                        If Not cell.Value Is Nothing Then
+                        If cell.Value IsNot Nothing Then
                             streamWriter.Write(cell.Value.ToString() + ",")
                         End If
                     Next
@@ -144,6 +146,80 @@ Module Utilities
 
             MessageBox.Show("CSV file exported successfully!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+    End Sub
+
+    ''' <summary>
+    ''' Imports data from a validated CSV file into the database.
+    ''' </summary>
+    ''' <remarks>
+    ''' This function prompts the user to select a CSV file for import. It reads the CSV file, validates that the file has
+    ''' the correct column order (ContactId, ContactName, ContactPhone, ContactEmail), processes each record,
+    ''' and attempts to add valid records into the SQLite database. The CSV file should contain rows of data with 
+    ''' at least a ContactName field. It keeps track of any rows with missing or empty ContactName fields and 
+    ''' reports them to the user at the end of the process.
+    ''' </remarks>
+    Public Sub ImportCSVToDatabase()
+        Dim successfulImports As Integer = 0
+
+        ' Prompt user to select a CSV file
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.Filter = "CSV Files (*.csv)|*.csv"
+            openFileDialog.Title = "Select a CSV File"
+            openFileDialog.Multiselect = False
+
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                Dim csvPath As String = openFileDialog.FileName
+
+                ' Validate the CSV file's column order
+                Dim expectedColumns As String() = {"ContactId", "ContactName", "ContactPhone", "ContactEmail"}
+                Using reader As New StreamReader(csvPath)
+                    Dim headers As String = reader.ReadLine()
+                    Dim csvColumns = headers.Split(","c).Select(Function(s) s.Trim()).ToArray()
+
+                    For i As Integer = 0 To expectedColumns.Length - 1
+                        If csvColumns(i) <> expectedColumns(i) Then
+                            MessageBox.Show("Invalid CSV file format. Please ensure the file has the correct column order.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return
+                        End If
+                    Next
+                End Using
+
+                ' Process CSV data
+                Dim invalidRows As New List(Of Integer)()
+                Using csvReader As New TextFieldParser(csvPath)
+                    csvReader.TextFieldType = FieldType.Delimited
+                    csvReader.SetDelimiters(",")
+                    Dim currentRow As Integer = 0
+
+                    While Not csvReader.EndOfData
+                        Dim fields As String() = csvReader.ReadFields()
+
+                        If currentRow > 0 Then ' Skip header row
+                            Dim contactName As String = fields(1).Trim()
+                            Dim phoneNumber As String = fields(2).Trim()
+                            Dim email As String = fields(3).Trim()
+
+                            If String.IsNullOrEmpty(contactName) Then
+                                invalidRows.Add(currentRow)
+                            Else
+                                DbOperations.CreateContact(contactName, phoneNumber, email)
+                                successfulImports += 1
+                            End If
+                        End If
+
+                        currentRow += 1
+                    End While
+                End Using
+
+                ' Display report on invalid rows
+                If invalidRows.Count > 0 Then
+                    Dim errorMessage As String = $"The following rows have missing ContactName: {String.Join(", ", invalidRows)}"
+                    MessageBox.Show(errorMessage, "Invalid Rows", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Else
+                    MessageBox.Show($"Successfully imported {successfulImports} records.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End If
+        End Using
     End Sub
 
 End Module
