@@ -127,6 +127,7 @@ Partial Class FrmCreateEdit
         btnCancel.AutoSize = False
         btnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnCancel.BackColor = SystemColors.Control
+        btnCancel.Cursor = Cursors.Hand
         btnCancel.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnCancel.Depth = 0
         btnCancel.ForeColor = SystemColors.ControlText
@@ -149,6 +150,7 @@ Partial Class FrmCreateEdit
         btnSave.AutoSize = False
         btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnSave.BackColor = SystemColors.Control
+        btnSave.Cursor = Cursors.Hand
         btnSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnSave.Depth = 0
         btnSave.ForeColor = SystemColors.ControlText

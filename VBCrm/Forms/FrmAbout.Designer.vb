@@ -43,6 +43,7 @@ Partial Class FrmAbout
         btnClose.AutoSize = False
         btnClose.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnClose.BackColor = SystemColors.Control
+        btnClose.Cursor = Cursors.Hand
         btnClose.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnClose.Depth = 0
         btnClose.ForeColor = SystemColors.ControlText

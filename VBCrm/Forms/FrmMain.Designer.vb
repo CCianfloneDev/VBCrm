@@ -54,7 +54,6 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
-        ContactBindingSource1 = New BindingSource(components)
         ContactBindingSource = New BindingSource(components)
         lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
@@ -62,7 +61,6 @@ Partial Class FrmMain
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
-        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).BeginInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -267,6 +265,7 @@ Partial Class FrmMain
         ' 
         btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnClear.BackColor = SystemColors.Control
+        btnClear.Cursor = Cursors.Hand
         btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnClear.Depth = 0
         btnClear.ForeColor = SystemColors.ControlText
@@ -288,6 +287,7 @@ Partial Class FrmMain
         ' 
         btnSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnSearch.BackColor = SystemColors.Control
+        btnSearch.Cursor = Cursors.Hand
         btnSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnSearch.Depth = 0
         btnSearch.ForeColor = SystemColors.ControlText
@@ -319,6 +319,7 @@ Partial Class FrmMain
         ' 
         btnEdit.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnEdit.BackColor = SystemColors.Control
+        btnEdit.Cursor = Cursors.Hand
         btnEdit.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnEdit.Depth = 0
         btnEdit.ForeColor = SystemColors.ControlText
@@ -340,6 +341,7 @@ Partial Class FrmMain
         ' 
         btnNew.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnNew.BackColor = SystemColors.Control
+        btnNew.Cursor = Cursors.Hand
         btnNew.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnNew.Depth = 0
         btnNew.ForeColor = SystemColors.ControlText
@@ -371,6 +373,7 @@ Partial Class FrmMain
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
         dgvResults.AutoGenerateColumns = False
+        dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
         DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = SystemColors.Control
@@ -382,7 +385,7 @@ Partial Class FrmMain
         dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail})
-        dgvResults.DataSource = ContactBindingSource1
+        dgvResults.DataSource = ContactBindingSource
         dgvResults.Dock = DockStyle.Fill
         dgvResults.Location = New Point(0, 0)
         dgvResults.MultiSelect = False
@@ -424,9 +427,9 @@ Partial Class FrmMain
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
         ' 
-        ' ContactBindingSource1
+        ' ContactBindingSource
         ' 
-        ContactBindingSource1.DataSource = GetType(Contact)
+        ContactBindingSource.DataSource = GetType(Contact)
         ' 
         ' lblSearchCriteria
         ' 
@@ -465,7 +468,6 @@ Partial Class FrmMain
         pnlBottom.PerformLayout()
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
-        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -495,7 +497,6 @@ Partial Class FrmMain
     Friend WithEvents lblName As Controls.MaterialLabel
     Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
     Friend WithEvents dgvResults As DataGridView
-    Friend WithEvents ContactBindingSource As BindingSource
     Friend WithEvents lblEmail As Controls.MaterialLabel
     Friend WithEvents txtEmail As Controls.MaterialTextBox
     Friend WithEvents mnuItmPreferences As ToolStripMenuItem
@@ -504,7 +505,7 @@ Partial Class FrmMain
     Friend WithEvents mnuItmLightModeBlue As ToolStripMenuItem
     Friend WithEvents mnuItmDarkModePurple As ToolStripMenuItem
     Friend WithEvents mnuItmLightModeGreen As ToolStripMenuItem
-    Friend WithEvents ContactBindingSource1 As BindingSource
+    Friend WithEvents ContactBindingSource As BindingSource
     Friend WithEvents colId As DataGridViewTextBoxColumn
     Friend WithEvents colName As DataGridViewTextBoxColumn
     Friend WithEvents colPhone As DataGridViewTextBoxColumn

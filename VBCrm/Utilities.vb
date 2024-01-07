@@ -3,6 +3,9 @@ Imports System.Reflection
 Imports System.Text
 Imports System.Environment
 
+''' <summary>
+''' Represents the different themes offered in the application.
+''' </summary>
 Public Enum Themes
     DarkModePurple = 1
     LightModeBlue = 2
@@ -10,9 +13,17 @@ Public Enum Themes
     LightModeGreen = 4
 End Enum
 
+''' <summary>
+''' Utility functions for various application operations.
+''' </summary>
 Module Utilities
     Public DbOperations As DbOperations
 
+    ''' <summary>
+    ''' Applies the chosen color scheme to the specified form.
+    ''' </summary>
+    ''' <param name="frm">The MaterialForm to which the color scheme will be applied.</param>
+    ''' <param name="theme">The chosen theme to be applied.</param>
     Public Sub ApplyColorScheme(frm As MaterialForm, theme As Themes)
         Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
         materialSkinManager.AddFormToManage(frm)
@@ -51,6 +62,10 @@ Module Utilities
         frm.Refresh()
     End Sub
 
+    ''' <summary>
+    ''' Clears all controls within the specified container recursively.
+    ''' </summary>
+    ''' <param name="container">The Control containing the controls to be cleared.</param>
     Public Sub ClearFormControls(container As Control)
         For Each ctrl As Control In container.Controls
             If TypeOf ctrl Is MaterialTextBox Then
@@ -66,6 +81,10 @@ Module Utilities
         Next
     End Sub
 
+    ''' <summary>
+    ''' Retrieves the application information.
+    ''' </summary>
+    ''' <returns>A string containing application information.</returns>
     Public Function GetAppInfo() As String
         Dim assembly As Assembly = Assembly.GetExecutingAssembly()
         Dim version As Version = assembly.GetName().Version
@@ -82,6 +101,10 @@ Module Utilities
         Return appInfo.ToString()
     End Function
 
+    ''' <summary>
+    ''' Shows the about form with the specified theme.
+    ''' </summary>
+    ''' <param name="theme">The theme to be applied to the about form.</param>
     Public Sub ShowAboutForm(theme As Themes)
         Dim aboutFrm As New FrmAbout With {
             .Theme = theme

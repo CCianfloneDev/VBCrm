@@ -83,26 +83,27 @@ Public Class DbOperations
     ''' <param name="email">The email address of the contact.</param>
     ''' <returns>True if the contact was successfully created, otherwise False.</returns>
     Public Function CreateContact(contactName As String, phoneNumber As String, email As String) As Boolean
-        Try
-            Using connection As New SQLiteConnection(ConnectionString)
-                connection.Open()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
 
-                Dim query As String = "INSERT INTO Contacts (ContactName, ContactPhone, ContactEmail) VALUES (@Name, @PhoneNumber, @Email)"
-                Using command As New SQLiteCommand(query, connection)
-                    command.Parameters.AddWithValue("@Name", contactName)
-                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
-                    command.Parameters.AddWithValue("@Email", email)
-                    command.ExecuteNonQuery()
-                End Using
-
-                connection.Close()
-                Return True
+            Dim query As String = "INSERT INTO Contacts (ContactName, ContactPhone, ContactEmail) VALUES (@Name, @PhoneNumber, @Email)"
+            Using command As New SQLiteCommand(query, connection)
+                command.Parameters.AddWithValue("@Name", contactName)
+                command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
+                command.Parameters.AddWithValue("@Email", email)
+                command.ExecuteNonQuery()
             End Using
-        Catch ex As Exception
-            Return False
-        End Try
+
+            connection.Close()
+            Return True
+        End Using
+
+        Return False
     End Function
 
+    ''' <summary>
+    ''' Creates the different theme options to be used by the application.
+    ''' </summary>
     Private Sub CreateThemes()
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
@@ -145,8 +146,7 @@ Public Class DbOperations
     Public Function SearchContacts(Optional name As String = "", Optional phoneNumber As String = "", Optional email As String = "") As DataTable
         Dim dataTable As New DataTable()
 
-        Try
-            Using connection As New SQLiteConnection(ConnectionString)
+        Using connection As New SQLiteConnection(ConnectionString)
                 connection.Open()
 
                 Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail FROM Contacts WHERE 1=1 ")
@@ -178,17 +178,17 @@ Public Class DbOperations
             End Using
 
             Return dataTable
-        Catch ex As Exception
-            Return dataTable
-        End Try
     End Function
 
+    ''' <summary>
+    ''' Gets the currently selected theme.
+    ''' </summary>
+    ''' <returns>Theme currently being used.</returns>
     Public Function GetSelectedTheme() As Themes
         Dim selectedThemeId As Integer = -1
         Dim selectedTheme As Themes = Themes.DarkModePurple
 
-        Try
-            Using connection As New SQLiteConnection(ConnectionString)
+        Using connection As New SQLiteConnection(ConnectionString)
                 connection.Open()
 
                 Dim query As String = "SELECT ThemeId FROM Themes WHERE Selected = 1"
@@ -215,10 +215,6 @@ Public Class DbOperations
                     End Select
                 End If
             End Using
-        Catch ex As Exception
-            Return selectedTheme
-        End Try
-
         Return selectedTheme
     End Function
 #End Region
@@ -255,24 +251,27 @@ Public Class DbOperations
         End Try
     End Function
 
+    ''' <summary>
+    ''' Updates the currently selected theme in the database.
+    ''' </summary>
+    ''' <param name="themeId">ID of theme now being used.</param>
+    ''' <returns>True if the theme succesfully updated.</returns>
     Public Function UpdateSelectedTheme(themeId As Integer) As Boolean
-        Try
-            Using connection As New SQLiteConnection(ConnectionString)
-                connection.Open()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
 
-                Dim updateQuery As String = "UPDATE Themes SET Selected = CASE WHEN ThemeId = @ThemeId THEN 1 ELSE 0 END"
+            Dim updateQuery As String = "UPDATE Themes SET Selected = CASE WHEN ThemeId = @ThemeId THEN 1 ELSE 0 END"
 
-                Using command As New SQLiteCommand(updateQuery, connection)
-                    command.Parameters.AddWithValue("@ThemeId", themeId)
-                    command.ExecuteNonQuery()
-                End Using
-
-                connection.Close()
-                Return True
+            Using command As New SQLiteCommand(updateQuery, connection)
+                command.Parameters.AddWithValue("@ThemeId", themeId)
+                command.ExecuteNonQuery()
             End Using
-        Catch ex As Exception
-            Return False
-        End Try
+
+            connection.Close()
+            Return True
+        End Using
+
+        Return False
     End Function
 #End Region
 
