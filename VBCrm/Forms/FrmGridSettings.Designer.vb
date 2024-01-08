@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FrmAbout
+Partial Class FrmGridSettings
     Inherits MaterialSkin.Controls.MaterialForm
 
     'Form overrides dispose to clean up the component list.
@@ -22,21 +22,12 @@ Partial Class FrmAbout
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lblMessage = New Controls.MaterialLabel()
         btnClose = New Controls.MaterialButton()
-        lnkLbl = New LinkLabel()
+        lblSettings = New Controls.MaterialLabel()
+        pnlBody = New Panel()
+        pnlBottom = New Panel()
+        pnlBottom.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' lblMessage
-        ' 
-        lblMessage.Depth = 0
-        lblMessage.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblMessage.Location = New Point(17, 93)
-        lblMessage.MouseState = MouseState.HOVER
-        lblMessage.Name = "lblMessage"
-        lblMessage.Size = New Size(331, 220)
-        lblMessage.TabIndex = 1
-        lblMessage.Text = "message goes here"
         ' 
         ' btnClose
         ' 
@@ -49,46 +40,67 @@ Partial Class FrmAbout
         btnClose.ForeColor = SystemColors.ControlText
         btnClose.HighEmphasis = True
         btnClose.Icon = Nothing
-        btnClose.Location = New Point(146, 358)
+        btnClose.Location = New Point(140, 13)
         btnClose.Margin = New Padding(4, 6, 4, 6)
         btnClose.MouseState = MouseState.HOVER
         btnClose.Name = "btnClose"
         btnClose.NoAccentTextColor = Color.Empty
         btnClose.Size = New Size(73, 36)
-        btnClose.TabIndex = 4
+        btnClose.TabIndex = 5
         btnClose.Text = "Close"
         btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnClose.UseAccentColor = False
         btnClose.UseVisualStyleBackColor = False
         ' 
-        ' lnkLbl
+        ' lblSettings
         ' 
-        lnkLbl.AutoSize = True
-        lnkLbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lnkLbl.LinkColor = Color.Green
-        lnkLbl.Location = New Point(109, 320)
-        lnkLbl.Name = "lnkLbl"
-        lnkLbl.Size = New Size(128, 30)
-        lnkLbl.TabIndex = 3
-        lnkLbl.TabStop = True
-        lnkLbl.Text = "Github Repo"
+        lblSettings.AutoSize = True
+        lblSettings.Depth = 0
+        lblSettings.Dock = DockStyle.Top
+        lblSettings.Font = New Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel)
+        lblSettings.FontType = MaterialSkinManager.fontType.H6
+        lblSettings.Location = New Point(3, 64)
+        lblSettings.MouseState = MouseState.HOVER
+        lblSettings.Name = "lblSettings"
+        lblSettings.Size = New Size(284, 24)
+        lblSettings.TabIndex = 6
+        lblSettings.Text = "Change the visibility of columns"
         ' 
-        ' FrmAbout
+        ' pnlBody
+        ' 
+        pnlBody.Dock = DockStyle.Fill
+        pnlBody.Location = New Point(3, 88)
+        pnlBody.Name = "pnlBody"
+        pnlBody.Size = New Size(352, 359)
+        pnlBody.TabIndex = 7
+        ' 
+        ' pnlBottom
+        ' 
+        pnlBottom.Controls.Add(btnClose)
+        pnlBottom.Dock = DockStyle.Bottom
+        pnlBottom.Location = New Point(3, 385)
+        pnlBottom.Name = "pnlBottom"
+        pnlBottom.Size = New Size(352, 62)
+        pnlBottom.TabIndex = 8
+        ' 
+        ' FrmGridSettings
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(364, 407)
-        Controls.Add(btnClose)
-        Controls.Add(lnkLbl)
-        Controls.Add(lblMessage)
-        Name = "FrmAbout"
+        ClientSize = New Size(358, 450)
+        Controls.Add(pnlBottom)
+        Controls.Add(pnlBody)
+        Controls.Add(lblSettings)
+        Name = "FrmGridSettings"
         StartPosition = FormStartPosition.CenterParent
-        Text = "About - VBCrm"
+        Text = "Grid settings"
+        pnlBottom.ResumeLayout(False)
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents lblMessage As Controls.MaterialLabel
     Friend WithEvents btnClose As Controls.MaterialButton
-    Friend WithEvents lnkLbl As LinkLabel
+    Friend WithEvents lblSettings As Controls.MaterialLabel
+    Friend WithEvents pnlBody As Panel
+    Friend WithEvents pnlBottom As Panel
 End Class

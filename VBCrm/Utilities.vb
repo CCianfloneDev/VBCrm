@@ -57,7 +57,7 @@ Module Utilities
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT
                 materialSkinManager.ColorScheme = New ColorScheme(
                 Primary.Green600, Primary.Green700, Primary.Green200,
-                Accent.Lime200, TextShade.BLACK
+                Accent.Green400, TextShade.BLACK
                 )
         End Select
 

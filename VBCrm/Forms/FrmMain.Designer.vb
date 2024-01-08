@@ -65,10 +65,10 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
-        ContactCompany = New DataGridViewTextBoxColumn()
-        ContactJobTitle = New DataGridViewTextBoxColumn()
-        ContactDateOfBirth = New DataGridViewTextBoxColumn()
-        ContactNotes = New DataGridViewTextBoxColumn()
+        colCompany = New DataGridViewTextBoxColumn()
+        colJobTitle = New DataGridViewTextBoxColumn()
+        colDateOfBirth = New DataGridViewTextBoxColumn()
+        colNotes = New DataGridViewTextBoxColumn()
         cMnu = New ContextMenuStrip(components)
         cMnuExport = New ToolStripMenuItem()
         ContactBindingSource = New BindingSource(components)
@@ -116,23 +116,23 @@ Partial Class FrmMain
         ' mnuItmMassEmail
         ' 
         mnuItmMassEmail.Name = "mnuItmMassEmail"
-        mnuItmMassEmail.ShortcutKeys = Keys.Alt Or Keys.G
+        mnuItmMassEmail.ShortcutKeys = Keys.Alt Or Keys.M
         mnuItmMassEmail.Size = New Size(234, 22)
-        mnuItmMassEmail.Text = "&Generate mass email"
+        mnuItmMassEmail.Text = "Create &mass email"
         ' 
         ' mnuItmCreateContact
         ' 
         mnuItmCreateContact.Name = "mnuItmCreateContact"
         mnuItmCreateContact.ShortcutKeys = Keys.Alt Or Keys.R
         mnuItmCreateContact.Size = New Size(234, 22)
-        mnuItmCreateContact.Text = "C&reate Contact"
+        mnuItmCreateContact.Text = "C&reate Contact..."
         ' 
         ' mnuItmEditContact
         ' 
         mnuItmEditContact.Name = "mnuItmEditContact"
         mnuItmEditContact.ShortcutKeys = Keys.Alt Or Keys.D
         mnuItmEditContact.Size = New Size(234, 22)
-        mnuItmEditContact.Text = "E&dit selected Contact"
+        mnuItmEditContact.Text = "E&dit selected Contact..."
         ' 
         ' mnuItmDeleteContact
         ' 
@@ -183,7 +183,7 @@ Partial Class FrmMain
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
         mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Size = New Size(154, 22)
         mnuItmTheme.Text = "&Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -219,7 +219,7 @@ Partial Class FrmMain
         mnuItmEditGrid.Name = "mnuItmEditGrid"
         mnuItmEditGrid.ShortcutKeys = Keys.Alt Or Keys.E
         mnuItmEditGrid.Size = New Size(180, 22)
-        mnuItmEditGrid.Text = "&Edit grid"
+        mnuItmEditGrid.Text = "&Edit grid..."
         ' 
         ' mnuItmHelp
         ' 
@@ -233,8 +233,8 @@ Partial Class FrmMain
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(145, 22)
-        mnuItmAbout.Text = "&About"
+        mnuItmAbout.Size = New Size(180, 22)
+        mnuItmAbout.Text = "&About..."
         ' 
         ' staStatusStrip
         ' 
@@ -483,6 +483,7 @@ Partial Class FrmMain
         ' 
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
+        dgvResults.AllowUserToOrderColumns = True
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
@@ -495,7 +496,7 @@ Partial Class FrmMain
         DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
         dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
-        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, ContactCompany, ContactJobTitle, ContactDateOfBirth, ContactNotes})
+        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
         dgvResults.DataSource = ContactBindingSource
         dgvResults.Dock = DockStyle.Fill
@@ -539,33 +540,33 @@ Partial Class FrmMain
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
         ' 
-        ' ContactCompany
+        ' colCompany
         ' 
-        ContactCompany.DataPropertyName = "ContactCompany"
-        ContactCompany.HeaderText = "Company"
-        ContactCompany.Name = "ContactCompany"
-        ContactCompany.ReadOnly = True
+        colCompany.DataPropertyName = "ContactCompany"
+        colCompany.HeaderText = "Company"
+        colCompany.Name = "colCompany"
+        colCompany.ReadOnly = True
         ' 
-        ' ContactJobTitle
+        ' colJobTitle
         ' 
-        ContactJobTitle.DataPropertyName = "ContactJobTitle"
-        ContactJobTitle.HeaderText = "Job Title"
-        ContactJobTitle.Name = "ContactJobTitle"
-        ContactJobTitle.ReadOnly = True
+        colJobTitle.DataPropertyName = "ContactJobTitle"
+        colJobTitle.HeaderText = "Job Title"
+        colJobTitle.Name = "colJobTitle"
+        colJobTitle.ReadOnly = True
         ' 
-        ' ContactDateOfBirth
+        ' colDateOfBirth
         ' 
-        ContactDateOfBirth.DataPropertyName = "ContactDateOfBirth"
-        ContactDateOfBirth.HeaderText = "Date of birth"
-        ContactDateOfBirth.Name = "ContactDateOfBirth"
-        ContactDateOfBirth.ReadOnly = True
+        colDateOfBirth.DataPropertyName = "ContactDateOfBirth"
+        colDateOfBirth.HeaderText = "Date of birth"
+        colDateOfBirth.Name = "colDateOfBirth"
+        colDateOfBirth.ReadOnly = True
         ' 
-        ' ContactNotes
+        ' colNotes
         ' 
-        ContactNotes.DataPropertyName = "ContactNotes"
-        ContactNotes.HeaderText = "Notes"
-        ContactNotes.Name = "ContactNotes"
-        ContactNotes.ReadOnly = True
+        colNotes.DataPropertyName = "ContactNotes"
+        colNotes.HeaderText = "Notes"
+        colNotes.Name = "colNotes"
+        colNotes.ReadOnly = True
         ' 
         ' cMnu
         ' 
@@ -676,9 +677,9 @@ Partial Class FrmMain
     Friend WithEvents colName As DataGridViewTextBoxColumn
     Friend WithEvents colPhone As DataGridViewTextBoxColumn
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
-    Friend WithEvents ContactCompany As DataGridViewTextBoxColumn
-    Friend WithEvents ContactJobTitle As DataGridViewTextBoxColumn
-    Friend WithEvents ContactDateOfBirth As DataGridViewTextBoxColumn
-    Friend WithEvents ContactNotes As DataGridViewTextBoxColumn
+    Friend WithEvents colCompany As DataGridViewTextBoxColumn
+    Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
+    Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
+    Friend WithEvents colNotes As DataGridViewTextBoxColumn
 
 End Class

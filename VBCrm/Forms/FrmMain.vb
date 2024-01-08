@@ -212,46 +212,11 @@ Public Class FrmMain
     ''' </summary>
     Private Sub MnuItmEditGrid_Click(sender As Object, e As EventArgs) Handles mnuItmEditGrid.Click
         Try
-            dgvResults.AllowUserToOrderColumns = True
-
-            Dim settingsPanel As New Panel With {
-                .Dock = DockStyle.Top,
-                .AutoSize = True
+            Dim editGridSettings As New FrmGridSettings With {
+                .ColumnCollection = dgvResults.Columns
             }
 
-            For Each column As DataGridViewColumn In dgvResults.Columns
-                Dim checkBox As New CheckBox With {
-                    .Text = column.HeaderText,
-                    .Checked = column.Visible
-                }
-
-                ' Event handler for checkbox changes
-                AddHandler checkBox.CheckedChanged, Sub(chkSender As Object, args As EventArgs)
-                                                        column.Visible = checkBox.Checked
-                                                        Utilities.DbOperations.UpdateColumnVisibility(column.DataPropertyName, isVisible:=checkBox.Checked)
-                                                    End Sub
-
-                checkBox.Top = settingsPanel.Controls.Count * 30 ' Adjust checkbox position
-                settingsPanel.Controls.Add(checkBox)
-            Next
-
-            Dim closeButton As New MaterialButton
-            With closeButton
-                .Text = "Close"
-                .Left = settingsPanel.Width - closeButton.Width - 10 ' Position the Close button at the top-right corner,
-                .Top = 10
-                .Cursor = Cursors.Hand
-            End With
-
-            settingsPanel.Controls.Add(closeButton)
-
-            ' Event handler for Close button
-            AddHandler closeButton.Click, Sub(btnSender As Object, args As EventArgs)
-                                              pnlBody.Controls.Remove(settingsPanel)
-                                              dgvResults.AllowUserToOrderColumns = False
-                                          End Sub
-
-            pnlBody.Controls.Add(settingsPanel)
+            editGridSettings.ShowDialog(Me)
         Catch ex As Exception
             Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
