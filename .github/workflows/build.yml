@@ -1,0 +1,26 @@
+name: Build VB.NET Application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Restore NuGet packages
+        run: nuget restore VBCrm.sln
+
+      - name: Build solution
+        run: msbuild /p:Configuration=Release VBCrm.sln
