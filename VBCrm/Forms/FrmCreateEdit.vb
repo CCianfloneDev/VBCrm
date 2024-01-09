@@ -71,23 +71,28 @@ Public Class FrmCreateEdit
     ''' </summary>
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim contactName As String = txtName.Text.Trim()
+            Dim name As String = txtName.Text.Trim()
             Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
             Dim email As String = txtEmail.Text.Trim()
+            Dim company As String = txtCompany.Text.Trim()
+            Dim jobTitle As String = txtJobTitle.Text.Trim()
+            Dim dateOfBirth As String = txtDateOfBirth.Text.Trim()
+            Dim notes As String = txtNotes.Text.Trim()
 
-            If String.IsNullOrEmpty(contactName) Then
+
+            If String.IsNullOrEmpty(name) Then
                 MessageBox.Show("Please fill in a name.", "Name required", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             End If
 
             If IsNewRecord Then
-                If Utilities.DbOperations.CreateContact(contactName, phoneNumber, email) Then
+                If Utilities.DbOperations.CreateContact(name, phoneNumber, email, company, jobTitle, dateOfBirth, notes) Then
                     MessageBox.Show("Contact created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     MessageBox.Show("Failed to create contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             Else
-                If Utilities.DbOperations.UpdateContact(Contact.ContactId, contactName, phoneNumber, email) Then
+                If Utilities.DbOperations.UpdateContact(Contact.ContactId, name, phoneNumber, email, company, jobTitle, dateOfBirth, notes) Then
                     MessageBox.Show("Contact saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     MessageBox.Show("Failed to save contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

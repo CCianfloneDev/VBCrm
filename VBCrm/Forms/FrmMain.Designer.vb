@@ -23,7 +23,7 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
@@ -183,7 +183,7 @@ Partial Class FrmMain
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
         mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(154, 22)
+        mnuItmTheme.Size = New Size(163, 22)
         mnuItmTheme.Text = "&Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -218,7 +218,7 @@ Partial Class FrmMain
         ' 
         mnuItmEditGrid.Name = "mnuItmEditGrid"
         mnuItmEditGrid.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmEditGrid.Size = New Size(180, 22)
+        mnuItmEditGrid.Size = New Size(163, 22)
         mnuItmEditGrid.Text = "&Edit grid..."
         ' 
         ' mnuItmHelp
@@ -233,7 +233,7 @@ Partial Class FrmMain
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(180, 22)
+        mnuItmAbout.Size = New Size(154, 22)
         mnuItmAbout.Text = "&About..."
         ' 
         ' staStatusStrip
@@ -487,14 +487,14 @@ Partial Class FrmMain
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Control
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Control
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
