@@ -71,14 +71,14 @@ Partial Class FrmGridSettings
         pnlBody.Dock = DockStyle.Fill
         pnlBody.Location = New Point(3, 88)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(352, 359)
+        pnlBody.Size = New Size(352, 345)
         pnlBody.TabIndex = 7
         ' 
         ' pnlBottom
         ' 
         pnlBottom.Controls.Add(btnClose)
         pnlBottom.Dock = DockStyle.Bottom
-        pnlBottom.Location = New Point(3, 385)
+        pnlBottom.Location = New Point(3, 433)
         pnlBottom.Name = "pnlBottom"
         pnlBottom.Size = New Size(352, 62)
         pnlBottom.TabIndex = 8
@@ -87,9 +87,9 @@ Partial Class FrmGridSettings
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(358, 450)
-        Controls.Add(pnlBottom)
+        ClientSize = New Size(358, 498)
         Controls.Add(pnlBody)
+        Controls.Add(pnlBottom)
         Controls.Add(lblSettings)
         Name = "FrmGridSettings"
         StartPosition = FormStartPosition.CenterParent

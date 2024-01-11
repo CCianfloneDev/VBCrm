@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SQLite
+Imports System.IO
+Imports System.Security.AccessControl
 Imports System.Text
 Imports System.Text.Json
 
@@ -12,7 +14,7 @@ Public Class DbOperations
     ''' Represents the connection string to the SQLite database.
     ''' </summary>
     ''' <returns>Connection string.</returns>
-    Private Property ConnectionString As String = "Data Source=mydatabase.db;Version=3;"
+    Private Property ConnectionString As String
 
     ''' <summary>
     ''' Represents the connection instance to the SQLite database.
@@ -26,9 +28,23 @@ Public Class DbOperations
     ''' Constructor to initialize the database.
     ''' </summary>
     Public Sub New()
-        If Not IO.File.Exists("mydatabase.db") Then
-            SQLiteConnection.CreateFile("mydatabase.db")
+        Dim commonAppDataDir As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
+        Dim databaseFilePath As String = Path.Combine(commonAppDataDir, "VBCrm", "mydatabase.db")
+
+        If Not Directory.Exists(Path.GetDirectoryName(databaseFilePath)) Then
+            Directory.CreateDirectory(Path.GetDirectoryName(databaseFilePath))
         End If
+
+        If Not IO.File.Exists(databaseFilePath) Then
+            SQLiteConnection.CreateFile(databaseFilePath)
+        End If
+
+        ' Ensure the file is not read-only
+        If (File.GetAttributes(databaseFilePath) And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
+            File.SetAttributes(databaseFilePath, File.GetAttributes(databaseFilePath) And Not FileAttributes.ReadOnly)
+        End If
+
+        ConnectionString = $"Data Source={databaseFilePath};Version=3;"
 
         CreateContactsTable()
         CreateThemes()
@@ -38,13 +54,6 @@ Public Class DbOperations
 #End Region
 
 #Region "Handling connection"
-    ''' <summary>
-    ''' Opens a connection to the SQLite database.
-    ''' </summary>
-    Public Sub OpenConnection()
-        Connection = New SQLiteConnection(ConnectionString)
-        Connection.Open()
-    End Sub
 
     ''' <summary>
     ''' Closes the connection to the SQLite database.
@@ -68,7 +77,7 @@ Public Class DbOperations
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
             Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS Contacts (ContactId INTEGER PRIMARY KEY, ContactName TEXT, ContactPhone TEXT, ContactEmail TEXT, " &
-                                             "ContactCompany TEXT, ContactJobTitle TEXT, ContactDateOfBirth DATE, ContactNotes TEXT)"
+                                             "ContactAddress TEXT, ContactCompany TEXT, ContactJobTitle TEXT, ContactDateOfBirth TEXT, ContactNotes TEXT)"
             Using command As New SQLiteCommand(createTableQuery, connection)
                 command.ExecuteNonQuery()
             End Using
@@ -136,6 +145,7 @@ Public Class DbOperations
                     ('ContactName', 1),
                     ('ContactPhone', 1),
                     ('ContactEmail', 1),
+                    ('ContactAddress',1),
                     ('ContactCompany', 1),
                     ('ContactJobTitle', 1),
                     ('ContactDateOfBirth', 1),
@@ -189,68 +199,62 @@ Public Class DbOperations
     ''' <param name="phoneNumber">The phone number of the contact.</param>
     ''' <param name="email">The email address of the contact.</param>
     ''' <returns>True if the contact was successfully created, otherwise False.</returns>
-    Public Function CreateContact(contactName As String, phoneNumber As String, email As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
+    Public Function CreateContact(contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
             Dim query As New StringBuilder("INSERT INTO Contacts (ContactName")
-            Dim values As New StringBuilder("VALUES (@Name")
 
-            If Not String.IsNullOrEmpty(phoneNumber) Then
-                query.Append(", ContactPhone")
-                values.Append(", @PhoneNumber")
-            End If
-
-            If Not String.IsNullOrEmpty(email) Then
-                query.Append(", ContactEmail")
-                values.Append(", @Email")
-            End If
-
-            If Not String.IsNullOrEmpty(company) Then
-                query.Append(", ContactCompany")
-                values.Append(", @Company")
-            End If
-
-            If Not String.IsNullOrEmpty(jobTitle) Then
-                query.Append(", ContactJobTitle")
-                values.Append(", @JobTitle")
-            End If
-
-            If Not String.IsNullOrEmpty(dateOfBirth) Then
-                query.Append(", ContactDateOfBirth")
-                values.Append(", @DateOfBirth")
-            End If
-
-            If Not String.IsNullOrEmpty(notes) Then
-                query.Append(", ContactNotes")
-                values.Append(", @Notes")
-            End If
-
-            query.Append(") ")
-            values.Append(")"c)
-
-            Dim fullQuery As String = query.ToString() & values.ToString()
-
-            Using command As New SQLiteCommand(fullQuery, connection)
+            Dim valueQuery As New StringBuilder(" VALUES (@Name")
+            Using command As New SQLiteCommand(query.ToString(), connection)
                 command.Parameters.AddWithValue("@Name", contactName)
+
                 If Not String.IsNullOrEmpty(phoneNumber) Then
+                    query.Append(", ContactPhone")
+                    valueQuery.Append(", @PhoneNumber")
                     command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
                 End If
+
                 If Not String.IsNullOrEmpty(email) Then
+                    query.Append(", ContactEmail")
+                    valueQuery.Append(", @Email")
                     command.Parameters.AddWithValue("@Email", email)
                 End If
+
+                If Not String.IsNullOrEmpty(address) Then
+                    query.Append(", ContactAddress")
+                    valueQuery.Append(", @Address")
+                    command.Parameters.AddWithValue("@Address", address)
+                End If
+
                 If Not String.IsNullOrEmpty(company) Then
+                    query.Append(", ContactCompany")
+                    valueQuery.Append(", @Company")
                     command.Parameters.AddWithValue("@Company", company)
                 End If
+
                 If Not String.IsNullOrEmpty(jobTitle) Then
+                    query.Append(", ContactJobTitle")
+                    valueQuery.Append(", @JobTitle")
                     command.Parameters.AddWithValue("@JobTitle", jobTitle)
                 End If
+
                 If Not String.IsNullOrEmpty(dateOfBirth) Then
-                    command.Parameters.AddWithValue("@DateOfBirth", CDate(dateOfBirth))
+                    query.Append(", ContactDateOfBirth")
+                    valueQuery.Append(", @DateOfBirth")
+                    command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth)
                 End If
+
                 If Not String.IsNullOrEmpty(notes) Then
+                    query.Append(", ContactNotes")
+                    valueQuery.Append(", @Notes")
                     command.Parameters.AddWithValue("@Notes", notes)
                 End If
+
+                query.Append(")")
+                valueQuery.Append(")")
+
+                command.CommandText = query.ToString() & valueQuery.ToString()
 
                 command.ExecuteNonQuery()
             End Using
@@ -272,10 +276,11 @@ Public Class DbOperations
             {"ContactName", 2},
             {"ContactPhone", 3},
             {"ContactEmail", 4},
-            {"ContactCompany", 5},
-            {"ContactJobTitle", 6},
-            {"ContactDateOfBirth", 7},
-            {"ContactNotes", 8}
+            {"ContactAddress", 5},
+            {"ContactCompany", 6},
+            {"ContactJobTitle", 7},
+            {"ContactDateOfBirth", 8},
+            {"ContactNotes", 9}
         }
 
         For Each kvp As KeyValuePair(Of String, Integer) In defaultOrders
@@ -305,7 +310,7 @@ Public Class DbOperations
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
-            Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail, ContactCompany, " &
+            Dim queryBuilder As New StringBuilder("SELECT ContactId, ContactName, ContactPhone, ContactEmail, ContactAddress, ContactCompany, " &
                                                          "ContactJobTitle, ContactDateOfBirth, ContactNotes FROM Contacts WHERE 1=1 ")
 
             Using command As New SQLiteCommand(connection)
@@ -438,69 +443,64 @@ Public Class DbOperations
     ''' <param name="contactName">The new name for the contact.</param>
     ''' <param name="phoneNumber">The new phone number for the contact.</param>
     ''' <param name="email">The new email address for the contact.</param>
+    ''' <param name="address">The  address for the contact.</param>
+    ''' <param name="company">The company the contact belongs to.</param>
+    ''' <param name="jobTitle">The job title the contact maintains.</param>
+    ''' <param name="dateOfBirth">The date of birth of the contact.</param>
+    ''' <param name="notes">Any notes pertaining to the contact.</param>
     ''' <returns>True if the contact was successfully updated, otherwise False.</returns>
-    Public Function UpdateContact(contactId As Integer, contactName As String, phoneNumber As String, email As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
+    Public Function UpdateContact(contactId As Integer, contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
             Dim query As New StringBuilder("UPDATE Contacts SET ")
 
-            If Not String.IsNullOrEmpty(contactName) Then
-                query.Append("ContactName = @NewName, ")
-            End If
-
-            If Not String.IsNullOrEmpty(phoneNumber) Then
-                query.Append("ContactPhone = @NewPhoneNumber, ")
-            End If
-
-            If Not String.IsNullOrEmpty(email) Then
-                query.Append("ContactEmail = @NewEmail, ")
-            End If
-
-            If Not String.IsNullOrEmpty(company) Then
-                query.Append("ContactCompany = @Company, ")
-            End If
-
-            If Not String.IsNullOrEmpty(jobTitle) Then
-                query.Append("ContactJobTitle = @JobTitle, ")
-            End If
-
-            If Not String.IsNullOrEmpty(dateOfBirth) Then
-                query.Append("ContactDateOfBirth = @DateOfBirth, ")
-            End If
-
-            If Not String.IsNullOrEmpty(notes) Then
-                query.Append("ContactNotes = @Notes, ")
-            End If
-
-            ' Remove the last comma and space
-            query.Length -= 2
-
-            query.Append(" WHERE ContactId = @ContactId")
-
             Using command As New SQLiteCommand(query.ToString(), connection)
+
                 If Not String.IsNullOrEmpty(contactName) Then
-                    command.Parameters.AddWithValue("@NewName", contactName)
+                    query.Append("ContactName = @Name, ")
+                    command.Parameters.AddWithValue("@Name", contactName)
                 End If
+
                 If Not String.IsNullOrEmpty(phoneNumber) Then
-                    command.Parameters.AddWithValue("@NewPhoneNumber", phoneNumber)
+                    query.Append("ContactPhone = @PhoneNumber, ")
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
                 End If
+
                 If Not String.IsNullOrEmpty(email) Then
-                    command.Parameters.AddWithValue("@NewEmail", email)
+                    query.Append("ContactEmail = @Email, ")
+                    command.Parameters.AddWithValue("@Email", email)
                 End If
+
+                If Not String.IsNullOrEmpty(email) Then
+                    query.Append("ContactAddress = @NewAddress, ")
+                    command.Parameters.AddWithValue("@ContactAddress", address)
+                End If
+
                 If Not String.IsNullOrEmpty(company) Then
+                    query.Append("ContactCompany = @Company, ")
                     command.Parameters.AddWithValue("@Company", company)
                 End If
+
                 If Not String.IsNullOrEmpty(jobTitle) Then
+                    query.Append("ContactJobTitle = @JobTitle, ")
                     command.Parameters.AddWithValue("@JobTitle", jobTitle)
                 End If
+
                 If Not String.IsNullOrEmpty(dateOfBirth) Then
-                    command.Parameters.AddWithValue("@DateOfBirth", CDate(dateOfBirth))
+                    query.Append("ContactDateOfBirth = @DateOfBirth, ")
+                    command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth)
                 End If
+
                 If Not String.IsNullOrEmpty(notes) Then
+                    query.Append("ContactNotes = @Notes, ")
                     command.Parameters.AddWithValue("@Notes", notes)
                 End If
-                command.Parameters.AddWithValue("@ContactId", contactId)
+
+                ' Remove the last comma and space
+                query.Length -= 2
+
+                query.Append(" WHERE ContactId = @ContactId")
 
                 command.ExecuteNonQuery()
             End Using

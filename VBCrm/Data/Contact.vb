@@ -49,7 +49,7 @@ Public Class Contact
     ''' Represents the date of birth of the contact.
     ''' </summary>
     ''' <returns>Contact date of birth.</returns>
-    Public Property ContactDateOfBirth As Date?
+    Public Property ContactDateOfBirth As String
 
     ''' <summary>
     ''' Represents the notes or additional information about the contact.

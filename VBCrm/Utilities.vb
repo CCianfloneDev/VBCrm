@@ -198,6 +198,7 @@ Module Utilities
                             Dim contactName As String = fields(1).Trim()
                             Dim phoneNumber As String = fields(2).Trim()
                             Dim email As String = fields(3).Trim()
+                            Dim address As String = fields(4).Trim()
                             Dim company As String = fields(4).Trim()
                             Dim jobTitle As String = fields(5).Trim()
                             Dim dateOfBirth As String = fields(6).Trim()
@@ -206,7 +207,7 @@ Module Utilities
                             If String.IsNullOrEmpty(contactName) Then
                                 invalidRows.Add(currentRow)
                             Else
-                                DbOperations.CreateContact(contactName, phoneNumber, email, company, jobTitle, dateOfBirth, notes)
+                                DbOperations.CreateContact(contactName, phoneNumber, email, address, company, jobTitle, dateOfBirth, notes)
                                 successfulImports += 1
                             End If
                         End If

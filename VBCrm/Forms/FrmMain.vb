@@ -311,7 +311,12 @@ Public Class FrmMain
                 .ContactId = CInt(selectedRow.Cells(colId.Index).Value.ToString().Trim()),
                 .ContactName = selectedRow.Cells(colName.Index).Value.ToString().Trim(),
                 .ContactPhone = selectedRow.Cells(colPhone.Index).Value.ToString().Trim(),
-                .ContactEmail = selectedRow.Cells(colEmail.Index).Value.ToString().Trim()
+                .ContactEmail = selectedRow.Cells(colEmail.Index).Value.ToString().Trim(),
+                .ContactAddress = selectedRow.Cells(colAddress.Index).Value.ToString().Trim(),
+                .ContactCompany = selectedRow.Cells(colCompany.Index).Value.ToString().Trim(),
+                .ContactJobTitle = selectedRow.Cells(colJobTitle.Index).Value.ToString().Trim(),
+                .ContactDateOfBirth = selectedRow.Cells(colDateOfBirth.Index).Value.ToString().Trim(),
+                .ContactNotes = selectedRow.Cells(colNotes.Index).Value.ToString().Trim()
             }
 
             Dim editForm As New FrmCreateEdit With {

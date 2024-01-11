@@ -76,7 +76,7 @@ Public Class FrmGridSettings
     Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
         Try
             Dim checkBox As MaterialCheckbox = CType(sender, MaterialCheckbox)
-            Dim columnIndex As Integer = GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).Index
+            Dim columnIndex As Integer = GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DisplayIndex
 
             GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).Visible = checkBox.Checked
             Utilities.DbOperations.UpdateColumnVisibility(GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DataPropertyName, isVisible:=checkBox.Checked)

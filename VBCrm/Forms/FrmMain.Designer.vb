@@ -23,7 +23,8 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
         mnuItmExit = New ToolStripMenuItem()
@@ -65,12 +66,14 @@ Partial Class FrmMain
         colName = New DataGridViewTextBoxColumn()
         colPhone = New DataGridViewTextBoxColumn()
         colEmail = New DataGridViewTextBoxColumn()
+        colAddress = New DataGridViewTextBoxColumn()
         colCompany = New DataGridViewTextBoxColumn()
         colJobTitle = New DataGridViewTextBoxColumn()
         colDateOfBirth = New DataGridViewTextBoxColumn()
         colNotes = New DataGridViewTextBoxColumn()
         cMnu = New ContextMenuStrip(components)
         cMnuExport = New ToolStripMenuItem()
+        ContactBindingSource1 = New BindingSource(components)
         ContactBindingSource = New BindingSource(components)
         lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
@@ -79,6 +82,7 @@ Partial Class FrmMain
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
         cMnu.SuspendLayout()
+        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).BeginInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -487,18 +491,18 @@ Partial Class FrmMain
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = SystemColors.Control
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Control
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.ColumnHeadersHeight = 40
-        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colCompany, colJobTitle, colDateOfBirth, colNotes})
+        dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colAddress, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
-        dgvResults.DataSource = ContactBindingSource
+        dgvResults.DataSource = ContactBindingSource1
         dgvResults.Dock = DockStyle.Fill
         dgvResults.Location = New Point(0, 0)
         dgvResults.MultiSelect = False
@@ -524,7 +528,7 @@ Partial Class FrmMain
         colName.HeaderText = "Name"
         colName.Name = "colName"
         colName.ReadOnly = True
-        colName.Width = 300
+        colName.Width = 200
         ' 
         ' colPhone
         ' 
@@ -539,6 +543,14 @@ Partial Class FrmMain
         colEmail.HeaderText = "Email"
         colEmail.Name = "colEmail"
         colEmail.ReadOnly = True
+        ' 
+        ' colAddress
+        ' 
+        colAddress.DataPropertyName = "ContactAddress"
+        colAddress.HeaderText = "Address"
+        colAddress.Name = "colAddress"
+        colAddress.ReadOnly = True
+        colAddress.Width = 120
         ' 
         ' colCompany
         ' 
@@ -567,6 +579,7 @@ Partial Class FrmMain
         colNotes.HeaderText = "Notes"
         colNotes.Name = "colNotes"
         colNotes.ReadOnly = True
+        colNotes.Width = 200
         ' 
         ' cMnu
         ' 
@@ -580,9 +593,9 @@ Partial Class FrmMain
         cMnuExport.Size = New Size(146, 22)
         cMnuExport.Text = "Export to CSV"
         ' 
-        ' ContactBindingSource
+        ' ContactBindingSource1
         ' 
-        ContactBindingSource.DataSource = GetType(Contact)
+        ContactBindingSource1.DataSource = GetType(Contact)
         ' 
         ' lblSearchCriteria
         ' 
@@ -609,6 +622,7 @@ Partial Class FrmMain
         Controls.Add(lblSearchCriteria)
         Controls.Add(staStatusStrip)
         Controls.Add(mnuMenuStrip)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = mnuMenuStrip
         Name = "FrmMain"
         StartPosition = FormStartPosition.CenterScreen
@@ -622,6 +636,7 @@ Partial Class FrmMain
         pnlBody.ResumeLayout(False)
         CType(dgvResults, ComponentModel.ISupportInitialize).EndInit()
         cMnu.ResumeLayout(False)
+        CType(ContactBindingSource1, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -659,7 +674,6 @@ Partial Class FrmMain
     Friend WithEvents mnuItmLightModeBlue As ToolStripMenuItem
     Friend WithEvents mnuItmDarkModePurple As ToolStripMenuItem
     Friend WithEvents mnuItmLightModeGreen As ToolStripMenuItem
-    Friend WithEvents ContactBindingSource As BindingSource
     Friend WithEvents cMnu As ContextMenuStrip
     Friend WithEvents cMnuExport As ToolStripMenuItem
     Friend WithEvents mnuItmData As ToolStripMenuItem
@@ -673,10 +687,13 @@ Partial Class FrmMain
     Friend WithEvents mnuItmEditContact As ToolStripMenuItem
     Friend WithEvents mnuItmDeleteContact As ToolStripMenuItem
     Friend WithEvents mnuItmEditGrid As ToolStripMenuItem
+    Friend WithEvents ContactBindingSource As BindingSource
+    Friend WithEvents ContactBindingSource1 As BindingSource
     Friend WithEvents colId As DataGridViewTextBoxColumn
     Friend WithEvents colName As DataGridViewTextBoxColumn
     Friend WithEvents colPhone As DataGridViewTextBoxColumn
     Friend WithEvents colEmail As DataGridViewTextBoxColumn
+    Friend WithEvents colAddress As DataGridViewTextBoxColumn
     Friend WithEvents colCompany As DataGridViewTextBoxColumn
     Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
     Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
