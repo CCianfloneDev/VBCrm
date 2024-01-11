@@ -32,7 +32,7 @@ This project is a Customer Relationship Management (CRM) application built using
 
 - **SQLite Database:** Local database setup using SQLite for storing and managing customer data.
 - **MaterialSkin.2 UI:** Enhanced user interface powered by MaterialSkin.2 controls for a modern look and feel.
-- **Customization:** Light mode and dark mode with numerous theme options available to the user, additionally users may edit the display index for columns of the grid via a menu item along with the visiblity of columns. All of which save to the database and apply on launch.
+- **Customization:** Light mode and dark mode with numerous theme options available to the user, additionally users may edit the column order of the grid, and the visiblity of columns via a menu item. All of which save to the database and apply on launch.
 - **Data management:** Allows user to export and import data via .CSV files as well as purging all contents.
 - **Customer management:** CRUD (Create, Read, Update, Delete) operations for managing customer records.
 
