@@ -9,8 +9,6 @@ This project is a Customer Relationship Management (CRM) application built using
 |--------------------|--------------------|--------------------|
 | ![image1](https://github.com/CCianfloneDev/VBCrm/assets/24930067/4304db86-e05a-4724-b31b-036b6043d19f) | ![image2](https://github.com/CCianfloneDev/VBCrm/assets/24930067/f0dae951-41f1-4f83-9bf6-fb37024da326) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/48a8b5dd-1ddc-439a-9dbc-a3a841dffb15) |
 
-
-
 ### Dark Mode - Green:
 
 | Main form | Create/edit form | About form |
@@ -32,8 +30,8 @@ This project is a Customer Relationship Management (CRM) application built using
 
 - **SQLite Database:** Local database setup using SQLite for storing and managing customer data.
 - **MaterialSkin.2 UI:** Enhanced user interface powered by MaterialSkin.2 controls for a modern look and feel.
-- **Customization:** Light mode and dark mode with numerous theme options available to the user, additionally users may edit the display index for columns of the grid via a menu item along with the visiblity of columns. All of which save to the database and apply on launch.
-- **Data management:** Allows user to export and import data via .CSV files as well as purging all contents.
+- **Customization:** Light mode and dark mode with numerous theme options available to the user. Users can also edit the column order of the grid and the visibility of columns via a menu item. All changes are saved to the database and applied on launch.
+- **Data management:** Allows users to export and import data via .CSV files, as well as purging all contents.
 - **Customer management:** CRUD (Create, Read, Update, Delete) operations for managing customer records.
 
 ## Prerequisites
@@ -42,28 +40,40 @@ This project is a Customer Relationship Management (CRM) application built using
 - MaterialSkin.2 library for WinForms (Add via NuGet).
 - SQLite for .NET (System.Data.SQLite) (Add via NuGet).
 
-## Setup Instructions
+## Setup Instructions (For Development)
 
 1. **Clone the Repository:**
-   Clone this repository to your local machine
+   Clone this repository to your local machine.
 
 2. **Open in Visual Studio:**
-Open the project in Visual Studio.
+   Open the project in Visual Studio.
 
 3. **Install Dependencies:**
-Use NuGet Package Manager to install MaterialSkin.2 and SQLite for .NET.
+   Use NuGet Package Manager to install MaterialSkin.2 and SQLite for .NET.
 
 4. **Build and Run:**
-Build the solution and run the project in Visual Studio.
+   Build the solution and run the project in Visual Studio.
 
-## Usage
+## Using the Application
 
 - Launch the application.
 - Use the MaterialSkin-enhanced interface to manage customer data.
 - Perform CRUD operations for adding, viewing, editing, and deleting customer records.
 
+## Download and Run the Application
+
+1. **Download the Installer:**
+   - Go to the [Releases](https://github.com/CCianfloneDev/VBCrm/releases)  section.
+   - Download the latest `appxbundle` installer.
+
+2. **Run the Installer:**
+   - Double-click the downloaded `appxbundle` file.
+   - Follow the on-screen instructions to install the application.
+
+3. **Start Using the Application:**
+   - Once installed, locate the application in your installed programs.
+   - Launch the application to start managing customer data.
+
 ## Contributing
 
 Contributions are welcome! If you have any suggestions, bug reports, or feature requests, feel free to open an issue or submit a pull request.
-
-
