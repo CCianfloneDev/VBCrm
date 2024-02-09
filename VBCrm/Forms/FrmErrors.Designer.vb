@@ -51,6 +51,7 @@ Partial Class FrmErrors
         txtErrors.Location = New Point(37, 138)
         txtErrors.MouseState = MouseState.HOVER
         txtErrors.Name = "txtErrors"
+        txtErrors.ReadOnly = True
         txtErrors.Size = New Size(356, 281)
         txtErrors.TabIndex = 3
         txtErrors.Text = ""

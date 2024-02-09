@@ -374,7 +374,7 @@ Public Class FrmMain
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
             If dgvResults.SelectedRows.Count <= 0 Then
-                MessageBox.Show(Me, "Please select a Contact to delete...", My.Application.Info.Title & " - No Contact selected.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(Me, "Please select a Contact to delete...", My.Application.Info.Title & " - No Contact selected", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 

@@ -66,7 +66,7 @@ Partial Class FrmAbout
         lnkLbl.AutoSize = True
         lnkLbl.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lnkLbl.LinkColor = Color.Green
-        lnkLbl.Location = New Point(109, 320)
+        lnkLbl.Location = New Point(118, 320)
         lnkLbl.Name = "lnkLbl"
         lnkLbl.Size = New Size(128, 30)
         lnkLbl.TabIndex = 3
