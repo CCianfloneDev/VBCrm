@@ -21,9 +21,6 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore VBCrm.sln
-        
-      - name: Install Advanced Installer
-        run: |
 
       - name: List directory contents
         run: |
@@ -32,5 +29,5 @@ jobs:
       - name: Check MSBuild version
         run: msbuild -version
 
-      - name: Build solution
-        run: msbuild /p:Configuration=Release VBCrm.sln
+      - name: Build solution excluding VBCrmSetup
+        run: msbuild /p:Configuration=Release /p:ExcludeProjects="VBCrmSetup\VBCrmSetup.aiproj" VBCrm.sln
