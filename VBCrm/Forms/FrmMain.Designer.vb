@@ -24,6 +24,7 @@ Partial Class FrmMain
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         mnuMenuStrip = New MenuStrip()
         mnuItmFile = New ToolStripMenuItem()
@@ -46,6 +47,7 @@ Partial Class FrmMain
         mnuItmEditGrid = New ToolStripMenuItem()
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
+        mnuItmViewErrorLogs = New ToolStripMenuItem()
         staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
@@ -227,7 +229,7 @@ Partial Class FrmMain
         ' 
         ' mnuItmHelp
         ' 
-        mnuItmHelp.DropDownItems.AddRange(New ToolStripItem() {mnuItmAbout})
+        mnuItmHelp.DropDownItems.AddRange(New ToolStripItem() {mnuItmAbout, mnuItmViewErrorLogs})
         mnuItmHelp.Name = "mnuItmHelp"
         mnuItmHelp.ShortcutKeys = Keys.Alt Or Keys.H
         mnuItmHelp.Size = New Size(44, 20)
@@ -237,8 +239,15 @@ Partial Class FrmMain
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(154, 22)
+        mnuItmAbout.Size = New Size(192, 22)
         mnuItmAbout.Text = "&About..."
+        ' 
+        ' mnuItmViewErrorLogs
+        ' 
+        mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
+        mnuItmViewErrorLogs.ShortcutKeys = Keys.Alt Or Keys.V
+        mnuItmViewErrorLogs.Size = New Size(192, 22)
+        mnuItmViewErrorLogs.Text = "&View Error Logs"
         ' 
         ' staStatusStrip
         ' 
@@ -412,6 +421,7 @@ Partial Class FrmMain
         ' btnDelete
         ' 
         btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnDelete.Cursor = Cursors.Hand
         btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
         btnDelete.Depth = 0
         btnDelete.HighEmphasis = True
@@ -488,17 +498,19 @@ Partial Class FrmMain
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
         dgvResults.AllowUserToOrderColumns = True
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.None
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = SystemColors.Control
-        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Control
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colAddress, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
@@ -698,5 +710,6 @@ Partial Class FrmMain
     Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
     Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
     Friend WithEvents colNotes As DataGridViewTextBoxColumn
+    Friend WithEvents mnuItmViewErrorLogs As ToolStripMenuItem
 
 End Class

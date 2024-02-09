@@ -31,7 +31,7 @@ Public Class FrmCreateEdit
     ''' </summary>
     Private Sub FrmCreateEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ApplyColorScheme(frm:=Me, theme:=Theme)
+            ApplyColorScheme(form:=Me, theme:=Theme)
 
             If IsNewRecord Then
                 Return
@@ -48,7 +48,8 @@ Public Class FrmCreateEdit
                 txtNotes.Text = .ContactNotes
             End With
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -60,7 +61,8 @@ Public Class FrmCreateEdit
         Try
             Utilities.DbOperations.CloseConnection()
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -91,22 +93,17 @@ Public Class FrmCreateEdit
             End If
 
             If IsNewRecord Then
-                If Utilities.DbOperations.CreateContact(name, phoneNumber, email, address, company, jobTitle, dateOfBirth, notes) Then
-                    MessageBox.Show("Contact created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("Failed to create contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
+                Utilities.DbOperations.CreateContact(name, phoneNumber, email, address, company, jobTitle, dateOfBirth, notes)
             Else
-                If Utilities.DbOperations.UpdateContact(Contact.ContactId, name, phoneNumber, email, address, company, jobTitle, dateOfBirth, notes) Then
-                    MessageBox.Show("Contact saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("Failed to save contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End If
+                Utilities.DbOperations.UpdateContact(Contact.ContactId, name, phoneNumber, email, address, company, jobTitle, dateOfBirth, notes)
             End If
+
+            MessageBox.Show($"Contact {IIf(IsNewRecord, "created", "saved")} successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -118,7 +115,8 @@ Public Class FrmCreateEdit
         Try
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub

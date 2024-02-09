@@ -50,6 +50,7 @@ Public Class DbOperations
         CreateThemes()
         CreateColumnVisibilityTable()
         CreateColumnOrderTable()
+        CreateErrorLogsTable()
     End Sub
 #End Region
 
@@ -188,6 +189,20 @@ Public Class DbOperations
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Creates the 'ErrorLogs' table if it doesn't exist.
+    ''' </summary>
+    Private Sub CreateErrorLogsTable()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim createTableQuery As String = "CREATE TABLE IF NOT EXISTS ErrorLogs (LogId INTEGER PRIMARY KEY, LogTimestamp TEXT, ErrorMessage TEXT)"
+            Using command As New SQLiteCommand(createTableQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+
 #End Region
 
 #Region "Creating data"
@@ -198,8 +213,7 @@ Public Class DbOperations
     ''' <param name="contactName">The name of the contact.</param>
     ''' <param name="phoneNumber">The phone number of the contact.</param>
     ''' <param name="email">The email address of the contact.</param>
-    ''' <returns>True if the contact was successfully created, otherwise False.</returns>
-    Public Function CreateContact(contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
+    Public Sub CreateContact(contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String)
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
@@ -251,8 +265,8 @@ Public Class DbOperations
                     command.Parameters.AddWithValue("@Notes", notes)
                 End If
 
-                query.Append(")")
-                valueQuery.Append(")")
+                query.Append(")"c)
+                valueQuery.Append(")"c)
 
                 command.CommandText = query.ToString() & valueQuery.ToString()
 
@@ -260,11 +274,8 @@ Public Class DbOperations
             End Using
 
             connection.Close()
-            Return True
         End Using
-
-        Return False
-    End Function
+    End Sub
 
     ''' <summary>
     ''' Inserts the default column order of the grid.
@@ -292,6 +303,23 @@ Public Class DbOperations
                 command.ExecuteNonQuery()
             End Using
         Next
+    End Sub
+
+    ''' <summary>
+    ''' Inserts an error log entry into the 'ErrorLogs' table.
+    ''' </summary>
+    ''' <param name="errorMessage">The error message to be logged.</param>
+    Public Sub InsertErrorLog(errorMessage As String)
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim insertLogQuery As String = "INSERT INTO ErrorLogs (LogTimestamp, ErrorMessage) VALUES (@LogTimestamp, @ErrorMessage)"
+            Using command As New SQLiteCommand(insertLogQuery, connection)
+                command.Parameters.AddWithValue("@LogTimestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                command.Parameters.AddWithValue("@ErrorMessage", errorMessage)
+                command.ExecuteNonQuery()
+            End Using
+        End Using
     End Sub
 
 #End Region
@@ -433,6 +461,32 @@ Public Class DbOperations
 
         Return displayIndexData
     End Function
+
+    ''' <summary>
+    ''' Retrieves all the error logs from the database.
+    ''' </summary>
+    ''' <returns>Error log lines as one string.</returns>
+    Public Function GetAllErrorLogs() As String
+        Dim logsText As New StringBuilder()
+
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim getLogsQuery As String = "SELECT * FROM ErrorLogs ORDER BY LogTimestamp DESC"
+            Using command As New SQLiteCommand(getLogsQuery, connection)
+                Using reader As SQLiteDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        Dim logTimestamp As String = Convert.ToString(reader("LogTimestamp"))
+                        Dim errorMessage As String = Convert.ToString(reader("ErrorMessage"))
+
+                        logsText.AppendLine($"Timestamp: {logTimestamp}, Message: {errorMessage}")
+                    End While
+                End Using
+            End Using
+        End Using
+
+        Return logsText.ToString()
+    End Function
 #End Region
 
 #Region "Updating data"
@@ -448,18 +502,16 @@ Public Class DbOperations
     ''' <param name="jobTitle">The job title the contact maintains.</param>
     ''' <param name="dateOfBirth">The date of birth of the contact.</param>
     ''' <param name="notes">Any notes pertaining to the contact.</param>
-    ''' <returns>True if the contact was successfully updated, otherwise False.</returns>
-    Public Function UpdateContact(contactId As Integer, contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String) As Boolean
+    Public Sub UpdateContact(contactId As Integer, contactName As String, phoneNumber As String, email As String, address As String, company As String, jobTitle As String, dateOfBirth As String, notes As String)
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
             Dim query As New StringBuilder("UPDATE Contacts SET ")
 
             Using command As New SQLiteCommand(query.ToString(), connection)
-
                 If Not String.IsNullOrEmpty(contactName) Then
-                    query.Append("ContactName = @Name, ")
-                    command.Parameters.AddWithValue("@Name", contactName)
+                    query.Append("ContactName = @ContactName, ")
+                    command.Parameters.AddWithValue("@ContactName", contactName)
                 End If
 
                 If Not String.IsNullOrEmpty(phoneNumber) Then
@@ -473,7 +525,7 @@ Public Class DbOperations
                 End If
 
                 If Not String.IsNullOrEmpty(email) Then
-                    query.Append("ContactAddress = @NewAddress, ")
+                    query.Append("ContactAddress = @ContactAddress, ")
                     command.Parameters.AddWithValue("@ContactAddress", address)
                 End If
 
@@ -500,17 +552,15 @@ Public Class DbOperations
                 ' Remove the last comma and space
                 query.Length -= 2
 
-                query.Append(" WHERE ContactId = @ContactId")
+                query.Append($" WHERE ContactId = @ContactId")
+                command.Parameters.AddWithValue("@ContactId", contactId)
 
+                command.CommandText = query.ToString()
                 command.ExecuteNonQuery()
             End Using
-
             connection.Close()
-            Return True
         End Using
-
-        Return False
-    End Function
+    End Sub
 
     ''' <summary>
     ''' Updates the currently selected theme in the database.
@@ -621,6 +671,20 @@ Public Class DbOperations
         End Using
     End Function
 #End Region
+
+    ''' <summary>
+    ''' Deletes all logs from the 'ErrorLogs' table.
+    ''' </summary>
+    Public Sub DeleteAllLogs()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim deleteLogsQuery As String = "DELETE FROM ErrorLogs"
+            Using command As New SQLiteCommand(deleteLogsQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
 
 #End Region
 

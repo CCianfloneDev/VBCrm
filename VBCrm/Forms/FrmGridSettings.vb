@@ -30,7 +30,7 @@ Public Class FrmGridSettings
     ''' </summary>
     Private Sub FrmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ApplyColorScheme(frm:=Me, theme:=Theme)
+            ApplyColorScheme(form:=Me, theme:=Theme)
 
             ' dynamically make checkboxes for each column
             For Each column As DataGridViewColumn In ColumnCollection
@@ -48,7 +48,8 @@ Public Class FrmGridSettings
                 lblSettings.Select()
             Next
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -62,7 +63,8 @@ Public Class FrmGridSettings
         Try
             Close()
         Catch ex As Exception
-            Dim errorMessage = $"Error in {Reflection.MethodBase.GetCurrentMethod.Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -83,7 +85,9 @@ Public Class FrmGridSettings
 
             FrmMain.dgvResults.Columns(columnIndex).Visible = checkBox.Checked
         Catch ex As Exception
-
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

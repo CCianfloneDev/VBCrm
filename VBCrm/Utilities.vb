@@ -24,11 +24,11 @@ Module Utilities
     ''' <summary>
     ''' Applies the chosen color scheme to the specified form.
     ''' </summary>
-    ''' <param name="frm">The MaterialForm to which the color scheme will be applied.</param>
+    ''' <param name="form">The MaterialForm to which the color scheme will be applied.</param>
     ''' <param name="theme">The chosen theme to be applied.</param>
-    Public Sub ApplyColorScheme(frm As MaterialForm, theme As Themes)
+    Public Sub ApplyColorScheme(form As MaterialForm, theme As Themes)
         Dim materialSkinManager As MaterialSkinManager = MaterialSkinManager.Instance
-        materialSkinManager.AddFormToManage(frm)
+        materialSkinManager.AddFormToManage(form)
 
         ' Save the selected theme in the user settings
         DbOperations.UpdateSelectedTheme(CInt(theme))
@@ -61,7 +61,7 @@ Module Utilities
                 )
         End Select
 
-        frm.Refresh()
+        form.Refresh()
     End Sub
 
     ''' <summary>

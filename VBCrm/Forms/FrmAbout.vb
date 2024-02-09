@@ -21,10 +21,11 @@ Public Class FrmAbout
     ''' </summary>
     Private Sub FrmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            ApplyColorScheme(frm:=Me, theme:=Theme)
+            ApplyColorScheme(form:=Me, theme:=Theme)
             lnkLbl.Font = New Font(lnkLbl.Font.FontFamily, 16, lnkLbl.Font.Style)
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -38,7 +39,8 @@ Public Class FrmAbout
         Try
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -58,7 +60,8 @@ Public Class FrmAbout
                 .Verb = "open"
             })
         Catch ex As Exception
-            Dim errorMessage As String = $"Error in {Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
