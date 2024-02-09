@@ -21,6 +21,9 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore VBCrm.sln
+        
+      - name: Install Advanced Installer
+        run: |
 
       - name: List directory contents
         run: |
