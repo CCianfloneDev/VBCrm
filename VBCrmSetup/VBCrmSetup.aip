@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="21.4" version="21.4" Modules="simple" RootPath="." Language="en" Id="{087B9B47-7A87-44D0-B159-9884D9A674D7}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;FixupComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_MaterialSkin.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll" Value="..\VBCrm\bin\publish\runtimes\linux-x64\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_1" Value="..\VBCrm\bin\publish\runtimes\osx-x64\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_2" Value="..\VBCrm\bin\publish\runtimes\win-x64\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_3" Value="..\VBCrm\bin\publish\runtimes\win-x86\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Data.SQLite.EF6.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Data.SQLite.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll_1" Value="..\VBCrm\bin\publish\runtimes\unix\lib\netcoreapp2.1"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll_2" Value="..\VBCrm\bin\publish\runtimes\win\lib\netcoreapp2.1"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_VBCrm.deps.json" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_VBCrm.dll" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_VBCrm.exe" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_VBCrm.runtimeconfig.json" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_VBCrm.xml" Value="..\VBCrm\bin\publish"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_sni.dll" Value="..\VBCrm\bin\publish\runtimes\win-arm64\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_sni.dll_1" Value="..\VBCrm\bin\publish\runtimes\win-x64\native"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_sni.dll_2" Value="..\VBCrm\bin\publish\runtimes\win-x86\native"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll" Value="EntityFramework.SqlServer.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll" Value="EntityFramework.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MaterialSkin.dll" Value="MaterialSkin.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll" Value="SQLite.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_1" Value="SQLite.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_2" Value="SQLite.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_3" Value="SQLite.Interop.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.EF6.dll" Value="System.Data.SQLite.EF6.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.dll" Value="System.Data.SQLite.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll" Value="System.Data.SqlClient.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_1" Value="System.Data.SqlClient.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_2" Value="System.Data.SqlClient.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_VBCrm.deps.json" Value="VBCrm.deps.json"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_VBCrm.dll" Value="VBCrm.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_VBCrm.exe" Value="VBCrm.exe"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_VBCrm.runtimeconfig.json" Value="VBCrm.runtimeconfig.json"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_VBCrm.xml" Value="VBCrm.xml"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_sni.dll" Value="sni.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_sni.dll_1" Value="sni.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_sni.dll_2" Value="sni.dll"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This VB.NET CRM project is a Customer Relationship Management application that employs SQLite as the local database and leverages MaterialSkin.2 for an intuitive and modern user interface." ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="colecianflone123@gmail.com"/>
+    <ROW Property="ARPHELPLINK" Value="https://github.com/CCianfloneDev/VBCrm/issues"/>
+    <ROW Property="ARPPRODUCTICON" Value="VBCrmLogo.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://github.com/CCianfloneDev/VBCrm"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/CCianfloneDev/VBCrm/releases"/>
+    <ROW Property="Manufacturer" Value="VBCrm"/>
+    <ROW Property="ProductCode" Value="1033:{5D4CE54E-1371-411E-B82F-819C80DA021A} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="VBCrm"/>
+    <ROW Property="ProductVersion" Value="1.0.3" Options="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{76A9B439-1C55-4145-AD73-32689821F3FA}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="StartMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="STARTM~1|StartMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="VBCrm_Dir" Directory_Parent="APPDIR" DefaultDir="VBCrm"/>
+    <ROW Directory="lib_1_Dir" Directory_Parent="win_Dir" DefaultDir="lib"/>
+    <ROW Directory="lib_Dir" Directory_Parent="unix_Dir" DefaultDir="lib"/>
+    <ROW Directory="linuxx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="LINUX-~1|linux-x64"/>
+    <ROW Directory="native_1_Dir" Directory_Parent="osxx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_2_Dir" Directory_Parent="winarm64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_3_Dir" Directory_Parent="winx64_Dir" DefaultDir="native"/>
+    <ROW Directory="native_4_Dir" Directory_Parent="winx86_Dir" DefaultDir="native"/>
+    <ROW Directory="native_Dir" Directory_Parent="linuxx64_Dir" DefaultDir="native"/>
+    <ROW Directory="netcoreapp2.1_1_Dir" Directory_Parent="lib_1_Dir" DefaultDir="NETCOR~1.1|netcoreapp2.1"/>
+    <ROW Directory="netcoreapp2.1_Dir" Directory_Parent="lib_Dir" DefaultDir="NETCOR~1.1|netcoreapp2.1"/>
+    <ROW Directory="osxx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="osx-x64"/>
+    <ROW Directory="runtimes_Dir" Directory_Parent="VBCrm_Dir" DefaultDir="runtimes"/>
+    <ROW Directory="unix_Dir" Directory_Parent="runtimes_Dir" DefaultDir="unix"/>
+    <ROW Directory="win_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win"/>
+    <ROW Directory="winarm64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="WIN-AR~1|win-arm64"/>
+    <ROW Directory="winx64_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x64"/>
+    <ROW Directory="winx86_Dir" Directory_Parent="runtimes_Dir" DefaultDir="win-x86"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="APPDIR" ComponentId="{75C977D7-B5F7-4D9C-B06D-AF8A73B69317}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="ProductInformation" ComponentId="{8096E61D-DBBC-4439-B5A2-42C9767B5D61}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{33F00F3A-32CB-40D7-BB25-0F8DBB5E8F56}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="VBCrm_PrimaryOutput" ComponentId="{903519C1-E8E0-42C4-9145-A41FEA1F9E00}" Directory_="VBCrm_Dir" Attributes="0" KeyPath="VBCrm.dll"/>
+    <ROW Component="VBCrm_PublishOutput" ComponentId="{01F256E8-115C-4586-AC1B-CEB6663EF12F}" Directory_="VBCrm_Dir" Attributes="0" KeyPath="VBCrm.exe"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_linuxx64_native" ComponentId="{B2144311-2390-4E27-8BA9-B6AE76C235B0}" Directory_="native_Dir" Attributes="0" KeyPath="SQLite.Interop.dll"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_osxx64_native" ComponentId="{82B0C757-D3FC-48CB-AFF4-7153A36266DA}" Directory_="native_1_Dir" Attributes="0" KeyPath="SQLite.Interop.dll_1"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_unix_lib_netcoreapp2.1" ComponentId="{2BEFF084-1D73-46D6-8811-4C733F0E8BCF}" Directory_="netcoreapp2.1_Dir" Attributes="0" KeyPath="System.Data.SqlClient.dll_1"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_win_lib_netcoreapp2.1" ComponentId="{1DE02B1C-7102-4B9F-B73F-704D07B17234}" Directory_="netcoreapp2.1_1_Dir" Attributes="0" KeyPath="System.Data.SqlClient.dll_2"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_winarm64_native" ComponentId="{15EA83D6-0AD4-4D1B-B9F2-55CD1ADC5300}" Directory_="native_2_Dir" Attributes="256" KeyPath="sni.dll"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_winx64_native" ComponentId="{4E419675-041D-485E-BEC7-CC2E2FCD29D2}" Directory_="native_3_Dir" Attributes="256" KeyPath="SQLite.Interop.dll_2"/>
+    <ROW Component="VBCrm_PublishOutput_runtimes_winx86_native" ComponentId="{E0B49744-0396-41D7-B7EC-3C3A175CF1CF}" Directory_="native_4_Dir" Attributes="0" KeyPath="SQLite.Interop.dll_3"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="VBCrm.dll" Component_="VBCrm_PrimaryOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_VBCrm.dll&gt;" SelfReg="false"/>
+    <ROW File="EntityFramework.dll" Component_="VBCrm_PublishOutput" FileName="ENTITY~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.dll&gt;" SelfReg="false"/>
+    <ROW File="EntityFramework.SqlServer.dll" Component_="VBCrm_PublishOutput" FileName="ENTITY~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll&gt;" SelfReg="false"/>
+    <ROW File="MaterialSkin.dll" Component_="VBCrm_PublishOutput" FileName="MATERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MaterialSkin.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MaterialSkin.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Data.SqlClient.dll" Component_="VBCrm_PublishOutput" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Data.SqlClient.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.dll" Component_="VBCrm_PublishOutput" FileName="SYSTEM~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Data.SQLite.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Data.SQLite.EF6.dll" Component_="VBCrm_PublishOutput" FileName="SYSTEM~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.EF6.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Data.SQLite.EF6.dll&gt;" SelfReg="false"/>
+    <ROW File="VBCrm.deps.json" Component_="VBCrm_PublishOutput" FileName="VBCRMD~2.JSO|[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.deps.json]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_VBCrm.deps.json&gt;" SelfReg="false"/>
+    <ROW File="VBCrm.exe" Component_="VBCrm_PublishOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_VBCrm.exe&gt;" SelfReg="false" DigSign="true"/>
+    <ROW File="VBCrm.runtimeconfig.json" Component_="VBCrm_PublishOutput" FileName="VBCRMR~2.JSO|[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.runtimeconfig.json]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_VBCrm.runtimeconfig.json&gt;" SelfReg="false"/>
+    <ROW File="VBCrm.xml" Component_="VBCrm_PublishOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.xml]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_VBCrm.xml&gt;" SelfReg="false"/>
+    <ROW File="SQLite.Interop.dll" Component_="VBCrm_PublishOutput_runtimes_linuxx64_native" FileName="SQLITE~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SQLite.Interop.dll&gt;" SelfReg="false"/>
+    <ROW File="SQLite.Interop.dll_1" Component_="VBCrm_PublishOutput_runtimes_osxx64_native" FileName="SQLITE~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SQLite.Interop.dll_1&gt;" SelfReg="false"/>
+    <ROW File="sni.dll" Component_="VBCrm_PublishOutput_runtimes_winarm64_native" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_sni.dll&gt;" SelfReg="false"/>
+    <ROW File="sni.dll_1" Component_="VBCrm_PublishOutput_runtimes_winx64_native" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_sni.dll_1&gt;" SelfReg="false"/>
+    <ROW File="SQLite.Interop.dll_2" Component_="VBCrm_PublishOutput_runtimes_winx64_native" FileName="SQLITE~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SQLite.Interop.dll_2&gt;" SelfReg="false"/>
+    <ROW File="sni.dll_2" Component_="VBCrm_PublishOutput_runtimes_winx86_native" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_sni.dll_2&gt;" SelfReg="false"/>
+    <ROW File="SQLite.Interop.dll_3" Component_="VBCrm_PublishOutput_runtimes_winx86_native" FileName="SQLITE~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_3]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_SQLite.Interop.dll_3&gt;" SelfReg="false"/>
+    <ROW File="System.Data.SqlClient.dll_1" Component_="VBCrm_PublishOutput_runtimes_unix_lib_netcoreapp2.1" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Data.SqlClient.dll_1&gt;" SelfReg="false"/>
+    <ROW File="System.Data.SqlClient.dll_2" Component_="VBCrm_PublishOutput_runtimes_win_lib_netcoreapp2.1" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Data.SqlClient.dll_2&gt;" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppPathsComponent">
+    <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.SqlServer.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.SqlServer.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.SqlServer.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_EntityFramework.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_EntityFramework.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_EntityFramework.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_MaterialSkin.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MaterialSkin.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MaterialSkin.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SQLite.Interop.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SQLite.Interop.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_1]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SQLite.Interop.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_2]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_SQLite.Interop.dll_3" Path="[|AI_PROPPATH_DIR_PERBUILD_SQLite.Interop.dll_3]\[|AI_PROPPATH_FILENAME_PERBUILD_SQLite.Interop.dll_3]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Data.SQLite.EF6.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Data.SQLite.EF6.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.EF6.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Data.SQLite.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Data.SQLite.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SQLite.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Data.SqlClient.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Data.SqlClient.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_1]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Data.SqlClient.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Data.SqlClient.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Data.SqlClient.dll_2]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_VBCrm.deps.json" Path="[|AI_PROPPATH_DIR_PERBUILD_VBCrm.deps.json]\[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.deps.json]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_VBCrm.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_VBCrm.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_VBCrm.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_VBCrm.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.exe]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_VBCrm.runtimeconfig.json" Path="[|AI_PROPPATH_DIR_PERBUILD_VBCrm.runtimeconfig.json]\[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.runtimeconfig.json]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_VBCrm.xml" Path="[|AI_PROPPATH_DIR_PERBUILD_VBCrm.xml]\[|AI_PROPPATH_FILENAME_PERBUILD_VBCrm.xml]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_sni.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_sni.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_sni.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_sni.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll_1]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_sni.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_sni.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_sni.dll_2]" Type="2" Content="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="VBCrmSetup-SetupFiles" PackageFileName="VBCrmSetup" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PrimaryOutput"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_linuxx64_native"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_osxx64_native"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_winarm64_native"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_winx64_native"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_winx86_native"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_unix_lib_netcoreapp2.1"/>
+    <ROW Feature_="MainFeature" Component_="VBCrm_PublishOutput_runtimes_win_lib_netcoreapp2.1"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="VBCrmLogo.exe" SourcePath="..\VBCrm\VBCrmLogo.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="\"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
+    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="VBCrm.exe" Directory_="SHORTCUTDIR" Name="VBCrm.exe" Component_="VBCrm_PublishOutput" Target="[#VBCrm.exe]" Description="Launches VBCrm.exe" Hotkey="0" Icon_="VBCrmLogo.exe" IconIndex="0" ShowCmd="1" WkDir="VBCrm_Dir"/>
+    <ROW Shortcut="VBCrm.exe_1" Directory_="StartMenuFolder" Name="VBCrm.exe" Component_="VBCrm_PublishOutput" Target="[#VBCrm.exe]" Description="Launches VBCrm.exe" Hotkey="0" Icon_="VBCrmLogo.exe" IconIndex="0" ShowCmd="1" WkDir="VBCrm_Dir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="EntityFramework.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="EntityFramework.SqlServer.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="MaterialSkin.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="System.Data.SqlClient.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="System.Data.SQLite.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="System.Data.SQLite.EF6.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="VBCrm.deps.json"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="VBCrm.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="VBCrm.exe"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="VBCrm.runtimeconfig.json"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="VBCrm.xml"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="SQLite.Interop.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="SQLite.Interop.dll_1"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="sni.dll"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="sni.dll_1"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="SQLite.Interop.dll_2"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="sni.dll_2"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="SQLite.Interop.dll_3"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="System.Data.SqlClient.dll_1"/>
+    <ROW ProjectId="{2507b842-4218-4c64-9c6d-177882fe5a82}" ProjectName="VBCrm" OutputGroup="PublishOutput" OutputFile="System.Data.SqlClient.dll_2"/>
+  </COMPONENT>
+</DOCUMENT>

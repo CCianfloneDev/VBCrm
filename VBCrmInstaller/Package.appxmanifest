@@ -9,7 +9,7 @@
   <Identity
     Name="6278c00a-7939-4fb0-8479-d8ee68bee3e7"
     Publisher="CN=VBCrm, O=VBCrm, C=CAD"
-    Version="1.0.15.0" />
+    Version="1.0.17.0" />
 
   <Properties>
     <DisplayName>VBCrmInstaller</DisplayName>
