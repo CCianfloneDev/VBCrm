@@ -22,5 +22,12 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore VBCrm.sln
 
+      - name: List directory contents
+        run: |
+          ls -R
+          
+      - name: Check MSBuild version
+        run: msbuild -version
+
       - name: Build solution
         run: msbuild /p:Configuration=Release VBCrm.sln
