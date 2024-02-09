@@ -73,6 +73,15 @@ This project is a Customer Relationship Management (CRM) application built using
 3. **Start Using the Application:**
    - Once installed, locate the application in your installed programs.
    - Launch the application to start managing customer data.
+  
+## 📣 Note:
+**Windows Defender SmartScreen:** As I've gone for a free-spirited approach without a paid code signing certificate, you might see a Windows Defender SmartScreen note during installation. No worries, it's just a heads-up
+
+1. **Click "More Info"**
+<img src="https://github.com/CCianfloneDev/VBCrm/assets/24930067/fa3ffaf4-676f-458b-b02d-91b04c0bea3c" width="300">
+
+2. **Click "Run anyway."**
+<img src="https://github.com/CCianfloneDev/VBCrm/assets/24930067/3dc09b7d-571d-434c-9421-f3b26bca2d5b" width="300">
 
 ## Contributing
 
