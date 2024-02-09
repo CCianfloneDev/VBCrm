@@ -57,17 +57,17 @@ This project is a Customer Relationship Management (CRM) application built using
 ## Using the Application
 
 - Launch the application.
-- Use the MaterialSkin-enhanced interface to manage customer data.
-- Perform CRUD operations for adding, viewing, editing, and deleting customer records.
+- Use the MaterialSkin-enhanced interface to manage contact data.
+- Perform CRUD operations for adding, viewing, editing, and deleting contact records.
 
 ## Download and Run the Application
 
 1. **Download the Installer:**
    - Go to the [Releases](https://github.com/CCianfloneDev/VBCrm/releases)  section.
-   - Download the latest `appxbundle` installer.
+   - Download the latest `.msi` installer.
 
 2. **Run the Installer:**
-   - Double-click the downloaded `appxbundle` file.
+   - Double-click the downloaded `.msi` file.
    - Follow the on-screen instructions to install the application.
 
 3. **Start Using the Application:**
