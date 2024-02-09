@@ -1,3 +1,0 @@
-- name: List directory contents
-  run: |
-    ls -R
