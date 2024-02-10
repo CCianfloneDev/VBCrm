@@ -21,6 +21,17 @@ jobs:
 
       - name: Restore NuGet packages
         run: nuget restore VBCrm.sln
+      
+      - name: Restore MaterialSkin and System.Data.SQLite packages
+        run: nuget restore VBCrm.vbproj
+
+      - name: Download and Install Advanced Installer
+        run: |
+          Invoke-WebRequest -Uri 'https://www.advancedinstaller.com/download.html' -OutFile 'advancedinstaller.msi'
+          Start-Process -Wait -FilePath msiexec -ArgumentList '/i advancedinstaller.msi /quiet'
+      
+      - name: Build solution
+        run: msbuild /p:Configuration=Release VBCrm.sln
 
       - name: List directory contents
         run: |
@@ -29,5 +40,5 @@ jobs:
       - name: Check MSBuild version
         run: msbuild -version
 
-      - name: Build solution excluding VBCrmSetup
-        run: msbuild /p:Configuration=Release /p:ExcludeProjects="VBCrmSetup\VBCrmSetup.aiproj" VBCrm.sln
+      - name: Build solution
+        run: msbuild /p:Configuration=Release VBCrm.sln
