@@ -23,12 +23,11 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         mnuMenuStrip = New MenuStrip()
-        mnuItmFile = New ToolStripMenuItem()
-        mnuItmExit = New ToolStripMenuItem()
+        mnuItmMenu = New ToolStripMenuItem()
         mnuItmContacts = New ToolStripMenuItem()
         mnuItmMassEmail = New ToolStripMenuItem()
         mnuItmCreateContact = New ToolStripMenuItem()
@@ -38,7 +37,7 @@ Partial Class FrmMain
         mnuItmImportData = New ToolStripMenuItem()
         mnuItmExportData = New ToolStripMenuItem()
         mnuItmPurgeData = New ToolStripMenuItem()
-        mnuItmPreferences = New ToolStripMenuItem()
+        mnuItmSettings = New ToolStripMenuItem()
         mnuItmTheme = New ToolStripMenuItem()
         mnuItmDarkModePurple = New ToolStripMenuItem()
         mnuItmDarkModeGreen = New ToolStripMenuItem()
@@ -48,7 +47,6 @@ Partial Class FrmMain
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
         mnuItmViewErrorLogs = New ToolStripMenuItem()
-        staStatusStrip = New StatusStrip()
         pnlSearchCriteria = New Panel()
         lblEmail = New Controls.MaterialLabel()
         txtEmail = New Controls.MaterialTextBox()
@@ -77,7 +75,6 @@ Partial Class FrmMain
         cMnuExport = New ToolStripMenuItem()
         ContactBindingSource1 = New BindingSource(components)
         ContactBindingSource = New BindingSource(components)
-        lblSearchCriteria = New Controls.MaterialLabel()
         mnuMenuStrip.SuspendLayout()
         pnlSearchCriteria.SuspendLayout()
         pnlBottom.SuspendLayout()
@@ -90,172 +87,172 @@ Partial Class FrmMain
         ' 
         ' mnuMenuStrip
         ' 
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmFile, mnuItmContacts, mnuItmData, mnuItmPreferences, mnuItmHelp})
+        mnuMenuStrip.AllowItemReorder = True
+        mnuMenuStrip.AutoSize = False
+        mnuMenuStrip.Dock = DockStyle.Left
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmMenu, mnuItmContacts, mnuItmData, mnuItmSettings, mnuItmHelp})
+        mnuMenuStrip.LayoutStyle = ToolStripLayoutStyle.Table
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
-        mnuMenuStrip.Size = New Size(794, 24)
+        mnuMenuStrip.Size = New Size(87, 616)
         mnuMenuStrip.TabIndex = 0
         ' 
-        ' mnuItmFile
+        ' mnuItmMenu
         ' 
-        mnuItmFile.DropDownItems.AddRange(New ToolStripItem() {mnuItmExit})
-        mnuItmFile.Name = "mnuItmFile"
-        mnuItmFile.ShortcutKeys = Keys.Alt Or Keys.F
-        mnuItmFile.Size = New Size(37, 20)
-        mnuItmFile.Text = "&File"
-        ' 
-        ' mnuItmExit
-        ' 
-        mnuItmExit.Name = "mnuItmExit"
-        mnuItmExit.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmExit.Size = New Size(129, 22)
-        mnuItmExit.Text = "&Exit"
+        mnuItmMenu.AutoSize = False
+        mnuItmMenu.BackColor = SystemColors.Control
+        mnuItmMenu.DisplayStyle = ToolStripItemDisplayStyle.Image
+        mnuItmMenu.Image = CType(resources.GetObject("mnuItmMenu.Image"), Image)
+        mnuItmMenu.ImageScaling = ToolStripItemImageScaling.None
+        mnuItmMenu.Name = "mnuItmMenu"
+        mnuItmMenu.ShowShortcutKeys = False
+        mnuItmMenu.Size = New Size(80, 80)
         ' 
         ' mnuItmContacts
         ' 
+        mnuItmContacts.AutoSize = False
+        mnuItmContacts.BackColor = SystemColors.Control
+        mnuItmContacts.BackgroundImageLayout = ImageLayout.None
+        mnuItmContacts.DisplayStyle = ToolStripItemDisplayStyle.Image
         mnuItmContacts.DropDownItems.AddRange(New ToolStripItem() {mnuItmMassEmail, mnuItmCreateContact, mnuItmEditContact, mnuItmDeleteContact})
+        mnuItmContacts.Image = CType(resources.GetObject("mnuItmContacts.Image"), Image)
+        mnuItmContacts.ImageAlign = ContentAlignment.MiddleLeft
+        mnuItmContacts.ImageScaling = ToolStripItemImageScaling.None
         mnuItmContacts.Name = "mnuItmContacts"
-        mnuItmContacts.ShortcutKeys = Keys.Alt Or Keys.C
-        mnuItmContacts.Size = New Size(66, 20)
-        mnuItmContacts.Text = "&Contacts"
+        mnuItmContacts.Size = New Size(60, 100)
+        mnuItmContacts.Visible = False
         ' 
         ' mnuItmMassEmail
         ' 
         mnuItmMassEmail.Name = "mnuItmMassEmail"
-        mnuItmMassEmail.ShortcutKeys = Keys.Alt Or Keys.M
-        mnuItmMassEmail.Size = New Size(234, 22)
-        mnuItmMassEmail.Text = "Create &mass email"
+        mnuItmMassEmail.Size = New Size(198, 22)
+        mnuItmMassEmail.Text = "Create mass email"
         ' 
         ' mnuItmCreateContact
         ' 
         mnuItmCreateContact.Name = "mnuItmCreateContact"
-        mnuItmCreateContact.ShortcutKeys = Keys.Alt Or Keys.R
-        mnuItmCreateContact.Size = New Size(234, 22)
-        mnuItmCreateContact.Text = "C&reate Contact..."
+        mnuItmCreateContact.Size = New Size(198, 22)
+        mnuItmCreateContact.Text = "Create Contact..."
         ' 
         ' mnuItmEditContact
         ' 
         mnuItmEditContact.Name = "mnuItmEditContact"
-        mnuItmEditContact.ShortcutKeys = Keys.Alt Or Keys.D
-        mnuItmEditContact.Size = New Size(234, 22)
-        mnuItmEditContact.Text = "E&dit selected Contact..."
+        mnuItmEditContact.Size = New Size(198, 22)
+        mnuItmEditContact.Text = "Edit selected Contact..."
         ' 
         ' mnuItmDeleteContact
         ' 
         mnuItmDeleteContact.Name = "mnuItmDeleteContact"
-        mnuItmDeleteContact.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmDeleteContact.Size = New Size(234, 22)
-        mnuItmDeleteContact.Text = "Dele&te selected Contact"
+        mnuItmDeleteContact.Size = New Size(198, 22)
+        mnuItmDeleteContact.Text = "Delete selected Contact"
         ' 
         ' mnuItmData
         ' 
+        mnuItmData.AutoSize = False
+        mnuItmData.DisplayStyle = ToolStripItemDisplayStyle.Image
         mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurgeData})
+        mnuItmData.Image = CType(resources.GetObject("mnuItmData.Image"), Image)
+        mnuItmData.ImageAlign = ContentAlignment.MiddleRight
+        mnuItmData.ImageScaling = ToolStripItemImageScaling.None
         mnuItmData.Name = "mnuItmData"
-        mnuItmData.ShortcutKeys = Keys.Alt Or Keys.D
-        mnuItmData.Size = New Size(43, 20)
+        mnuItmData.Size = New Size(62, 100)
         mnuItmData.Text = "&Data"
+        mnuItmData.Visible = False
         ' 
         ' mnuItmImportData
         ' 
         mnuItmImportData.Name = "mnuItmImportData"
-        mnuItmImportData.ShortcutKeys = Keys.Alt Or Keys.I
-        mnuItmImportData.Size = New Size(183, 22)
-        mnuItmImportData.Text = "&Import data"
+        mnuItmImportData.Size = New Size(180, 22)
+        mnuItmImportData.Text = "Import data"
         ' 
         ' mnuItmExportData
         ' 
         mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmExportData.Size = New Size(183, 22)
-        mnuItmExportData.Text = "&Export data"
+        mnuItmExportData.Size = New Size(180, 22)
+        mnuItmExportData.Text = "Export data"
         ' 
         ' mnuItmPurgeData
         ' 
         mnuItmPurgeData.Name = "mnuItmPurgeData"
-        mnuItmPurgeData.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmPurgeData.Size = New Size(183, 22)
-        mnuItmPurgeData.Text = "&Purge all data"
+        mnuItmPurgeData.Size = New Size(180, 22)
+        mnuItmPurgeData.Text = "Purge all data"
         ' 
-        ' mnuItmPreferences
+        ' mnuItmSettings
         ' 
-        mnuItmPreferences.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme, mnuItmEditGrid})
-        mnuItmPreferences.Name = "mnuItmPreferences"
-        mnuItmPreferences.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmPreferences.Size = New Size(80, 20)
-        mnuItmPreferences.Text = "&Preferences"
+        mnuItmSettings.AutoSize = False
+        mnuItmSettings.DisplayStyle = ToolStripItemDisplayStyle.Image
+        mnuItmSettings.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme, mnuItmEditGrid})
+        mnuItmSettings.Image = CType(resources.GetObject("mnuItmSettings.Image"), Image)
+        mnuItmSettings.ImageAlign = ContentAlignment.MiddleRight
+        mnuItmSettings.ImageScaling = ToolStripItemImageScaling.None
+        mnuItmSettings.Name = "mnuItmSettings"
+        mnuItmSettings.Size = New Size(60, 100)
+        mnuItmSettings.Text = "&Settings"
+        mnuItmSettings.Visible = False
         ' 
         ' mnuItmTheme
         ' 
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.ShortcutKeys = Keys.Alt Or Keys.T
-        mnuItmTheme.Size = New Size(163, 22)
-        mnuItmTheme.Text = "&Theme"
+        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Text = "Theme"
         ' 
         ' mnuItmDarkModePurple
         ' 
         mnuItmDarkModePurple.Name = "mnuItmDarkModePurple"
-        mnuItmDarkModePurple.ShortcutKeys = Keys.Alt Or Keys.P
-        mnuItmDarkModePurple.Size = New Size(214, 22)
-        mnuItmDarkModePurple.Text = "Dark mode - &Purple"
+        mnuItmDarkModePurple.Size = New Size(180, 22)
+        mnuItmDarkModePurple.Text = "Dark mode - Purple"
         ' 
         ' mnuItmDarkModeGreen
         ' 
         mnuItmDarkModeGreen.Name = "mnuItmDarkModeGreen"
-        mnuItmDarkModeGreen.ShortcutKeys = Keys.Alt Or Keys.G
-        mnuItmDarkModeGreen.Size = New Size(214, 22)
-        mnuItmDarkModeGreen.Text = "Dark mode - &Green"
+        mnuItmDarkModeGreen.Size = New Size(180, 22)
+        mnuItmDarkModeGreen.Text = "Dark mode - Green"
         ' 
         ' mnuItmLightModeBlue
         ' 
         mnuItmLightModeBlue.Name = "mnuItmLightModeBlue"
-        mnuItmLightModeBlue.ShortcutKeys = Keys.Alt Or Keys.B
-        mnuItmLightModeBlue.Size = New Size(214, 22)
-        mnuItmLightModeBlue.Text = "Light mode - &Blue"
+        mnuItmLightModeBlue.Size = New Size(180, 22)
+        mnuItmLightModeBlue.Text = "Light mode - Blue"
         ' 
         ' mnuItmLightModeGreen
         ' 
         mnuItmLightModeGreen.Name = "mnuItmLightModeGreen"
-        mnuItmLightModeGreen.ShortcutKeys = Keys.Alt Or Keys.R
-        mnuItmLightModeGreen.Size = New Size(214, 22)
-        mnuItmLightModeGreen.Text = "Light mode - G&reen"
+        mnuItmLightModeGreen.Size = New Size(180, 22)
+        mnuItmLightModeGreen.Text = "Light mode - Green"
         ' 
         ' mnuItmEditGrid
         ' 
         mnuItmEditGrid.Name = "mnuItmEditGrid"
-        mnuItmEditGrid.ShortcutKeys = Keys.Alt Or Keys.E
-        mnuItmEditGrid.Size = New Size(163, 22)
-        mnuItmEditGrid.Text = "&Edit grid..."
+        mnuItmEditGrid.Size = New Size(180, 22)
+        mnuItmEditGrid.Text = "Edit grid..."
         ' 
         ' mnuItmHelp
         ' 
+        mnuItmHelp.AutoSize = False
+        mnuItmHelp.DisplayStyle = ToolStripItemDisplayStyle.Image
         mnuItmHelp.DropDownItems.AddRange(New ToolStripItem() {mnuItmAbout, mnuItmViewErrorLogs})
+        mnuItmHelp.Image = CType(resources.GetObject("mnuItmHelp.Image"), Image)
+        mnuItmHelp.ImageAlign = ContentAlignment.MiddleRight
+        mnuItmHelp.ImageScaling = ToolStripItemImageScaling.None
         mnuItmHelp.Name = "mnuItmHelp"
         mnuItmHelp.ShortcutKeys = Keys.Alt Or Keys.H
-        mnuItmHelp.Size = New Size(44, 20)
-        mnuItmHelp.Text = "&Help"
+        mnuItmHelp.Size = New Size(60, 100)
+        mnuItmHelp.Visible = False
         ' 
         ' mnuItmAbout
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
         mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(192, 22)
-        mnuItmAbout.Text = "&About..."
+        mnuItmAbout.Size = New Size(201, 22)
+        mnuItmAbout.Text = "About..."
         ' 
         ' mnuItmViewErrorLogs
         ' 
         mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
         mnuItmViewErrorLogs.ShortcutKeys = Keys.Alt Or Keys.V
-        mnuItmViewErrorLogs.Size = New Size(192, 22)
-        mnuItmViewErrorLogs.Text = "&View Error Logs"
-        ' 
-        ' staStatusStrip
-        ' 
-        staStatusStrip.Location = New Point(3, 625)
-        staStatusStrip.Name = "staStatusStrip"
-        staStatusStrip.Size = New Size(794, 22)
-        staStatusStrip.TabIndex = 1
-        staStatusStrip.Text = "StatusStrip1"
+        mnuItmViewErrorLogs.Size = New Size(201, 22)
+        mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
         ' pnlSearchCriteria
         ' 
@@ -268,9 +265,9 @@ Partial Class FrmMain
         pnlSearchCriteria.Controls.Add(btnClear)
         pnlSearchCriteria.Controls.Add(btnSearch)
         pnlSearchCriteria.Dock = DockStyle.Top
-        pnlSearchCriteria.Location = New Point(3, 112)
+        pnlSearchCriteria.Location = New Point(90, 64)
         pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(794, 105)
+        pnlSearchCriteria.Size = New Size(1054, 105)
         pnlSearchCriteria.TabIndex = 3
         ' 
         ' lblEmail
@@ -308,7 +305,7 @@ Partial Class FrmMain
         lblName.AutoSize = True
         lblName.Depth = 0
         lblName.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblName.Location = New Point(41, 12)
+        lblName.Location = New Point(24, 11)
         lblName.MouseState = MouseState.HOVER
         lblName.Name = "lblName"
         lblName.Size = New Size(43, 19)
@@ -334,7 +331,7 @@ Partial Class FrmMain
         txtName.Depth = 0
         txtName.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtName.LeadingIcon = Nothing
-        txtName.Location = New Point(90, 10)
+        txtName.Location = New Point(90, 9)
         txtName.MaxLength = 50
         txtName.MouseState = MouseState.OUT
         txtName.Multiline = False
@@ -413,9 +410,9 @@ Partial Class FrmMain
         pnlBottom.Controls.Add(btnEdit)
         pnlBottom.Controls.Add(btnNew)
         pnlBottom.Dock = DockStyle.Bottom
-        pnlBottom.Location = New Point(3, 560)
+        pnlBottom.Location = New Point(90, 615)
         pnlBottom.Name = "pnlBottom"
-        pnlBottom.Size = New Size(794, 65)
+        pnlBottom.Size = New Size(1054, 65)
         pnlBottom.TabIndex = 4
         ' 
         ' btnDelete
@@ -426,7 +423,7 @@ Partial Class FrmMain
         btnDelete.Depth = 0
         btnDelete.HighEmphasis = True
         btnDelete.Icon = Nothing
-        btnDelete.Location = New Point(528, 14)
+        btnDelete.Location = New Point(655, 14)
         btnDelete.Margin = New Padding(4, 6, 4, 6)
         btnDelete.MouseState = MouseState.HOVER
         btnDelete.Name = "btnDelete"
@@ -449,7 +446,7 @@ Partial Class FrmMain
         btnEdit.ForeColor = SystemColors.ControlText
         btnEdit.HighEmphasis = True
         btnEdit.Icon = Nothing
-        btnEdit.Location = New Point(361, 14)
+        btnEdit.Location = New Point(488, 14)
         btnEdit.Margin = New Padding(4, 6, 4, 6)
         btnEdit.MouseState = MouseState.HOVER
         btnEdit.Name = "btnEdit"
@@ -472,7 +469,7 @@ Partial Class FrmMain
         btnNew.ForeColor = SystemColors.ControlText
         btnNew.HighEmphasis = True
         btnNew.Icon = Nothing
-        btnNew.Location = New Point(194, 14)
+        btnNew.Location = New Point(321, 14)
         btnNew.Margin = New Padding(4, 6, 4, 6)
         btnNew.MouseState = MouseState.HOVER
         btnNew.Name = "btnNew"
@@ -488,9 +485,9 @@ Partial Class FrmMain
         ' 
         pnlBody.Controls.Add(dgvResults)
         pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(3, 217)
+        pnlBody.Location = New Point(90, 169)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(794, 343)
+        pnlBody.Size = New Size(1054, 446)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -522,7 +519,7 @@ Partial Class FrmMain
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(794, 343)
+        dgvResults.Size = New Size(1054, 446)
         dgvResults.TabIndex = 0
         ' 
         ' colId
@@ -609,30 +606,14 @@ Partial Class FrmMain
         ' 
         ContactBindingSource1.DataSource = GetType(Contact)
         ' 
-        ' lblSearchCriteria
-        ' 
-        lblSearchCriteria.AutoSize = True
-        lblSearchCriteria.Depth = 0
-        lblSearchCriteria.Dock = DockStyle.Top
-        lblSearchCriteria.Font = New Font("Roboto Medium", 20F, FontStyle.Bold, GraphicsUnit.Pixel)
-        lblSearchCriteria.FontType = MaterialSkinManager.fontType.H6
-        lblSearchCriteria.Location = New Point(3, 88)
-        lblSearchCriteria.MouseState = MouseState.HOVER
-        lblSearchCriteria.Name = "lblSearchCriteria"
-        lblSearchCriteria.Size = New Size(134, 24)
-        lblSearchCriteria.TabIndex = 16
-        lblSearchCriteria.Text = "Search Criteria"
-        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 650)
+        ClientSize = New Size(1147, 683)
         Controls.Add(pnlBody)
         Controls.Add(pnlBottom)
         Controls.Add(pnlSearchCriteria)
-        Controls.Add(lblSearchCriteria)
-        Controls.Add(staStatusStrip)
         Controls.Add(mnuMenuStrip)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = mnuMenuStrip
@@ -651,15 +632,12 @@ Partial Class FrmMain
         CType(ContactBindingSource1, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents mnuMenuStrip As MenuStrip
-    Friend WithEvents mnuItmFile As ToolStripMenuItem
-    Friend WithEvents mnuItmExit As ToolStripMenuItem
+    Friend WithEvents mnuItmMenu As ToolStripMenuItem
     Friend WithEvents mnuItmHelp As ToolStripMenuItem
     Friend WithEvents mnuItmAbout As ToolStripMenuItem
-    Friend WithEvents staStatusStrip As StatusStrip
     Friend WithEvents pnlSearchCriteria As Panel
     Friend WithEvents pnlBottom As Panel
     Friend WithEvents pnlBody As Panel
@@ -676,11 +654,10 @@ Partial Class FrmMain
     Friend WithEvents lblPhoneNumber As Controls.MaterialLabel
     Friend WithEvents txtName As Controls.MaterialTextBox
     Friend WithEvents lblName As Controls.MaterialLabel
-    Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
     Friend WithEvents dgvResults As DataGridView
     Friend WithEvents lblEmail As Controls.MaterialLabel
     Friend WithEvents txtEmail As Controls.MaterialTextBox
-    Friend WithEvents mnuItmPreferences As ToolStripMenuItem
+    Friend WithEvents mnuItmSettings As ToolStripMenuItem
     Friend WithEvents mnuItmTheme As ToolStripMenuItem
     Friend WithEvents mnuItmDarkModeGreen As ToolStripMenuItem
     Friend WithEvents mnuItmLightModeBlue As ToolStripMenuItem

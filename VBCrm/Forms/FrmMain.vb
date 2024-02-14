@@ -1,11 +1,18 @@
 ﻿Imports System.Data.Common
 Imports System.Environment
+Imports System.Reflection
 Imports MaterialSkin.Controls
 
 ''' <summary>
 ''' Represents the main form.
 ''' </summary>
 Public Class FrmMain
+
+    ''' <summary>
+    ''' Indicates if the menu bar is expanded or not.
+    ''' </summary>
+    ''' <returns>True if the user has clicked the "hamburger icon" and the menu bar is open.</returns>
+    Public Property IsMenuExpanded As Boolean = False
 
 #Region "Properties"
     ''' <summary>
@@ -55,12 +62,32 @@ Public Class FrmMain
 #End Region
 
 #Region "Menu events"
+
     ''' <summary>
-    ''' Handles the exit menu item click event.
+    ''' Handles the main menu item click event.
     ''' </summary>
-    Private Sub MnuItmExit_Click(sender As Object, e As EventArgs) Handles mnuItmExit.Click
+    Private Sub MnuItmMenu_Click(sender As Object, e As EventArgs) Handles mnuItmMenu.Click
         Try
-            Me.Close()
+            Dim assembly As Assembly = Assembly.GetExecutingAssembly()
+            Dim image As Image
+
+            If Not Me.IsMenuExpanded Then
+                Me.IsMenuExpanded = True
+
+                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
+            Else
+                Me.IsMenuExpanded = False
+
+                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-closed.png"))
+            End If
+
+            mnuItmMenu.Image = image
+
+            For Each menuItem As ToolStripItem In mnuMenuStrip.Items
+                If menuItem.Name <> mnuItmMenu.Name Then
+                    menuItem.Visible = Me.IsMenuExpanded
+                End If
+            Next
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
@@ -461,6 +488,7 @@ Public Class FrmMain
             End If
         Next
     End Sub
+
 #End Region
 
 End Class

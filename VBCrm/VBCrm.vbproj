@@ -26,7 +26,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\menu-closed.png" />
+    <None Remove="Images\menu-opened.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="VBCrmLogo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\menu-closed.png" />
+    <EmbeddedResource Include="Images\menu-opened.png" />
   </ItemGroup>
 
   <ItemGroup>
