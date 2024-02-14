@@ -271,6 +271,7 @@ Public Class FrmMain
     Private Sub MnuItemViewErrorLogs_Click(sender As Object, e As EventArgs) Handles mnuItmViewErrorLogs.Click
         Try
             Dim errorsForm As New FrmErrors With {
+                .Theme = Me.CurrentTheme,
                 .Errors = Utilities.DbOperations.GetAllErrorLogs()
             }
 

@@ -112,7 +112,6 @@ Partial Class FrmMain
         ' mnuItmMenu
         ' 
         mnuItmMenu.AutoSize = False
-        mnuItmMenu.BackColor = SystemColors.Control
         mnuItmMenu.DisplayStyle = ToolStripItemDisplayStyle.Image
         mnuItmMenu.Image = CType(resources.GetObject("mnuItmMenu.Image"), Image)
         mnuItmMenu.ImageScaling = ToolStripItemImageScaling.None
@@ -123,7 +122,6 @@ Partial Class FrmMain
         ' mnuItmContacts
         ' 
         mnuItmContacts.AutoSize = False
-        mnuItmContacts.BackColor = SystemColors.Control
         mnuItmContacts.BackgroundImageLayout = ImageLayout.None
         mnuItmContacts.DisplayStyle = ToolStripItemDisplayStyle.Image
         mnuItmContacts.DropDownItems.AddRange(New ToolStripItem() {mnuItmMassEmail, mnuItmCreateContact, mnuItmEditContact, mnuItmDeleteContact})
@@ -206,7 +204,7 @@ Partial Class FrmMain
         ' 
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Size = New Size(167, 22)
         mnuItmTheme.Text = "Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -236,7 +234,7 @@ Partial Class FrmMain
         ' mnuItmConfigureFields
         ' 
         mnuItmConfigureFields.Name = "mnuItmConfigureFields"
-        mnuItmConfigureFields.Size = New Size(180, 22)
+        mnuItmConfigureFields.Size = New Size(167, 22)
         mnuItmConfigureFields.Text = "Configure fields..."
         ' 
         ' mnuItmHelp
@@ -255,13 +253,13 @@ Partial Class FrmMain
         ' mnuItmAbout
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
-        mnuItmAbout.Size = New Size(180, 22)
+        mnuItmAbout.Size = New Size(164, 22)
         mnuItmAbout.Text = "About..."
         ' 
         ' mnuItmViewErrorLogs
         ' 
         mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
-        mnuItmViewErrorLogs.Size = New Size(180, 22)
+        mnuItmViewErrorLogs.Size = New Size(164, 22)
         mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
         ' pnlSearchCriteria
