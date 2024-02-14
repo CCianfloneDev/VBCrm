@@ -311,7 +311,7 @@ Partial Class FrmCreateEdit
         txtAddress.AnimateReadOnly = False
         txtAddress.BorderStyle = BorderStyle.None
         txtAddress.Depth = 0
-        txtAddress.Font = New Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtAddress.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtAddress.LeadingIcon = Nothing
         txtAddress.Location = New Point(117, 245)
         txtAddress.MaxLength = 50

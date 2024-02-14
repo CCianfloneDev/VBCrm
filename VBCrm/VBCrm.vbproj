@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/CCianfloneDev/VBCrm</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>visual-studio; database; material-design; dotnet; nuget; sqlite; winforms; crm; user-interface; vb-net; customer-management;</PackageTags>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <OptionStrict>On</OptionStrict>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>

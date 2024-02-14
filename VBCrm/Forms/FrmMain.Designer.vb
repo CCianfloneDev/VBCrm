@@ -43,11 +43,23 @@ Partial Class FrmMain
         mnuItmDarkModeGreen = New ToolStripMenuItem()
         mnuItmLightModeBlue = New ToolStripMenuItem()
         mnuItmLightModeGreen = New ToolStripMenuItem()
-        mnuItmEditGrid = New ToolStripMenuItem()
+        mnuItmConfigureFields = New ToolStripMenuItem()
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
         mnuItmViewErrorLogs = New ToolStripMenuItem()
         pnlSearchCriteria = New Panel()
+        lblNotes = New Controls.MaterialLabel()
+        txtNotes = New Controls.MaterialTextBox()
+        lblDateOfBirth = New Controls.MaterialLabel()
+        txtDateOfBirth = New Controls.MaterialTextBox()
+        lblJobTitle = New Controls.MaterialLabel()
+        txtJobTitle = New Controls.MaterialTextBox()
+        lblCompany = New Controls.MaterialLabel()
+        txtCompany = New Controls.MaterialTextBox()
+        lblAddress = New Controls.MaterialLabel()
+        txtAddress = New Controls.MaterialTextBox()
+        lblId = New Controls.MaterialLabel()
+        txtId = New Controls.MaterialTextBox()
         lblEmail = New Controls.MaterialLabel()
         txtEmail = New Controls.MaterialTextBox()
         lblName = New Controls.MaterialLabel()
@@ -95,7 +107,7 @@ Partial Class FrmMain
         mnuMenuStrip.Location = New Point(3, 64)
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(87, 616)
-        mnuMenuStrip.TabIndex = 0
+        mnuMenuStrip.TabIndex = 2
         ' 
         ' mnuItmMenu
         ' 
@@ -162,26 +174,26 @@ Partial Class FrmMain
         ' mnuItmImportData
         ' 
         mnuItmImportData.Name = "mnuItmImportData"
-        mnuItmImportData.Size = New Size(180, 22)
+        mnuItmImportData.Size = New Size(146, 22)
         mnuItmImportData.Text = "Import data"
         ' 
         ' mnuItmExportData
         ' 
         mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.Size = New Size(180, 22)
+        mnuItmExportData.Size = New Size(146, 22)
         mnuItmExportData.Text = "Export data"
         ' 
         ' mnuItmPurgeData
         ' 
         mnuItmPurgeData.Name = "mnuItmPurgeData"
-        mnuItmPurgeData.Size = New Size(180, 22)
+        mnuItmPurgeData.Size = New Size(146, 22)
         mnuItmPurgeData.Text = "Purge all data"
         ' 
         ' mnuItmSettings
         ' 
         mnuItmSettings.AutoSize = False
         mnuItmSettings.DisplayStyle = ToolStripItemDisplayStyle.Image
-        mnuItmSettings.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme, mnuItmEditGrid})
+        mnuItmSettings.DropDownItems.AddRange(New ToolStripItem() {mnuItmTheme, mnuItmConfigureFields})
         mnuItmSettings.Image = CType(resources.GetObject("mnuItmSettings.Image"), Image)
         mnuItmSettings.ImageAlign = ContentAlignment.MiddleRight
         mnuItmSettings.ImageScaling = ToolStripItemImageScaling.None
@@ -200,32 +212,32 @@ Partial Class FrmMain
         ' mnuItmDarkModePurple
         ' 
         mnuItmDarkModePurple.Name = "mnuItmDarkModePurple"
-        mnuItmDarkModePurple.Size = New Size(180, 22)
+        mnuItmDarkModePurple.Size = New Size(177, 22)
         mnuItmDarkModePurple.Text = "Dark mode - Purple"
         ' 
         ' mnuItmDarkModeGreen
         ' 
         mnuItmDarkModeGreen.Name = "mnuItmDarkModeGreen"
-        mnuItmDarkModeGreen.Size = New Size(180, 22)
+        mnuItmDarkModeGreen.Size = New Size(177, 22)
         mnuItmDarkModeGreen.Text = "Dark mode - Green"
         ' 
         ' mnuItmLightModeBlue
         ' 
         mnuItmLightModeBlue.Name = "mnuItmLightModeBlue"
-        mnuItmLightModeBlue.Size = New Size(180, 22)
+        mnuItmLightModeBlue.Size = New Size(177, 22)
         mnuItmLightModeBlue.Text = "Light mode - Blue"
         ' 
         ' mnuItmLightModeGreen
         ' 
         mnuItmLightModeGreen.Name = "mnuItmLightModeGreen"
-        mnuItmLightModeGreen.Size = New Size(180, 22)
+        mnuItmLightModeGreen.Size = New Size(177, 22)
         mnuItmLightModeGreen.Text = "Light mode - Green"
         ' 
-        ' mnuItmEditGrid
+        ' mnuItmConfigureFields
         ' 
-        mnuItmEditGrid.Name = "mnuItmEditGrid"
-        mnuItmEditGrid.Size = New Size(180, 22)
-        mnuItmEditGrid.Text = "Edit grid..."
+        mnuItmConfigureFields.Name = "mnuItmConfigureFields"
+        mnuItmConfigureFields.Size = New Size(180, 22)
+        mnuItmConfigureFields.Text = "Configure fields..."
         ' 
         ' mnuItmHelp
         ' 
@@ -243,19 +255,29 @@ Partial Class FrmMain
         ' mnuItmAbout
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
-        mnuItmAbout.ShortcutKeys = Keys.Alt Or Keys.A
-        mnuItmAbout.Size = New Size(201, 22)
+        mnuItmAbout.Size = New Size(180, 22)
         mnuItmAbout.Text = "About..."
         ' 
         ' mnuItmViewErrorLogs
         ' 
         mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
-        mnuItmViewErrorLogs.ShortcutKeys = Keys.Alt Or Keys.V
-        mnuItmViewErrorLogs.Size = New Size(201, 22)
+        mnuItmViewErrorLogs.Size = New Size(180, 22)
         mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
         ' pnlSearchCriteria
         ' 
+        pnlSearchCriteria.Controls.Add(lblNotes)
+        pnlSearchCriteria.Controls.Add(txtNotes)
+        pnlSearchCriteria.Controls.Add(lblDateOfBirth)
+        pnlSearchCriteria.Controls.Add(txtDateOfBirth)
+        pnlSearchCriteria.Controls.Add(lblJobTitle)
+        pnlSearchCriteria.Controls.Add(txtJobTitle)
+        pnlSearchCriteria.Controls.Add(lblCompany)
+        pnlSearchCriteria.Controls.Add(txtCompany)
+        pnlSearchCriteria.Controls.Add(lblAddress)
+        pnlSearchCriteria.Controls.Add(txtAddress)
+        pnlSearchCriteria.Controls.Add(lblId)
+        pnlSearchCriteria.Controls.Add(txtId)
         pnlSearchCriteria.Controls.Add(lblEmail)
         pnlSearchCriteria.Controls.Add(txtEmail)
         pnlSearchCriteria.Controls.Add(lblName)
@@ -267,8 +289,200 @@ Partial Class FrmMain
         pnlSearchCriteria.Dock = DockStyle.Top
         pnlSearchCriteria.Location = New Point(90, 64)
         pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(1054, 105)
-        pnlSearchCriteria.TabIndex = 3
+        pnlSearchCriteria.Size = New Size(1285, 105)
+        pnlSearchCriteria.TabIndex = 0
+        ' 
+        ' lblNotes
+        ' 
+        lblNotes.AutoSize = True
+        lblNotes.Depth = 0
+        lblNotes.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblNotes.Location = New Point(1005, 11)
+        lblNotes.MouseState = MouseState.HOVER
+        lblNotes.Name = "lblNotes"
+        lblNotes.Size = New Size(42, 19)
+        lblNotes.TabIndex = 29
+        lblNotes.Tag = "Notes"
+        lblNotes.Text = "Notes"
+        ' 
+        ' txtNotes
+        ' 
+        txtNotes.AnimateReadOnly = False
+        txtNotes.BorderStyle = BorderStyle.None
+        txtNotes.Depth = 0
+        txtNotes.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtNotes.LeadingIcon = Nothing
+        txtNotes.Location = New Point(1053, 8)
+        txtNotes.MaxLength = 50
+        txtNotes.MouseState = MouseState.OUT
+        txtNotes.Multiline = False
+        txtNotes.Name = "txtNotes"
+        txtNotes.Size = New Size(216, 36)
+        txtNotes.TabIndex = 4
+        txtNotes.Tag = "Notes"
+        txtNotes.Text = ""
+        txtNotes.TrailingIcon = Nothing
+        txtNotes.UseTallSize = False
+        ' 
+        ' lblDateOfBirth
+        ' 
+        lblDateOfBirth.AutoSize = True
+        lblDateOfBirth.Depth = 0
+        lblDateOfBirth.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblDateOfBirth.Location = New Point(718, 56)
+        lblDateOfBirth.MouseState = MouseState.HOVER
+        lblDateOfBirth.Name = "lblDateOfBirth"
+        lblDateOfBirth.Size = New Size(89, 19)
+        lblDateOfBirth.TabIndex = 27
+        lblDateOfBirth.Tag = "Date of birth"
+        lblDateOfBirth.Text = "Date of birth"
+        ' 
+        ' txtDateOfBirth
+        ' 
+        txtDateOfBirth.AnimateReadOnly = False
+        txtDateOfBirth.BorderStyle = BorderStyle.None
+        txtDateOfBirth.Depth = 0
+        txtDateOfBirth.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtDateOfBirth.LeadingIcon = Nothing
+        txtDateOfBirth.Location = New Point(813, 53)
+        txtDateOfBirth.MaxLength = 50
+        txtDateOfBirth.MouseState = MouseState.OUT
+        txtDateOfBirth.Multiline = False
+        txtDateOfBirth.Name = "txtDateOfBirth"
+        txtDateOfBirth.Size = New Size(169, 36)
+        txtDateOfBirth.TabIndex = 8
+        txtDateOfBirth.Tag = "Date of birth"
+        txtDateOfBirth.Text = ""
+        txtDateOfBirth.TrailingIcon = Nothing
+        txtDateOfBirth.UseTallSize = False
+        ' 
+        ' lblJobTitle
+        ' 
+        lblJobTitle.AutoSize = True
+        lblJobTitle.Depth = 0
+        lblJobTitle.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblJobTitle.Location = New Point(749, 11)
+        lblJobTitle.MouseState = MouseState.HOVER
+        lblJobTitle.Name = "lblJobTitle"
+        lblJobTitle.Size = New Size(58, 19)
+        lblJobTitle.TabIndex = 25
+        lblJobTitle.Tag = "Job title"
+        lblJobTitle.Text = "Job title"
+        ' 
+        ' txtJobTitle
+        ' 
+        txtJobTitle.AnimateReadOnly = False
+        txtJobTitle.BorderStyle = BorderStyle.None
+        txtJobTitle.Depth = 0
+        txtJobTitle.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtJobTitle.LeadingIcon = Nothing
+        txtJobTitle.Location = New Point(813, 8)
+        txtJobTitle.MaxLength = 50
+        txtJobTitle.MouseState = MouseState.OUT
+        txtJobTitle.Multiline = False
+        txtJobTitle.Name = "txtJobTitle"
+        txtJobTitle.Size = New Size(169, 36)
+        txtJobTitle.TabIndex = 3
+        txtJobTitle.Tag = "Job title"
+        txtJobTitle.Text = ""
+        txtJobTitle.TrailingIcon = Nothing
+        txtJobTitle.UseTallSize = False
+        ' 
+        ' lblCompany
+        ' 
+        lblCompany.AutoSize = True
+        lblCompany.Depth = 0
+        lblCompany.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblCompany.Location = New Point(430, 56)
+        lblCompany.MouseState = MouseState.HOVER
+        lblCompany.Name = "lblCompany"
+        lblCompany.Size = New Size(69, 19)
+        lblCompany.TabIndex = 23
+        lblCompany.Tag = "Company"
+        lblCompany.Text = "Company"
+        ' 
+        ' txtCompany
+        ' 
+        txtCompany.AnimateReadOnly = False
+        txtCompany.BorderStyle = BorderStyle.None
+        txtCompany.Depth = 0
+        txtCompany.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtCompany.LeadingIcon = Nothing
+        txtCompany.Location = New Point(505, 53)
+        txtCompany.MaxLength = 50
+        txtCompany.MouseState = MouseState.OUT
+        txtCompany.Multiline = False
+        txtCompany.Name = "txtCompany"
+        txtCompany.Size = New Size(197, 36)
+        txtCompany.TabIndex = 7
+        txtCompany.Tag = "Company"
+        txtCompany.Text = ""
+        txtCompany.TrailingIcon = Nothing
+        txtCompany.UseTallSize = False
+        ' 
+        ' lblAddress
+        ' 
+        lblAddress.AutoSize = True
+        lblAddress.Depth = 0
+        lblAddress.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblAddress.Location = New Point(153, 56)
+        lblAddress.MouseState = MouseState.HOVER
+        lblAddress.Name = "lblAddress"
+        lblAddress.Size = New Size(58, 19)
+        lblAddress.TabIndex = 21
+        lblAddress.Tag = "Address"
+        lblAddress.Text = "Address"
+        ' 
+        ' txtAddress
+        ' 
+        txtAddress.AnimateReadOnly = False
+        txtAddress.BorderStyle = BorderStyle.None
+        txtAddress.Depth = 0
+        txtAddress.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtAddress.LeadingIcon = Nothing
+        txtAddress.Location = New Point(217, 53)
+        txtAddress.MaxLength = 50
+        txtAddress.MouseState = MouseState.OUT
+        txtAddress.Multiline = False
+        txtAddress.Name = "txtAddress"
+        txtAddress.Size = New Size(197, 36)
+        txtAddress.TabIndex = 6
+        txtAddress.Tag = "Address"
+        txtAddress.Text = ""
+        txtAddress.TrailingIcon = Nothing
+        txtAddress.UseTallSize = False
+        ' 
+        ' lblId
+        ' 
+        lblId.AutoSize = True
+        lblId.Depth = 0
+        lblId.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
+        lblId.Location = New Point(24, 56)
+        lblId.MouseState = MouseState.HOVER
+        lblId.Name = "lblId"
+        lblId.Size = New Size(16, 19)
+        lblId.TabIndex = 19
+        lblId.Tag = "ID"
+        lblId.Text = "ID"
+        ' 
+        ' txtId
+        ' 
+        txtId.AnimateReadOnly = False
+        txtId.BorderStyle = BorderStyle.None
+        txtId.Depth = 0
+        txtId.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
+        txtId.LeadingIcon = Nothing
+        txtId.Location = New Point(46, 53)
+        txtId.MaxLength = 50
+        txtId.MouseState = MouseState.OUT
+        txtId.Multiline = False
+        txtId.Name = "txtId"
+        txtId.Size = New Size(92, 36)
+        txtId.TabIndex = 5
+        txtId.Tag = "ID"
+        txtId.Text = ""
+        txtId.TrailingIcon = Nothing
+        txtId.UseTallSize = False
         ' 
         ' lblEmail
         ' 
@@ -280,6 +494,7 @@ Partial Class FrmMain
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(41, 19)
         lblEmail.TabIndex = 17
+        lblEmail.Tag = "Email"
         lblEmail.Text = "Email"
         ' 
         ' txtEmail
@@ -296,6 +511,7 @@ Partial Class FrmMain
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(157, 36)
         txtEmail.TabIndex = 1
+        txtEmail.Tag = "Email"
         txtEmail.Text = ""
         txtEmail.TrailingIcon = Nothing
         txtEmail.UseTallSize = False
@@ -310,6 +526,7 @@ Partial Class FrmMain
         lblName.Name = "lblName"
         lblName.Size = New Size(43, 19)
         lblName.TabIndex = 15
+        lblName.Tag = "Name"
         lblName.Text = "Name"
         ' 
         ' lblPhoneNumber
@@ -317,11 +534,12 @@ Partial Class FrmMain
         lblPhoneNumber.AutoSize = True
         lblPhoneNumber.Depth = 0
         lblPhoneNumber.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblPhoneNumber.Location = New Point(24, 62)
+        lblPhoneNumber.Location = New Point(505, 11)
         lblPhoneNumber.MouseState = MouseState.HOVER
         lblPhoneNumber.Name = "lblPhoneNumber"
         lblPhoneNumber.Size = New Size(60, 19)
         lblPhoneNumber.TabIndex = 14
+        lblPhoneNumber.Tag = "Phone #"
         lblPhoneNumber.Text = "Phone #"
         ' 
         ' txtName
@@ -338,6 +556,7 @@ Partial Class FrmMain
         txtName.Name = "txtName"
         txtName.Size = New Size(157, 36)
         txtName.TabIndex = 0
+        txtName.Tag = "Name"
         txtName.Text = ""
         txtName.TrailingIcon = Nothing
         txtName.UseTallSize = False
@@ -349,13 +568,14 @@ Partial Class FrmMain
         txtPhoneNumber.Depth = 0
         txtPhoneNumber.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtPhoneNumber.LeadingIcon = Nothing
-        txtPhoneNumber.Location = New Point(90, 62)
+        txtPhoneNumber.Location = New Point(571, 11)
         txtPhoneNumber.MaxLength = 50
         txtPhoneNumber.MouseState = MouseState.OUT
         txtPhoneNumber.Multiline = False
         txtPhoneNumber.Name = "txtPhoneNumber"
         txtPhoneNumber.Size = New Size(157, 36)
         txtPhoneNumber.TabIndex = 2
+        txtPhoneNumber.Tag = "Phone #"
         txtPhoneNumber.Text = ""
         txtPhoneNumber.TrailingIcon = Nothing
         txtPhoneNumber.UseTallSize = False
@@ -370,13 +590,13 @@ Partial Class FrmMain
         btnClear.ForeColor = SystemColors.ControlText
         btnClear.HighEmphasis = True
         btnClear.Icon = Nothing
-        btnClear.Location = New Point(705, 24)
+        btnClear.Location = New Point(1165, 60)
         btnClear.Margin = New Padding(4, 6, 4, 6)
         btnClear.MouseState = MouseState.HOVER
         btnClear.Name = "btnClear"
         btnClear.NoAccentTextColor = Color.Empty
         btnClear.Size = New Size(66, 36)
-        btnClear.TabIndex = 4
+        btnClear.TabIndex = 10
         btnClear.Text = "Clear"
         btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnClear.UseAccentColor = False
@@ -392,13 +612,13 @@ Partial Class FrmMain
         btnSearch.ForeColor = SystemColors.ControlText
         btnSearch.HighEmphasis = True
         btnSearch.Icon = Nothing
-        btnSearch.Location = New Point(616, 24)
+        btnSearch.Location = New Point(1076, 60)
         btnSearch.Margin = New Padding(4, 6, 4, 6)
         btnSearch.MouseState = MouseState.HOVER
         btnSearch.Name = "btnSearch"
         btnSearch.NoAccentTextColor = Color.Empty
         btnSearch.Size = New Size(78, 36)
-        btnSearch.TabIndex = 3
+        btnSearch.TabIndex = 9
         btnSearch.Text = "Search"
         btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnSearch.UseAccentColor = False
@@ -412,8 +632,8 @@ Partial Class FrmMain
         pnlBottom.Dock = DockStyle.Bottom
         pnlBottom.Location = New Point(90, 615)
         pnlBottom.Name = "pnlBottom"
-        pnlBottom.Size = New Size(1054, 65)
-        pnlBottom.TabIndex = 4
+        pnlBottom.Size = New Size(1285, 65)
+        pnlBottom.TabIndex = 1
         ' 
         ' btnDelete
         ' 
@@ -487,7 +707,7 @@ Partial Class FrmMain
         pnlBody.Dock = DockStyle.Fill
         pnlBody.Location = New Point(90, 169)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(1054, 446)
+        pnlBody.Size = New Size(1285, 446)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -498,7 +718,7 @@ Partial Class FrmMain
         DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
         dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.AutoGenerateColumns = False
-        dgvResults.BorderStyle = BorderStyle.None
+        dgvResults.BorderStyle = BorderStyle.Fixed3D
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = SystemColors.Control
@@ -519,8 +739,9 @@ Partial Class FrmMain
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(1054, 446)
+        dgvResults.Size = New Size(1285, 446)
         dgvResults.TabIndex = 0
+        dgvResults.TabStop = False
         ' 
         ' colId
         ' 
@@ -610,7 +831,7 @@ Partial Class FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1147, 683)
+        ClientSize = New Size(1378, 683)
         Controls.Add(pnlBody)
         Controls.Add(pnlBottom)
         Controls.Add(pnlSearchCriteria)
@@ -675,7 +896,7 @@ Partial Class FrmMain
     Friend WithEvents mnuItmCreateContact As ToolStripMenuItem
     Friend WithEvents mnuItmEditContact As ToolStripMenuItem
     Friend WithEvents mnuItmDeleteContact As ToolStripMenuItem
-    Friend WithEvents mnuItmEditGrid As ToolStripMenuItem
+    Friend WithEvents mnuItmConfigureFields As ToolStripMenuItem
     Friend WithEvents ContactBindingSource As BindingSource
     Friend WithEvents ContactBindingSource1 As BindingSource
     Friend WithEvents colId As DataGridViewTextBoxColumn
@@ -688,5 +909,17 @@ Partial Class FrmMain
     Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
     Friend WithEvents colNotes As DataGridViewTextBoxColumn
     Friend WithEvents mnuItmViewErrorLogs As ToolStripMenuItem
+    Friend WithEvents lblCompany As Controls.MaterialLabel
+    Friend WithEvents txtCompany As Controls.MaterialTextBox
+    Friend WithEvents lblAddress As Controls.MaterialLabel
+    Friend WithEvents txtAddress As Controls.MaterialTextBox
+    Friend WithEvents lblId As Controls.MaterialLabel
+    Friend WithEvents txtId As Controls.MaterialTextBox
+    Friend WithEvents lblNotes As Controls.MaterialLabel
+    Friend WithEvents txtNotes As Controls.MaterialTextBox
+    Friend WithEvents lblDateOfBirth As Controls.MaterialLabel
+    Friend WithEvents txtDateOfBirth As Controls.MaterialTextBox
+    Friend WithEvents lblJobTitle As Controls.MaterialLabel
+    Friend WithEvents txtJobTitle As Controls.MaterialTextBox
 
 End Class

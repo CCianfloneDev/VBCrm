@@ -37,6 +37,7 @@ Public Class FrmMain
             ApplyColorScheme(form:=Me, theme:=CurrentTheme)
             SetColumnVisibility()
             SetColumnDisplayIndex()
+            SetSearchFieldVisibility()
 
             btnSearch.PerformClick()
             dgvResults.ClearSelection()
@@ -249,9 +250,10 @@ Public Class FrmMain
     ''' <summary>
     ''' Handles the edit grid menu item click event.
     ''' </summary>
-    Private Sub MnuItmEditGrid_Click(sender As Object, e As EventArgs) Handles mnuItmEditGrid.Click
+    Private Sub MnuItmEditGrid_Click(sender As Object, e As EventArgs) Handles mnuItmConfigureFields.Click
         Try
-            Dim editGridSettingsForm As New FrmGridSettings With {
+            Dim editGridSettingsForm As New FrmSettings With {
+                .Theme = CurrentTheme,
                 .ColumnCollection = dgvResults.Columns
             }
 
@@ -321,11 +323,19 @@ Public Class FrmMain
     ''' </summary>
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Try
-            Dim name As String = txtName.Text.Trim()
-            Dim phoneNumber As String = txtPhoneNumber.Text.Trim()
-            Dim email As String = txtEmail.Text.Trim()
+            Dim searchCriteria As New SearchCriteria With {
+                .Name = txtName.Text.Trim(),
+                .Email = txtEmail.Text.Trim(),
+                .PhoneNumber = txtPhoneNumber.Text.Trim(),
+                .JobTitle = txtJobTitle.Text.Trim(),
+                .Notes = txtNotes.Text.Trim(),
+                .Id = txtId.Text.Trim(),
+                .Address = txtAddress.Text.Trim(),
+                .Company = txtCompany.Text.Trim(),
+                .DateOfBirth = txtDateOfBirth.Text.Trim()
+                }
 
-            Dim dataTable As DataTable = Utilities.DbOperations.SearchContacts(name, phoneNumber, email)
+            Dim dataTable As DataTable = Utilities.DbOperations.SearchContacts(searchCriteria)
 
             dgvResults.DataSource = dataTable
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
@@ -439,7 +449,8 @@ Public Class FrmMain
     ''' Handles the attached search textboxs key down event.
     ''' </summary>
     ''' <remarks>Presses the search button if they pressed enter in the control.</remarks>
-    Private Sub SearchFields_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown, txtName.KeyDown, txtPhoneNumber.KeyDown
+    Private Sub SearchFields_KeyDown(sender As Object, e As KeyEventArgs) Handles txtEmail.KeyDown, txtName.KeyDown, txtPhoneNumber.KeyDown,
+    txtJobTitle.KeyDown, txtNotes.KeyDown, txtId.KeyDown, txtAddress.KeyDown, txtCompany.KeyDown, txtDateOfBirth.KeyDown
         Try
             If e.KeyCode = Keys.Enter Then
                 btnSearch.PerformClick()
@@ -472,6 +483,8 @@ Public Class FrmMain
                 column.Visible = value
             End If
         Next
+
+        SetLastVisibleColumnToFill(dgvResults)
     End Sub
 
     ''' <summary>
@@ -485,6 +498,23 @@ Public Class FrmMain
 
             If displayIndexData.TryGetValue(column.DataPropertyName, displayIndex) Then
                 column.DisplayIndex = If(displayIndex > 0, displayIndex - 1, 0)
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Sets the search field visibility settings saved in the database.
+    ''' </summary>
+    Private Sub SetSearchFieldVisibility()
+        Dim visibilityData As Dictionary(Of String, Boolean) = Utilities.DbOperations.GetSearchFieldVisibility()
+
+        For Each control As Control In pnlSearchCriteria.Controls
+            If control.GetType() Is GetType(MaterialTextBox) OrElse control.GetType() Is GetType(MaterialLabel) Then
+                Dim value As Boolean = Nothing
+
+                If visibilityData.TryGetValue(control.Tag.ToString(), value) Then
+                    control.Visible = value
+                End If
             End If
         Next
     End Sub

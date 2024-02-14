@@ -4,7 +4,7 @@ Imports MaterialSkin.Controls
 ''' <summary>
 ''' Represents the grid settings form.
 ''' </summary>
-Public Class FrmGridSettings
+Public Class FrmSettings
 
 #Region "Properties"
 
@@ -42,40 +42,40 @@ Public Class FrmGridSettings
                     .AutoSize = True,
                     .Name = column.DataPropertyName
                 }
-                AddHandler checkBox.CheckedChanged, AddressOf CheckBox_CheckedChanged
-                pnlBody.Controls.Add(checkBox)
-
-                lblSettings.Select()
+                AddHandler checkBox.CheckedChanged, AddressOf GridSettingCheckBox_CheckedChanged
+                pnlGridSettings.Controls.Add(checkBox)
             Next
+
+            ' dynamically make checkboxes for each search field
+            For Each control As Control In FrmMain.pnlSearchCriteria.Controls
+                If control.GetType() Is GetType(MaterialTextBox) Then
+                    Dim checkBox As New MaterialCheckbox With {
+                        .Text = control.Tag.ToString(),
+                        .Checked = control.Visible,
+                        .Tag = control.Tag.ToString(),
+                        .Dock = DockStyle.Top,
+                        .AutoSize = True,
+                        .Name = control.Name
+                    }
+                    AddHandler checkBox.CheckedChanged, AddressOf SearchCriteriaCheckBox_CheckedChanged
+                    pnlSearchCriteria.Controls.Add(checkBox)
+                End If
+            Next
+
+            lblGridSettings.Select()
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-#End Region
-
-#Region "Button events"
-    ''' <summary>
-    ''' Handles the close button click event.
-    ''' </summary>
-    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
-        Try
-            Close()
-        Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
-            Utilities.DbOperations.InsertErrorLog(errorMessage)
-            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
 #End Region
 
 #Region "Checkbox events"
     ''' <summary>
-    ''' Handles the checkbox checked changed event.
+    ''' Handles the grid checked changed event.
     ''' </summary>
-    Private Sub CheckBox_CheckedChanged(sender As Object, e As EventArgs)
+    Private Sub GridSettingCheckBox_CheckedChanged(sender As Object, e As EventArgs)
         Try
             Dim checkBox As MaterialCheckbox = CType(sender, MaterialCheckbox)
             Dim columnIndex As Integer = GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DisplayIndex
@@ -83,7 +83,33 @@ Public Class FrmGridSettings
             GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).Visible = checkBox.Checked
             Utilities.DbOperations.UpdateColumnVisibility(GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DataPropertyName, isVisible:=checkBox.Checked)
 
+            ' set the column to be visible
             FrmMain.dgvResults.Columns(columnIndex).Visible = checkBox.Checked
+
+            SetLastVisibleColumnToFill(FrmMain.dgvResults)
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the search criteria checkbox checked changed event.
+    ''' </summary>
+    Private Sub SearchCriteriaCheckBox_CheckedChanged(sender As Object, e As EventArgs)
+        Try
+            Dim checkBox As MaterialCheckbox = CType(sender, MaterialCheckbox)
+
+            Utilities.DbOperations.UpdateSearchFieldVisibility(checkBox.Tag.ToString(), isVisible:=checkBox.Checked)
+
+            For Each labelTextBoxPair As Control In FrmMain.pnlSearchCriteria.Controls
+                If labelTextBoxPair.Tag IsNot Nothing Then
+                    If labelTextBoxPair.Tag.ToString() = checkBox.Tag.ToString() Then
+                        labelTextBoxPair.Visible = checkBox.Checked
+                    End If
+                End If
+            Next
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)

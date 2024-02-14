@@ -171,7 +171,7 @@ Module Utilities
                 Dim csvPath As String = openFileDialog.FileName
 
                 ' Validate the CSV file's column order
-                Dim expectedColumns As String() = {"ContactId", "ContactName", "ContactPhone", "ContactEmail"}
+                Dim expectedColumns As String() = {"ContactId", "ContactName", "ContactPhone", "ContactEmail, ContactAddress, ContactCompany, ContactJobTitle, ContactDateOfBirth, ContactNotes"}
                 Using reader As New StreamReader(csvPath)
                     Dim headers As String = reader.ReadLine()
                     Dim csvColumns = headers.Split(","c).Select(Function(s) s.Trim()).ToArray()
@@ -244,5 +244,30 @@ Module Utilities
 
         Return emailList
     End Function
+
+    ''' <summary>
+    ''' Sets the last visible column of a datagridview to be filled and the others to be not set.
+    ''' </summary>
+    ''' <param name="dgv">Datagridview to apply column settings to.</param>
+    Public Sub SetLastVisibleColumnToFill(dgv As DataGridView)
+        ' Loop through all columns except the last one
+        For i As Integer = 0 To dgv.Columns.Count - 2
+            dgv.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet
+        Next
+
+        ' Find the last visible column
+        Dim lastVisibleColumnIndex As Integer = -1
+        For i As Integer = dgv.Columns.Count - 1 To 0 Step -1
+            If dgv.Columns(i).Visible Then
+                lastVisibleColumnIndex = i
+                Exit For
+            End If
+        Next
+
+        ' Set AutoSizeMode of the last visible column to Fill
+        If lastVisibleColumnIndex >= 0 Then
+            dgv.Columns(lastVisibleColumnIndex).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        End If
+    End Sub
 
 End Module

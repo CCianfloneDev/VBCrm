@@ -49,6 +49,7 @@ Public Class DbOperations
         CreateContactsTable()
         CreateThemes()
         CreateColumnVisibilityTable()
+        CreateSearchCriteriaVisibilityTable()
         CreateColumnOrderTable()
         CreateErrorLogsTable()
     End Sub
@@ -151,6 +152,51 @@ Public Class DbOperations
                     ('ContactJobTitle', 1),
                     ('ContactDateOfBirth', 1),
                     ('ContactNotes', 1)"
+
+                    Using insertCommand As New SQLiteCommand(insertColumnsQuery, connection)
+                        insertCommand.ExecuteNonQuery()
+                    End Using
+                End If
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' Creates the table storing the search criterias of the main form and their visibility state.
+    ''' </summary>
+    Public Sub CreateSearchCriteriaVisibilityTable()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            ' Create the ColumnVisibility table if it doesn't exist
+            Dim createSearchCriteriaVisibilityQuery As String =
+            "CREATE TABLE IF NOT EXISTS SearchCriteriaVisibility (
+            FieldName TEXT PRIMARY KEY,
+            IsVisible INTEGER DEFAULT 1)"
+
+            Using command As New SQLiteCommand(createSearchCriteriaVisibilityQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+
+            ' Check if the table is empty
+            Dim checkEmptyTableQuery As String = "SELECT COUNT(*) FROM SearchCriteriaVisibility"
+            Using command As New SQLiteCommand(checkEmptyTableQuery, connection)
+                Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+                If count = 0 Then
+                    ' Insert all column names with their visibility set to 1 (visible)
+                    Dim insertColumnsQuery As String =
+                    "INSERT INTO SearchCriteriaVisibility (FieldName, IsVisible) VALUES 
+                    ('ID', 0),
+                    ('Name', 1),
+                    ('Phone #', 1),
+                    ('Email', 1),
+                    ('Address',1),
+                    ('Company', 1),
+                    ('Job title', 1),
+                    ('Date of birth', 1),
+                    ('Notes', 1)"
 
                     Using insertCommand As New SQLiteCommand(insertColumnsQuery, connection)
                         insertCommand.ExecuteNonQuery()
@@ -328,11 +374,9 @@ Public Class DbOperations
     ''' <summary>
     ''' Searches contacts in the database based on specified criteria.
     ''' </summary>
-    ''' <param name="name">The name of the contact (optional).</param>
-    ''' <param name="phoneNumber">The phone number of the contact (optional).</param>
-    ''' <param name="email">The email address of the contact (optional).</param>
+    ''' <param name="searchCriteria">Search criteria to search the database with.</param>
     ''' <returns>A DataTable containing the search results.</returns>
-    Public Function SearchContacts(Optional name As String = "", Optional phoneNumber As String = "", Optional email As String = "") As DataTable
+    Public Function SearchContacts(searchCriteria As SearchCriteria) As DataTable
         Dim dataTable As New DataTable()
 
         Using connection As New SQLiteConnection(ConnectionString)
@@ -342,19 +386,47 @@ Public Class DbOperations
                                                          "ContactJobTitle, ContactDateOfBirth, ContactNotes FROM Contacts WHERE 1=1 ")
 
             Using command As New SQLiteCommand(connection)
-                If Not String.IsNullOrEmpty(name) Then
+                If Not String.IsNullOrEmpty(searchCriteria.Name) Then
                     queryBuilder.Append("AND LOWER(ContactName) LIKE @ContactName ")
-                    command.Parameters.AddWithValue("@ContactName", name.ToLower & "%")
+                    command.Parameters.AddWithValue("@ContactName", searchCriteria.Name.ToLower & "%")
                 End If
-                If Not String.IsNullOrEmpty(phoneNumber) Then
+                If Not String.IsNullOrEmpty(searchCriteria.Email) Then
+                    queryBuilder.Append("AND LOWER(ContactEmail) LIKE @ContactEmail ")
+                    command.Parameters.AddWithValue("@ContactEmail", searchCriteria.Email.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.PhoneNumber) Then
                     queryBuilder.Append("AND LOWER(ContactPhone) LIKE @ContactPhone ")
-                    command.Parameters.AddWithValue("@ContactPhone", phoneNumber.ToLower & "%")
+                    command.Parameters.AddWithValue("@ContactPhone", searchCriteria.PhoneNumber.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.JobTitle) Then
+                    queryBuilder.Append("AND LOWER(ContactJobTitle) LIKE @ContactJobTitle ")
+                    command.Parameters.AddWithValue("@ContactJobTitle", searchCriteria.JobTitle.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.JobTitle) Then
+                    queryBuilder.Append("AND LOWER(ContactJobTitle) LIKE @ContactJobTitle ")
+                    command.Parameters.AddWithValue("@ContactJobTitle", searchCriteria.JobTitle.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.Notes) Then
+                    queryBuilder.Append("AND LOWER(ContactNotes) LIKE @ContactNotes ")
+                    command.Parameters.AddWithValue("@ContactNotes", searchCriteria.Notes.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.Id) Then
+                    queryBuilder.Append("AND LOWER(ContactId) LIKE @ContactId ")
+                    command.Parameters.AddWithValue("@ContactId", searchCriteria.Id.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.Address) Then
+                    queryBuilder.Append("AND LOWER(ContactAddress) LIKE @ContactAddress ")
+                    command.Parameters.AddWithValue("@ContactAddress", searchCriteria.Address.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.Company) Then
+                    queryBuilder.Append("AND LOWER(ContactCompany) LIKE @ContactCompany ")
+                    command.Parameters.AddWithValue("@ContactCompany", searchCriteria.Company.ToLower & "%")
+                End If
+                If Not String.IsNullOrEmpty(searchCriteria.DateOfBirth) Then
+                    queryBuilder.Append("AND LOWER(ContactDateOfBirth) LIKE @ContactDateOfBirth ")
+                    command.Parameters.AddWithValue("@ContactDateOfBirth", searchCriteria.DateOfBirth.ToLower & "%")
                 End If
 
-                If Not String.IsNullOrEmpty(email) Then
-                    queryBuilder.Append("AND LOWER(ContactEmail) LIKE @ContactEmail ")
-                    command.Parameters.AddWithValue("@ContactEmail", email.ToLower & "%")
-                End If
                 command.CommandText = queryBuilder.ToString()
 
                 Using adapter As New SQLiteDataAdapter(command)
@@ -460,6 +532,34 @@ Public Class DbOperations
         End Using
 
         Return displayIndexData
+    End Function
+
+    ''' <summary>
+    ''' Retrieves search field visibility data from the database.
+    ''' </summary>
+    ''' <returns>A dictionary containing search field tags as keys and their visibility status as values.</returns>
+    Public Function GetSearchFieldVisibility() As Dictionary(Of String, Boolean)
+        Dim visibilityData As New Dictionary(Of String, Boolean)()
+
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim query As String = "SELECT FieldName, IsVisible FROM SearchCriteriaVisibility"
+
+            Using command As New SQLiteCommand(query, connection)
+                Using reader As SQLiteDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        Dim fieldName As String = reader.GetString(0)
+                        Dim isVisible As Boolean = reader.GetBoolean(1)
+                        visibilityData.Add(fieldName, isVisible)
+                    End While
+                End Using
+            End Using
+
+            connection.Close()
+        End Using
+
+        Return visibilityData
     End Function
 
     ''' <summary>
@@ -593,15 +693,35 @@ Public Class DbOperations
         Using connection As New SQLiteConnection(ConnectionString)
             connection.Open()
 
-            ' Check if the ColumnVisibility table is empty
-            Dim checkTableQuery As String = "SELECT COUNT(*) FROM ColumnVisibility"
-
             ' Update the visibility of the column
             Dim updateColumnQuery As String = $"UPDATE ColumnVisibility SET IsVisible = @Visible WHERE ColumnName = @ColumnName"
 
             Using updateCommand As New SQLiteCommand(updateColumnQuery, connection)
                 updateCommand.Parameters.AddWithValue("@Visible", If(isVisible, 1, 0))
                 updateCommand.Parameters.AddWithValue("@ColumnName", columnName)
+                updateCommand.ExecuteNonQuery()
+            End Using
+
+            connection.Close()
+        End Using
+    End Sub
+
+    ''' <summary>
+    ''' Updates the visibility of a search field in the SearchCriteriaVisibility table.
+    ''' If the table is empty, inserts default values for search field visibility.
+    ''' </summary>
+    ''' <param name="fieldName">The name of the search field to update.</param>
+    ''' <param name="isVisible">Boolean value indicating whether the search field should be visible.</param>
+    Public Sub UpdateSearchFieldVisibility(fieldName As String, isVisible As Boolean)
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            ' Update the visibility of the column
+            Dim updateColumnQuery As String = $"UPDATE SearchCriteriaVisibility SET IsVisible = @Visible WHERE FieldName = @FieldName"
+
+            Using updateCommand As New SQLiteCommand(updateColumnQuery, connection)
+                updateCommand.Parameters.AddWithValue("@Visible", If(isVisible, 1, 0))
+                updateCommand.Parameters.AddWithValue("@FieldName", fieldName)
                 updateCommand.ExecuteNonQuery()
             End Using
 
