@@ -27,7 +27,6 @@ Partial Class FrmMain
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
-        mnuItmMenu = New ToolStripMenuItem()
         mnuItmContacts = New ToolStripMenuItem()
         mnuItmMassEmail = New ToolStripMenuItem()
         mnuItmCreateContact = New ToolStripMenuItem()
@@ -97,6 +96,7 @@ Partial Class FrmMain
         pnlName = New Panel()
         pnlEmail = New Panel()
         pnlPhoneNumber = New Panel()
+        btnMenuControl = New Button()
         mnuMenuStrip.SuspendLayout()
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
@@ -122,22 +122,12 @@ Partial Class FrmMain
         mnuMenuStrip.AllowItemReorder = True
         mnuMenuStrip.AutoSize = False
         mnuMenuStrip.Dock = DockStyle.Left
-        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmMenu, mnuItmContacts, mnuItmData, mnuItmSettings, mnuItmHelp})
+        mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmContacts, mnuItmData, mnuItmSettings, mnuItmHelp})
         mnuMenuStrip.LayoutStyle = ToolStripLayoutStyle.Table
-        mnuMenuStrip.Location = New Point(3, 64)
+        mnuMenuStrip.Location = New Point(0, 0)
         mnuMenuStrip.Name = "mnuMenuStrip"
-        mnuMenuStrip.Size = New Size(87, 616)
+        mnuMenuStrip.Size = New Size(87, 449)
         mnuMenuStrip.TabIndex = 2
-        ' 
-        ' mnuItmMenu
-        ' 
-        mnuItmMenu.AutoSize = False
-        mnuItmMenu.DisplayStyle = ToolStripItemDisplayStyle.Image
-        mnuItmMenu.Image = CType(resources.GetObject("mnuItmMenu.Image"), Image)
-        mnuItmMenu.ImageScaling = ToolStripItemImageScaling.None
-        mnuItmMenu.Name = "mnuItmMenu"
-        mnuItmMenu.ShowShortcutKeys = False
-        mnuItmMenu.Size = New Size(80, 80)
         ' 
         ' mnuItmContacts
         ' 
@@ -149,8 +139,7 @@ Partial Class FrmMain
         mnuItmContacts.ImageAlign = ContentAlignment.MiddleLeft
         mnuItmContacts.ImageScaling = ToolStripItemImageScaling.None
         mnuItmContacts.Name = "mnuItmContacts"
-        mnuItmContacts.Size = New Size(60, 100)
-        mnuItmContacts.Visible = False
+        mnuItmContacts.Size = New Size(122, 100)
         ' 
         ' mnuItmMassEmail
         ' 
@@ -187,7 +176,6 @@ Partial Class FrmMain
         mnuItmData.Name = "mnuItmData"
         mnuItmData.Size = New Size(62, 100)
         mnuItmData.Text = "&Data"
-        mnuItmData.Visible = False
         ' 
         ' mnuItmImportData
         ' 
@@ -218,7 +206,6 @@ Partial Class FrmMain
         mnuItmSettings.Name = "mnuItmSettings"
         mnuItmSettings.Size = New Size(60, 100)
         mnuItmSettings.Text = "&Settings"
-        mnuItmSettings.Visible = False
         ' 
         ' mnuItmTheme
         ' 
@@ -268,7 +255,6 @@ Partial Class FrmMain
         mnuItmHelp.Name = "mnuItmHelp"
         mnuItmHelp.ShortcutKeys = Keys.Alt Or Keys.H
         mnuItmHelp.Size = New Size(60, 100)
-        mnuItmHelp.Visible = False
         ' 
         ' mnuItmAbout
         ' 
@@ -620,9 +606,9 @@ Partial Class FrmMain
         pnlBottom.Controls.Add(btnEdit)
         pnlBottom.Controls.Add(btnNew)
         pnlBottom.Dock = DockStyle.Bottom
-        pnlBottom.Location = New Point(90, 615)
+        pnlBottom.Location = New Point(3, 615)
         pnlBottom.Name = "pnlBottom"
-        pnlBottom.Size = New Size(1285, 65)
+        pnlBottom.Size = New Size(1372, 65)
         pnlBottom.TabIndex = 1
         ' 
         ' btnDelete
@@ -693,11 +679,13 @@ Partial Class FrmMain
         ' 
         ' pnlBody
         ' 
+        pnlBody.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlBody.AutoSize = True
         pnlBody.Controls.Add(dgvResults)
-        pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(90, 166)
+        pnlBody.Controls.Add(mnuMenuStrip)
+        pnlBody.Location = New Point(3, 166)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(1285, 449)
+        pnlBody.Size = New Size(1372, 449)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -723,7 +711,7 @@ Partial Class FrmMain
         dgvResults.ContextMenuStrip = cMnu
         dgvResults.DataSource = ContactBindingSource1
         dgvResults.Dock = DockStyle.Fill
-        dgvResults.Location = New Point(0, 0)
+        dgvResults.Location = New Point(87, 0)
         dgvResults.MultiSelect = False
         dgvResults.Name = "dgvResults"
         dgvResults.ReadOnly = True
@@ -821,34 +809,36 @@ Partial Class FrmMain
         ' tbplSearchCriteria
         ' 
         tbplSearchCriteria.AutoSize = True
-        tbplSearchCriteria.ColumnCount = 5
+        tbplSearchCriteria.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        tbplSearchCriteria.ColumnCount = 6
         tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
         tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
         tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
         tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
         tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
-        tbplSearchCriteria.Controls.Add(pnlButtons, 4, 1)
-        tbplSearchCriteria.Controls.Add(pnlDateOfBirth, 3, 1)
-        tbplSearchCriteria.Controls.Add(pnlCompany, 2, 1)
-        tbplSearchCriteria.Controls.Add(pnlAddress, 1, 1)
-        tbplSearchCriteria.Controls.Add(pnlId, 0, 1)
-        tbplSearchCriteria.Controls.Add(pnlNotes, 4, 0)
-        tbplSearchCriteria.Controls.Add(pnlJobTitle, 3, 0)
-        tbplSearchCriteria.Controls.Add(pnlName, 0, 0)
-        tbplSearchCriteria.Controls.Add(pnlEmail, 1, 0)
-        tbplSearchCriteria.Controls.Add(pnlPhoneNumber, 2, 0)
-        tbplSearchCriteria.Dock = DockStyle.Top
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.Controls.Add(pnlButtons, 5, 1)
+        tbplSearchCriteria.Controls.Add(pnlDateOfBirth, 4, 1)
+        tbplSearchCriteria.Controls.Add(pnlCompany, 3, 1)
+        tbplSearchCriteria.Controls.Add(pnlAddress, 2, 1)
+        tbplSearchCriteria.Controls.Add(pnlId, 1, 1)
+        tbplSearchCriteria.Controls.Add(pnlNotes, 5, 0)
+        tbplSearchCriteria.Controls.Add(pnlJobTitle, 4, 0)
+        tbplSearchCriteria.Controls.Add(pnlName, 1, 0)
+        tbplSearchCriteria.Controls.Add(pnlEmail, 2, 0)
+        tbplSearchCriteria.Controls.Add(pnlPhoneNumber, 3, 0)
         tbplSearchCriteria.Location = New Point(90, 64)
         tbplSearchCriteria.Name = "tbplSearchCriteria"
-        tbplSearchCriteria.RowCount = 2
+        tbplSearchCriteria.RowCount = 1
         tbplSearchCriteria.RowStyles.Add(New RowStyle())
         tbplSearchCriteria.RowStyles.Add(New RowStyle())
-        tbplSearchCriteria.Size = New Size(1285, 102)
+        tbplSearchCriteria.Size = New Size(1288, 102)
         tbplSearchCriteria.TabIndex = 30
         ' 
         ' pnlButtons
         ' 
         pnlButtons.AutoSize = True
+        pnlButtons.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlButtons.Controls.Add(btnSearch)
         pnlButtons.Controls.Add(btnClear)
         pnlButtons.Dock = DockStyle.Fill
@@ -860,6 +850,7 @@ Partial Class FrmMain
         ' pnlDateOfBirth
         ' 
         pnlDateOfBirth.AutoSize = True
+        pnlDateOfBirth.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlDateOfBirth.Controls.Add(lblDateOfBirth)
         pnlDateOfBirth.Controls.Add(txtDateOfBirth)
         pnlDateOfBirth.Dock = DockStyle.Fill
@@ -871,6 +862,7 @@ Partial Class FrmMain
         ' pnlCompany
         ' 
         pnlCompany.AutoSize = True
+        pnlCompany.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlCompany.Controls.Add(lblCompany)
         pnlCompany.Controls.Add(txtCompany)
         pnlCompany.Dock = DockStyle.Fill
@@ -882,6 +874,7 @@ Partial Class FrmMain
         ' pnlAddress
         ' 
         pnlAddress.AutoSize = True
+        pnlAddress.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlAddress.Controls.Add(lblAddress)
         pnlAddress.Controls.Add(txtAddress)
         pnlAddress.Dock = DockStyle.Fill
@@ -893,6 +886,7 @@ Partial Class FrmMain
         ' pnlId
         ' 
         pnlId.AutoSize = True
+        pnlId.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlId.Controls.Add(lblId)
         pnlId.Controls.Add(txtId)
         pnlId.Dock = DockStyle.Fill
@@ -904,6 +898,7 @@ Partial Class FrmMain
         ' pnlNotes
         ' 
         pnlNotes.AutoSize = True
+        pnlNotes.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlNotes.Controls.Add(lblNotes)
         pnlNotes.Controls.Add(txtNotes)
         pnlNotes.Dock = DockStyle.Fill
@@ -915,6 +910,7 @@ Partial Class FrmMain
         ' pnlJobTitle
         ' 
         pnlJobTitle.AutoSize = True
+        pnlJobTitle.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlJobTitle.Controls.Add(lblJobTitle)
         pnlJobTitle.Controls.Add(txtJobTitle)
         pnlJobTitle.Dock = DockStyle.Fill
@@ -926,6 +922,7 @@ Partial Class FrmMain
         ' pnlName
         ' 
         pnlName.AutoSize = True
+        pnlName.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlName.Controls.Add(txtName)
         pnlName.Controls.Add(lblName)
         pnlName.Dock = DockStyle.Fill
@@ -937,6 +934,7 @@ Partial Class FrmMain
         ' pnlEmail
         ' 
         pnlEmail.AutoSize = True
+        pnlEmail.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlEmail.Controls.Add(lblEmail)
         pnlEmail.Controls.Add(txtEmail)
         pnlEmail.Dock = DockStyle.Fill
@@ -948,6 +946,7 @@ Partial Class FrmMain
         ' pnlPhoneNumber
         ' 
         pnlPhoneNumber.AutoSize = True
+        pnlPhoneNumber.AutoSizeMode = AutoSizeMode.GrowAndShrink
         pnlPhoneNumber.Controls.Add(lblPhoneNumber)
         pnlPhoneNumber.Controls.Add(txtPhoneNumber)
         pnlPhoneNumber.Dock = DockStyle.Fill
@@ -956,15 +955,27 @@ Partial Class FrmMain
         pnlPhoneNumber.Size = New Size(234, 42)
         pnlPhoneNumber.TabIndex = 2
         ' 
+        ' btnMenuControl
+        ' 
+        btnMenuControl.BackColor = Color.Transparent
+        btnMenuControl.FlatAppearance.BorderSize = 0
+        btnMenuControl.FlatStyle = FlatStyle.Flat
+        btnMenuControl.Image = CType(resources.GetObject("btnMenuControl.Image"), Image)
+        btnMenuControl.Location = New Point(3, 64)
+        btnMenuControl.Name = "btnMenuControl"
+        btnMenuControl.Size = New Size(87, 96)
+        btnMenuControl.TabIndex = 12
+        btnMenuControl.UseVisualStyleBackColor = False
+        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1378, 683)
+        Controls.Add(btnMenuControl)
         Controls.Add(pnlBody)
         Controls.Add(tbplSearchCriteria)
         Controls.Add(pnlBottom)
-        Controls.Add(mnuMenuStrip)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = mnuMenuStrip
         Name = "FrmMain"
@@ -1006,7 +1017,6 @@ Partial Class FrmMain
     End Sub
 
     Friend WithEvents mnuMenuStrip As MenuStrip
-    Friend WithEvents mnuItmMenu As ToolStripMenuItem
     Friend WithEvents mnuItmHelp As ToolStripMenuItem
     Friend WithEvents mnuItmAbout As ToolStripMenuItem
     Friend WithEvents pnlBottom As Panel
@@ -1081,5 +1091,6 @@ Partial Class FrmMain
     Friend WithEvents pnlDateOfBirth As Panel
     Friend WithEvents pnlCompany As Panel
     Friend WithEvents pnlAddress As Panel
+    Friend WithEvents btnMenuControl As Button
 
 End Class

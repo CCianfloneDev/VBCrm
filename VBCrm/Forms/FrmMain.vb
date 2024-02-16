@@ -12,7 +12,7 @@ Public Class FrmMain
     ''' Indicates if the menu bar is expanded or not.
     ''' </summary>
     ''' <returns>True if the user has clicked the "hamburger icon" and the menu bar is open.</returns>
-    Public Property IsMenuExpanded As Boolean = False
+    Public Property IsMenuExpanded As Boolean = True
 
 #Region "Properties"
     ''' <summary>
@@ -39,7 +39,6 @@ Public Class FrmMain
             SetColumnDisplayIndex()
             SetLastVisibleColumnToFill(dgvResults)
             SetSearchFieldVisibility()
-            'ArrangeControlsInTableLayoutPanel(tbplSearchCriteria)
 
             btnSearch.PerformClick()
             dgvResults.ClearSelection()
@@ -66,37 +65,37 @@ Public Class FrmMain
 
 #Region "Menu events"
 
-    ''' <summary>
-    ''' Handles the main menu item click event.
-    ''' </summary>
-    Private Sub MnuItmMenu_Click(sender As Object, e As EventArgs) Handles mnuItmMenu.Click
-        Try
-            Dim assembly As Assembly = Assembly.GetExecutingAssembly()
-            Dim image As Image
+    '''' <summary>
+    '''' Handles the main menu item click event.
+    '''' </summary>
+    'Private Sub MnuItmMenu_Click(sender As Object, e As EventArgs) Handles mnuItmMenu.Click
+    '    Try
+    '        Dim assembly As Assembly = Assembly.GetExecutingAssembly()
+    '        Dim image As Image
 
-            If Not Me.IsMenuExpanded Then
-                Me.IsMenuExpanded = True
+    '        If Not Me.IsMenuExpanded Then
+    '            Me.IsMenuExpanded = True
 
-                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
-            Else
-                Me.IsMenuExpanded = False
+    '            image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
+    '        Else
+    '            Me.IsMenuExpanded = False
 
-                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-closed.png"))
-            End If
+    '            image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-closed.png"))
+    '        End If
 
-            mnuItmMenu.Image = image
+    '        mnuItmMenu.Image = image
 
-            For Each menuItem As ToolStripItem In mnuMenuStrip.Items
-                If menuItem.Name <> mnuItmMenu.Name Then
-                    menuItem.Visible = Me.IsMenuExpanded
-                End If
-            Next
-        Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
-            Utilities.DbOperations.InsertErrorLog(errorMessage)
-            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '        For Each menuItem As ToolStripItem In mnuMenuStrip.Items
+    '            If menuItem.Name <> mnuItmMenu.Name Then
+    '                menuItem.Visible = Me.IsMenuExpanded
+    '            End If
+    '        Next
+    '    Catch ex As Exception
+    '        Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
+    '        Utilities.DbOperations.InsertErrorLog(errorMessage)
+    '        MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
 
     ''' <summary>
     ''' Handles the about menu item click event.
@@ -320,6 +319,37 @@ Public Class FrmMain
 #End Region
 
 #Region "Button events"
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnMenuControl.Click
+        Try
+            Dim assembly As Assembly = Assembly.GetExecutingAssembly()
+            Dim image As Image
+
+            If Not Me.IsMenuExpanded Then
+                Me.IsMenuExpanded = True
+
+                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
+            Else
+                Me.IsMenuExpanded = False
+
+                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-closed.png"))
+            End If
+
+            btnMenuControl.Image = image
+
+            mnuMenuStrip.Visible = Me.IsMenuExpanded
+
+            'For Each menuItem As ToolStripItem In mnuMenuStrip.Items
+            '    menuItem.Visible = Me.IsMenuExpanded
+            'Next
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 
     ''' <summary>
     ''' Handles the search button click event.
