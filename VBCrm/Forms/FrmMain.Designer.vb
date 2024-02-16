@@ -47,7 +47,6 @@ Partial Class FrmMain
         mnuItmHelp = New ToolStripMenuItem()
         mnuItmAbout = New ToolStripMenuItem()
         mnuItmViewErrorLogs = New ToolStripMenuItem()
-        pnlSearchCriteria = New Panel()
         lblNotes = New Controls.MaterialLabel()
         txtNotes = New Controls.MaterialTextBox()
         lblDateOfBirth = New Controls.MaterialLabel()
@@ -87,14 +86,35 @@ Partial Class FrmMain
         cMnuExport = New ToolStripMenuItem()
         ContactBindingSource1 = New BindingSource(components)
         ContactBindingSource = New BindingSource(components)
+        tbplSearchCriteria = New TableLayoutPanel()
+        pnlButtons = New Panel()
+        pnlDateOfBirth = New Panel()
+        pnlCompany = New Panel()
+        pnlAddress = New Panel()
+        pnlId = New Panel()
+        pnlNotes = New Panel()
+        pnlJobTitle = New Panel()
+        pnlName = New Panel()
+        pnlEmail = New Panel()
+        pnlPhoneNumber = New Panel()
         mnuMenuStrip.SuspendLayout()
-        pnlSearchCriteria.SuspendLayout()
         pnlBottom.SuspendLayout()
         pnlBody.SuspendLayout()
         CType(dgvResults, ComponentModel.ISupportInitialize).BeginInit()
         cMnu.SuspendLayout()
         CType(ContactBindingSource1, ComponentModel.ISupportInitialize).BeginInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).BeginInit()
+        tbplSearchCriteria.SuspendLayout()
+        pnlButtons.SuspendLayout()
+        pnlDateOfBirth.SuspendLayout()
+        pnlCompany.SuspendLayout()
+        pnlAddress.SuspendLayout()
+        pnlId.SuspendLayout()
+        pnlNotes.SuspendLayout()
+        pnlJobTitle.SuspendLayout()
+        pnlName.SuspendLayout()
+        pnlEmail.SuspendLayout()
+        pnlPhoneNumber.SuspendLayout()
         SuspendLayout()
         ' 
         ' mnuMenuStrip
@@ -262,40 +282,12 @@ Partial Class FrmMain
         mnuItmViewErrorLogs.Size = New Size(164, 22)
         mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
-        ' pnlSearchCriteria
-        ' 
-        pnlSearchCriteria.Controls.Add(lblNotes)
-        pnlSearchCriteria.Controls.Add(txtNotes)
-        pnlSearchCriteria.Controls.Add(lblDateOfBirth)
-        pnlSearchCriteria.Controls.Add(txtDateOfBirth)
-        pnlSearchCriteria.Controls.Add(lblJobTitle)
-        pnlSearchCriteria.Controls.Add(txtJobTitle)
-        pnlSearchCriteria.Controls.Add(lblCompany)
-        pnlSearchCriteria.Controls.Add(txtCompany)
-        pnlSearchCriteria.Controls.Add(lblAddress)
-        pnlSearchCriteria.Controls.Add(txtAddress)
-        pnlSearchCriteria.Controls.Add(lblId)
-        pnlSearchCriteria.Controls.Add(txtId)
-        pnlSearchCriteria.Controls.Add(lblEmail)
-        pnlSearchCriteria.Controls.Add(txtEmail)
-        pnlSearchCriteria.Controls.Add(lblName)
-        pnlSearchCriteria.Controls.Add(lblPhoneNumber)
-        pnlSearchCriteria.Controls.Add(txtName)
-        pnlSearchCriteria.Controls.Add(txtPhoneNumber)
-        pnlSearchCriteria.Controls.Add(btnClear)
-        pnlSearchCriteria.Controls.Add(btnSearch)
-        pnlSearchCriteria.Dock = DockStyle.Top
-        pnlSearchCriteria.Location = New Point(90, 64)
-        pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(1285, 105)
-        pnlSearchCriteria.TabIndex = 0
-        ' 
         ' lblNotes
         ' 
         lblNotes.AutoSize = True
         lblNotes.Depth = 0
         lblNotes.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblNotes.Location = New Point(1005, 11)
+        lblNotes.Location = New Point(3, 12)
         lblNotes.MouseState = MouseState.HOVER
         lblNotes.Name = "lblNotes"
         lblNotes.Size = New Size(42, 19)
@@ -310,12 +302,12 @@ Partial Class FrmMain
         txtNotes.Depth = 0
         txtNotes.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtNotes.LeadingIcon = Nothing
-        txtNotes.Location = New Point(1053, 8)
+        txtNotes.Location = New Point(51, 3)
         txtNotes.MaxLength = 50
         txtNotes.MouseState = MouseState.OUT
         txtNotes.Multiline = False
         txtNotes.Name = "txtNotes"
-        txtNotes.Size = New Size(216, 36)
+        txtNotes.Size = New Size(285, 36)
         txtNotes.TabIndex = 4
         txtNotes.Tag = "Notes"
         txtNotes.Text = ""
@@ -327,7 +319,7 @@ Partial Class FrmMain
         lblDateOfBirth.AutoSize = True
         lblDateOfBirth.Depth = 0
         lblDateOfBirth.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblDateOfBirth.Location = New Point(718, 56)
+        lblDateOfBirth.Location = New Point(3, 13)
         lblDateOfBirth.MouseState = MouseState.HOVER
         lblDateOfBirth.Name = "lblDateOfBirth"
         lblDateOfBirth.Size = New Size(89, 19)
@@ -342,12 +334,12 @@ Partial Class FrmMain
         txtDateOfBirth.Depth = 0
         txtDateOfBirth.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtDateOfBirth.LeadingIcon = Nothing
-        txtDateOfBirth.Location = New Point(813, 53)
+        txtDateOfBirth.Location = New Point(98, 3)
         txtDateOfBirth.MaxLength = 50
         txtDateOfBirth.MouseState = MouseState.OUT
         txtDateOfBirth.Multiline = False
         txtDateOfBirth.Name = "txtDateOfBirth"
-        txtDateOfBirth.Size = New Size(169, 36)
+        txtDateOfBirth.Size = New Size(138, 36)
         txtDateOfBirth.TabIndex = 8
         txtDateOfBirth.Tag = "Date of birth"
         txtDateOfBirth.Text = ""
@@ -359,7 +351,7 @@ Partial Class FrmMain
         lblJobTitle.AutoSize = True
         lblJobTitle.Depth = 0
         lblJobTitle.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblJobTitle.Location = New Point(749, 11)
+        lblJobTitle.Location = New Point(3, 12)
         lblJobTitle.MouseState = MouseState.HOVER
         lblJobTitle.Name = "lblJobTitle"
         lblJobTitle.Size = New Size(58, 19)
@@ -374,7 +366,7 @@ Partial Class FrmMain
         txtJobTitle.Depth = 0
         txtJobTitle.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtJobTitle.LeadingIcon = Nothing
-        txtJobTitle.Location = New Point(813, 8)
+        txtJobTitle.Location = New Point(67, 3)
         txtJobTitle.MaxLength = 50
         txtJobTitle.MouseState = MouseState.OUT
         txtJobTitle.Multiline = False
@@ -391,7 +383,7 @@ Partial Class FrmMain
         lblCompany.AutoSize = True
         lblCompany.Depth = 0
         lblCompany.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblCompany.Location = New Point(430, 56)
+        lblCompany.Location = New Point(3, 13)
         lblCompany.MouseState = MouseState.HOVER
         lblCompany.Name = "lblCompany"
         lblCompany.Size = New Size(69, 19)
@@ -406,12 +398,12 @@ Partial Class FrmMain
         txtCompany.Depth = 0
         txtCompany.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtCompany.LeadingIcon = Nothing
-        txtCompany.Location = New Point(505, 53)
+        txtCompany.Location = New Point(78, 3)
         txtCompany.MaxLength = 50
         txtCompany.MouseState = MouseState.OUT
         txtCompany.Multiline = False
         txtCompany.Name = "txtCompany"
-        txtCompany.Size = New Size(197, 36)
+        txtCompany.Size = New Size(153, 36)
         txtCompany.TabIndex = 7
         txtCompany.Tag = "Company"
         txtCompany.Text = ""
@@ -423,7 +415,7 @@ Partial Class FrmMain
         lblAddress.AutoSize = True
         lblAddress.Depth = 0
         lblAddress.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblAddress.Location = New Point(153, 56)
+        lblAddress.Location = New Point(3, 13)
         lblAddress.MouseState = MouseState.HOVER
         lblAddress.Name = "lblAddress"
         lblAddress.Size = New Size(58, 19)
@@ -438,12 +430,12 @@ Partial Class FrmMain
         txtAddress.Depth = 0
         txtAddress.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtAddress.LeadingIcon = Nothing
-        txtAddress.Location = New Point(217, 53)
+        txtAddress.Location = New Point(67, 3)
         txtAddress.MaxLength = 50
         txtAddress.MouseState = MouseState.OUT
         txtAddress.Multiline = False
         txtAddress.Name = "txtAddress"
-        txtAddress.Size = New Size(197, 36)
+        txtAddress.Size = New Size(164, 36)
         txtAddress.TabIndex = 6
         txtAddress.Tag = "Address"
         txtAddress.Text = ""
@@ -455,7 +447,7 @@ Partial Class FrmMain
         lblId.AutoSize = True
         lblId.Depth = 0
         lblId.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblId.Location = New Point(24, 56)
+        lblId.Location = New Point(3, 13)
         lblId.MouseState = MouseState.HOVER
         lblId.Name = "lblId"
         lblId.Size = New Size(16, 19)
@@ -470,12 +462,12 @@ Partial Class FrmMain
         txtId.Depth = 0
         txtId.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtId.LeadingIcon = Nothing
-        txtId.Location = New Point(46, 53)
+        txtId.Location = New Point(25, 3)
         txtId.MaxLength = 50
         txtId.MouseState = MouseState.OUT
         txtId.Multiline = False
         txtId.Name = "txtId"
-        txtId.Size = New Size(92, 36)
+        txtId.Size = New Size(184, 36)
         txtId.TabIndex = 5
         txtId.Tag = "ID"
         txtId.Text = ""
@@ -487,7 +479,7 @@ Partial Class FrmMain
         lblEmail.AutoSize = True
         lblEmail.Depth = 0
         lblEmail.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblEmail.Location = New Point(272, 11)
+        lblEmail.Location = New Point(3, 12)
         lblEmail.MouseState = MouseState.HOVER
         lblEmail.Name = "lblEmail"
         lblEmail.Size = New Size(41, 19)
@@ -502,12 +494,12 @@ Partial Class FrmMain
         txtEmail.Depth = 0
         txtEmail.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtEmail.LeadingIcon = Nothing
-        txtEmail.Location = New Point(321, 9)
+        txtEmail.Location = New Point(50, 3)
         txtEmail.MaxLength = 50
         txtEmail.MouseState = MouseState.OUT
         txtEmail.Multiline = False
         txtEmail.Name = "txtEmail"
-        txtEmail.Size = New Size(157, 36)
+        txtEmail.Size = New Size(181, 36)
         txtEmail.TabIndex = 1
         txtEmail.Tag = "Email"
         txtEmail.Text = ""
@@ -519,7 +511,7 @@ Partial Class FrmMain
         lblName.AutoSize = True
         lblName.Depth = 0
         lblName.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblName.Location = New Point(24, 11)
+        lblName.Location = New Point(3, 12)
         lblName.MouseState = MouseState.HOVER
         lblName.Name = "lblName"
         lblName.Size = New Size(43, 19)
@@ -532,7 +524,7 @@ Partial Class FrmMain
         lblPhoneNumber.AutoSize = True
         lblPhoneNumber.Depth = 0
         lblPhoneNumber.Font = New Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel)
-        lblPhoneNumber.Location = New Point(505, 11)
+        lblPhoneNumber.Location = New Point(3, 12)
         lblPhoneNumber.MouseState = MouseState.HOVER
         lblPhoneNumber.Name = "lblPhoneNumber"
         lblPhoneNumber.Size = New Size(60, 19)
@@ -547,7 +539,7 @@ Partial Class FrmMain
         txtName.Depth = 0
         txtName.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtName.LeadingIcon = Nothing
-        txtName.Location = New Point(90, 9)
+        txtName.Location = New Point(52, 3)
         txtName.MaxLength = 50
         txtName.MouseState = MouseState.OUT
         txtName.Multiline = False
@@ -566,7 +558,7 @@ Partial Class FrmMain
         txtPhoneNumber.Depth = 0
         txtPhoneNumber.Font = New Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel)
         txtPhoneNumber.LeadingIcon = Nothing
-        txtPhoneNumber.Location = New Point(571, 11)
+        txtPhoneNumber.Location = New Point(69, 3)
         txtPhoneNumber.MaxLength = 50
         txtPhoneNumber.MouseState = MouseState.OUT
         txtPhoneNumber.Multiline = False
@@ -588,7 +580,7 @@ Partial Class FrmMain
         btnClear.ForeColor = SystemColors.ControlText
         btnClear.HighEmphasis = True
         btnClear.Icon = Nothing
-        btnClear.Location = New Point(1165, 55)
+        btnClear.Location = New Point(179, 6)
         btnClear.Margin = New Padding(4, 6, 4, 6)
         btnClear.MouseState = MouseState.HOVER
         btnClear.Name = "btnClear"
@@ -610,7 +602,7 @@ Partial Class FrmMain
         btnSearch.ForeColor = SystemColors.ControlText
         btnSearch.HighEmphasis = True
         btnSearch.Icon = Nothing
-        btnSearch.Location = New Point(1076, 55)
+        btnSearch.Location = New Point(93, 6)
         btnSearch.Margin = New Padding(4, 6, 4, 6)
         btnSearch.MouseState = MouseState.HOVER
         btnSearch.Name = "btnSearch"
@@ -703,9 +695,9 @@ Partial Class FrmMain
         ' 
         pnlBody.Controls.Add(dgvResults)
         pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(90, 169)
+        pnlBody.Location = New Point(90, 166)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(1285, 446)
+        pnlBody.Size = New Size(1285, 449)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -737,7 +729,7 @@ Partial Class FrmMain
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(1285, 446)
+        dgvResults.Size = New Size(1285, 449)
         dgvResults.TabIndex = 0
         dgvResults.TabStop = False
         ' 
@@ -826,14 +818,152 @@ Partial Class FrmMain
         ' 
         ContactBindingSource1.DataSource = GetType(Contact)
         ' 
+        ' tbplSearchCriteria
+        ' 
+        tbplSearchCriteria.AutoSize = True
+        tbplSearchCriteria.ColumnCount = 5
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.ColumnStyles.Add(New ColumnStyle())
+        tbplSearchCriteria.Controls.Add(pnlButtons, 4, 1)
+        tbplSearchCriteria.Controls.Add(pnlDateOfBirth, 3, 1)
+        tbplSearchCriteria.Controls.Add(pnlCompany, 2, 1)
+        tbplSearchCriteria.Controls.Add(pnlAddress, 1, 1)
+        tbplSearchCriteria.Controls.Add(pnlId, 0, 1)
+        tbplSearchCriteria.Controls.Add(pnlNotes, 4, 0)
+        tbplSearchCriteria.Controls.Add(pnlJobTitle, 3, 0)
+        tbplSearchCriteria.Controls.Add(pnlName, 0, 0)
+        tbplSearchCriteria.Controls.Add(pnlEmail, 1, 0)
+        tbplSearchCriteria.Controls.Add(pnlPhoneNumber, 2, 0)
+        tbplSearchCriteria.Dock = DockStyle.Top
+        tbplSearchCriteria.Location = New Point(90, 64)
+        tbplSearchCriteria.Name = "tbplSearchCriteria"
+        tbplSearchCriteria.RowCount = 2
+        tbplSearchCriteria.RowStyles.Add(New RowStyle())
+        tbplSearchCriteria.RowStyles.Add(New RowStyle())
+        tbplSearchCriteria.Size = New Size(1285, 102)
+        tbplSearchCriteria.TabIndex = 30
+        ' 
+        ' pnlButtons
+        ' 
+        pnlButtons.AutoSize = True
+        pnlButtons.Controls.Add(btnSearch)
+        pnlButtons.Controls.Add(btnClear)
+        pnlButtons.Dock = DockStyle.Fill
+        pnlButtons.Location = New Point(946, 51)
+        pnlButtons.Name = "pnlButtons"
+        pnlButtons.Size = New Size(339, 48)
+        pnlButtons.TabIndex = 9
+        ' 
+        ' pnlDateOfBirth
+        ' 
+        pnlDateOfBirth.AutoSize = True
+        pnlDateOfBirth.Controls.Add(lblDateOfBirth)
+        pnlDateOfBirth.Controls.Add(txtDateOfBirth)
+        pnlDateOfBirth.Dock = DockStyle.Fill
+        pnlDateOfBirth.Location = New Point(701, 51)
+        pnlDateOfBirth.Name = "pnlDateOfBirth"
+        pnlDateOfBirth.Size = New Size(239, 48)
+        pnlDateOfBirth.TabIndex = 8
+        ' 
+        ' pnlCompany
+        ' 
+        pnlCompany.AutoSize = True
+        pnlCompany.Controls.Add(lblCompany)
+        pnlCompany.Controls.Add(txtCompany)
+        pnlCompany.Dock = DockStyle.Fill
+        pnlCompany.Location = New Point(461, 51)
+        pnlCompany.Name = "pnlCompany"
+        pnlCompany.Size = New Size(234, 48)
+        pnlCompany.TabIndex = 7
+        ' 
+        ' pnlAddress
+        ' 
+        pnlAddress.AutoSize = True
+        pnlAddress.Controls.Add(lblAddress)
+        pnlAddress.Controls.Add(txtAddress)
+        pnlAddress.Dock = DockStyle.Fill
+        pnlAddress.Location = New Point(221, 51)
+        pnlAddress.Name = "pnlAddress"
+        pnlAddress.Size = New Size(234, 48)
+        pnlAddress.TabIndex = 6
+        ' 
+        ' pnlId
+        ' 
+        pnlId.AutoSize = True
+        pnlId.Controls.Add(lblId)
+        pnlId.Controls.Add(txtId)
+        pnlId.Dock = DockStyle.Fill
+        pnlId.Location = New Point(3, 51)
+        pnlId.Name = "pnlId"
+        pnlId.Size = New Size(212, 48)
+        pnlId.TabIndex = 5
+        ' 
+        ' pnlNotes
+        ' 
+        pnlNotes.AutoSize = True
+        pnlNotes.Controls.Add(lblNotes)
+        pnlNotes.Controls.Add(txtNotes)
+        pnlNotes.Dock = DockStyle.Fill
+        pnlNotes.Location = New Point(946, 3)
+        pnlNotes.Name = "pnlNotes"
+        pnlNotes.Size = New Size(339, 42)
+        pnlNotes.TabIndex = 4
+        ' 
+        ' pnlJobTitle
+        ' 
+        pnlJobTitle.AutoSize = True
+        pnlJobTitle.Controls.Add(lblJobTitle)
+        pnlJobTitle.Controls.Add(txtJobTitle)
+        pnlJobTitle.Dock = DockStyle.Fill
+        pnlJobTitle.Location = New Point(701, 3)
+        pnlJobTitle.Name = "pnlJobTitle"
+        pnlJobTitle.Size = New Size(239, 42)
+        pnlJobTitle.TabIndex = 3
+        ' 
+        ' pnlName
+        ' 
+        pnlName.AutoSize = True
+        pnlName.Controls.Add(txtName)
+        pnlName.Controls.Add(lblName)
+        pnlName.Dock = DockStyle.Fill
+        pnlName.Location = New Point(3, 3)
+        pnlName.Name = "pnlName"
+        pnlName.Size = New Size(212, 42)
+        pnlName.TabIndex = 0
+        ' 
+        ' pnlEmail
+        ' 
+        pnlEmail.AutoSize = True
+        pnlEmail.Controls.Add(lblEmail)
+        pnlEmail.Controls.Add(txtEmail)
+        pnlEmail.Dock = DockStyle.Fill
+        pnlEmail.Location = New Point(221, 3)
+        pnlEmail.Name = "pnlEmail"
+        pnlEmail.Size = New Size(234, 42)
+        pnlEmail.TabIndex = 1
+        ' 
+        ' pnlPhoneNumber
+        ' 
+        pnlPhoneNumber.AutoSize = True
+        pnlPhoneNumber.Controls.Add(lblPhoneNumber)
+        pnlPhoneNumber.Controls.Add(txtPhoneNumber)
+        pnlPhoneNumber.Dock = DockStyle.Fill
+        pnlPhoneNumber.Location = New Point(461, 3)
+        pnlPhoneNumber.Name = "pnlPhoneNumber"
+        pnlPhoneNumber.Size = New Size(234, 42)
+        pnlPhoneNumber.TabIndex = 2
+        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1378, 683)
         Controls.Add(pnlBody)
+        Controls.Add(tbplSearchCriteria)
         Controls.Add(pnlBottom)
-        Controls.Add(pnlSearchCriteria)
         Controls.Add(mnuMenuStrip)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = mnuMenuStrip
@@ -842,8 +972,6 @@ Partial Class FrmMain
         Text = "Your personal CRM"
         mnuMenuStrip.ResumeLayout(False)
         mnuMenuStrip.PerformLayout()
-        pnlSearchCriteria.ResumeLayout(False)
-        pnlSearchCriteria.PerformLayout()
         pnlBottom.ResumeLayout(False)
         pnlBottom.PerformLayout()
         pnlBody.ResumeLayout(False)
@@ -851,14 +979,36 @@ Partial Class FrmMain
         cMnu.ResumeLayout(False)
         CType(ContactBindingSource1, ComponentModel.ISupportInitialize).EndInit()
         CType(ContactBindingSource, ComponentModel.ISupportInitialize).EndInit()
+        tbplSearchCriteria.ResumeLayout(False)
+        tbplSearchCriteria.PerformLayout()
+        pnlButtons.ResumeLayout(False)
+        pnlButtons.PerformLayout()
+        pnlDateOfBirth.ResumeLayout(False)
+        pnlDateOfBirth.PerformLayout()
+        pnlCompany.ResumeLayout(False)
+        pnlCompany.PerformLayout()
+        pnlAddress.ResumeLayout(False)
+        pnlAddress.PerformLayout()
+        pnlId.ResumeLayout(False)
+        pnlId.PerformLayout()
+        pnlNotes.ResumeLayout(False)
+        pnlNotes.PerformLayout()
+        pnlJobTitle.ResumeLayout(False)
+        pnlJobTitle.PerformLayout()
+        pnlName.ResumeLayout(False)
+        pnlName.PerformLayout()
+        pnlEmail.ResumeLayout(False)
+        pnlEmail.PerformLayout()
+        pnlPhoneNumber.ResumeLayout(False)
+        pnlPhoneNumber.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents mnuMenuStrip As MenuStrip
     Friend WithEvents mnuItmMenu As ToolStripMenuItem
     Friend WithEvents mnuItmHelp As ToolStripMenuItem
     Friend WithEvents mnuItmAbout As ToolStripMenuItem
-    Friend WithEvents pnlSearchCriteria As Panel
     Friend WithEvents pnlBottom As Panel
     Friend WithEvents pnlBody As Panel
     Friend WithEvents txtPhoneNumber1 As TextBox
@@ -920,5 +1070,16 @@ Partial Class FrmMain
     Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
     Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
     Friend WithEvents colNotes As DataGridViewTextBoxColumn
+    Friend WithEvents tbplSearchCriteria As TableLayoutPanel
+    Friend WithEvents pnlId As Panel
+    Friend WithEvents pnlNotes As Panel
+    Friend WithEvents pnlJobTitle As Panel
+    Friend WithEvents pnlName As Panel
+    Friend WithEvents pnlEmail As Panel
+    Friend WithEvents pnlPhoneNumber As Panel
+    Friend WithEvents pnlButtons As Panel
+    Friend WithEvents pnlDateOfBirth As Panel
+    Friend WithEvents pnlCompany As Panel
+    Friend WithEvents pnlAddress As Panel
 
 End Class

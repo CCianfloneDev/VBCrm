@@ -79,7 +79,7 @@ Partial Class FrmSettings
         pnlSearchCriteria.Dock = DockStyle.Fill
         pnlSearchCriteria.Location = New Point(3, 69)
         pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(496, 578)
+        pnlSearchCriteria.Size = New Size(496, 327)
         pnlSearchCriteria.TabIndex = 2
         ' 
         ' btnGridSettingsCollapse
@@ -146,7 +146,7 @@ Partial Class FrmSettings
         tbplBody.RowStyles.Add(New RowStyle())
         tbplBody.RowStyles.Add(New RowStyle())
         tbplBody.RowStyles.Add(New RowStyle())
-        tbplBody.Size = New Size(502, 650)
+        tbplBody.Size = New Size(502, 399)
         tbplBody.TabIndex = 6
         ' 
         ' FrmSettings
@@ -154,8 +154,10 @@ Partial Class FrmSettings
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         AutoSize = True
-        ClientSize = New Size(508, 717)
+        AutoSizeMode = AutoSizeMode.GrowAndShrink
+        ClientSize = New Size(508, 466)
         Controls.Add(tbplBody)
+        MinimumSize = New Size(508, 143)
         Name = "FrmSettings"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Settings"

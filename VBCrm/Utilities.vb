@@ -253,8 +253,16 @@ Module Utilities
         Dim lastVisibleColumn As DataGridViewColumn = Nothing
         Dim highestDisplayIndex As Integer = Integer.MinValue
 
+        ' Loop through all columns and set its auto size mode to column header autosize mode
+        For Each column As DataGridViewColumn In dgv.Columns
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+            'Debug.Print(column.Name & " - " & column.DisplayIndex & " - " & column.AutoSizeMode)
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet
+        Next
+
         ' first resize all columns to fit column header
         dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader)
+
 
         ' Find the last visible column based on the highest display index
         For Each column As DataGridViewColumn In dgv.Columns
@@ -269,5 +277,29 @@ Module Utilities
             lastVisibleColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         End If
     End Sub
+
+    'Public Sub ArrangeControlsInTableLayoutPanel(tableLayoutPanel As TableLayoutPanel)
+    '    Dim rowCounter As Integer = 0
+    '    Dim columnCounter As Integer = 0
+
+    '    For Each panel As Panel In tableLayoutPanel.Controls.OfType(Of Panel)()
+    '        For Each control As Control In panel.Controls
+    '            If control.Visible Then
+    '                ' Set the row and column for the control
+    '                tableLayoutPanel.SetRow(panel, rowCounter)
+    '                tableLayoutPanel.SetColumn(panel, columnCounter)
+
+    '                ' Move to the next column
+    '                columnCounter += 1
+
+    '                ' Move to the next row if the current row is full
+    '                If columnCounter >= tableLayoutPanel.ColumnCount Then
+    '                    columnCounter = 0
+    '                    rowCounter += 1
+    '                End If
+    '            End If
+    '        Next
+    '    Next
+    'End Sub
 
 End Module

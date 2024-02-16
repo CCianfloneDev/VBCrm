@@ -39,6 +39,7 @@ Public Class FrmMain
             SetColumnDisplayIndex()
             SetLastVisibleColumnToFill(dgvResults)
             SetSearchFieldVisibility()
+            'ArrangeControlsInTableLayoutPanel(tbplSearchCriteria)
 
             btnSearch.PerformClick()
             dgvResults.ClearSelection()
@@ -508,13 +509,20 @@ Public Class FrmMain
     Private Sub SetSearchFieldVisibility()
         Dim visibilityData As Dictionary(Of String, Boolean) = Utilities.DbOperations.GetSearchFieldVisibility()
 
-        For Each control As Control In pnlSearchCriteria.Controls
-            If control.GetType() Is GetType(MaterialTextBox) OrElse control.GetType() Is GetType(MaterialLabel) Then
-                Dim value As Boolean = Nothing
+        For Each panel As Control In tbplSearchCriteria.Controls
+            Debug.Print(panel.Name)
+            If panel.GetType() Is GetType(Panel) Then
+                For Each control As Control In panel.Controls
+                    Debug.Print(control.Name)
+                    If control.GetType() Is GetType(MaterialTextBox) OrElse control.GetType() Is GetType(MaterialLabel) Then
+                        Dim value As Boolean = Nothing
 
-                If visibilityData.TryGetValue(control.Tag.ToString(), value) Then
-                    control.Visible = value
-                End If
+                        If visibilityData.TryGetValue(control.Tag.ToString(), value) Then
+                            control.Visible = value
+                            panel.Visible = value
+                        End If
+                    End If
+                Next
             End If
         Next
     End Sub

@@ -2,7 +2,7 @@
 Imports MaterialSkin.Controls
 
 ''' <summary>
-''' Represents the grid settings form.
+''' Represents the settings form.
 ''' </summary>
 Public Class FrmSettings
 
@@ -26,9 +26,9 @@ Public Class FrmSettings
 
 #Region "Form events"
     ''' <summary>
-    ''' Handles the about form load event.
+    ''' Handles the settings form load event.
     ''' </summary>
-    Private Sub FrmAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ApplyColorScheme(form:=Me, theme:=Theme)
 
@@ -47,18 +47,22 @@ Public Class FrmSettings
             Next
 
             ' dynamically make checkboxes for each search field
-            For Each control As Control In FrmMain.pnlSearchCriteria.Controls
-                If control.GetType() Is GetType(MaterialTextBox) Then
-                    Dim checkBox As New MaterialCheckbox With {
-                        .Text = control.Tag.ToString(),
-                        .Checked = control.Visible,
-                        .Tag = control.Tag.ToString(),
-                        .Dock = DockStyle.Top,
-                        .AutoSize = True,
-                        .Name = control.Name
-                    }
-                    AddHandler checkBox.CheckedChanged, AddressOf SearchCriteriaCheckBox_CheckedChanged
-                    pnlSearchCriteria.Controls.Add(checkBox)
+            For Each panel As Control In FrmMain.tbplSearchCriteria.Controls
+                If panel.GetType() Is GetType(Panel) Then
+                    For Each control As Control In panel.Controls
+                        If control.GetType() Is GetType(MaterialTextBox) Then
+                            Dim checkBox As New MaterialCheckbox With {
+                                .Text = control.Tag.ToString(),
+                                .Checked = control.Visible,
+                                .Tag = control.Tag.ToString(),
+                                .Dock = DockStyle.Top,
+                                .AutoSize = True,
+                                .Name = control.Name
+                            }
+                            AddHandler checkBox.CheckedChanged, AddressOf SearchCriteriaCheckBox_CheckedChanged
+                            pnlSearchCriteria.Controls.Add(checkBox)
+                        End If
+                    Next
                 End If
             Next
 
@@ -78,7 +82,7 @@ Public Class FrmSettings
     Private Sub GridSettingCheckBox_CheckedChanged(sender As Object, e As EventArgs)
         Try
             Dim checkBox As MaterialCheckbox = CType(sender, MaterialCheckbox)
-            Dim columnIndex As Integer = GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DisplayIndex
+            Dim columnIndex As Integer = GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).Index
 
             GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).Visible = checkBox.Checked
             Utilities.DbOperations.UpdateColumnVisibility(GetColumnByDataPropertyName(checkBox.Name, ColumnCollection).DataPropertyName, isVisible:=checkBox.Checked)
@@ -103,13 +107,21 @@ Public Class FrmSettings
 
             Utilities.DbOperations.UpdateSearchFieldVisibility(checkBox.Tag.ToString(), isVisible:=checkBox.Checked)
 
-            For Each labelOrTextbox As Control In FrmMain.pnlSearchCriteria.Controls
-                If labelOrTextbox.Tag IsNot Nothing Then
-                    If labelOrTextbox.Tag.ToString() = checkBox.Tag.ToString() Then
-                        labelOrTextbox.Visible = checkBox.Checked
-                    End If
+            For Each panel As Control In FrmMain.tbplSearchCriteria.Controls
+                If panel.GetType() Is GetType(Panel) Then
+                    For Each control As Control In panel.Controls
+                        If control.Tag IsNot Nothing Then
+                            If control.Tag.ToString() = checkBox.Tag.ToString() Then
+                                control.Visible = checkBox.Checked
+                                panel.Visible = checkBox.Checked
+                            End If
+                        End If
+                    Next
                 End If
             Next
+
+            'ArrangeControlsInTableLayoutPanel(FrmMain.tbplSearchCriteria)
+
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
