@@ -103,10 +103,10 @@ Public Class FrmSettings
 
             Utilities.DbOperations.UpdateSearchFieldVisibility(checkBox.Tag.ToString(), isVisible:=checkBox.Checked)
 
-            For Each labelTextBoxPair As Control In FrmMain.pnlSearchCriteria.Controls
-                If labelTextBoxPair.Tag IsNot Nothing Then
-                    If labelTextBoxPair.Tag.ToString() = checkBox.Tag.ToString() Then
-                        labelTextBoxPair.Visible = checkBox.Checked
+            For Each labelOrTextbox As Control In FrmMain.pnlSearchCriteria.Controls
+                If labelOrTextbox.Tag IsNot Nothing Then
+                    If labelOrTextbox.Tag.ToString() = checkBox.Tag.ToString() Then
+                        labelOrTextbox.Visible = checkBox.Checked
                     End If
                 End If
             Next
@@ -137,6 +137,45 @@ Public Class FrmSettings
 
         Return Nothing
     End Function
+
+    ''' <summary>
+    ''' Handles the collapse button(s) click event.
+    ''' </summary>
+    Private Sub BtnCollapse_Click(sender As Object, e As EventArgs) Handles btnGridSettingsCollapse.Click, btnSearchFieldsCollapse.Click
+        Try
+            Dim collapseExpandButton As Button = CType(sender, Button)
+            Dim settingsPanel As Panel = GetPanel(collapseExpandButton)
+            Dim expanded As Boolean = Not settingsPanel.Visible
+
+            settingsPanel.Visible = Not settingsPanel.Visible
+
+            If expanded Then
+                collapseExpandButton.Text = "Collapse"
+            Else
+                collapseExpandButton.Text = "Expand"
+            End If
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Gets the settings panel associated with the passed collapsable button.
+    ''' </summary>
+    ''' <param name="collapseExpandButton">Collapsable button to get panel beside.</param>
+    ''' <returns>Panel that belongs to the passed button.</returns>
+    Private Function GetPanel(collapseExpandButton As Button) As Panel
+        If collapseExpandButton Is btnGridSettingsCollapse Then
+            Return pnlGridSettings
+        ElseIf collapseExpandButton Is btnSearchFieldsCollapse Then
+            Return pnlSearchCriteria
+        Else
+            Return Nothing
+        End If
+    End Function
+
 #End Region
 
 End Class

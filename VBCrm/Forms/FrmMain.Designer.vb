@@ -588,7 +588,7 @@ Partial Class FrmMain
         btnClear.ForeColor = SystemColors.ControlText
         btnClear.HighEmphasis = True
         btnClear.Icon = Nothing
-        btnClear.Location = New Point(1165, 60)
+        btnClear.Location = New Point(1165, 55)
         btnClear.Margin = New Padding(4, 6, 4, 6)
         btnClear.MouseState = MouseState.HOVER
         btnClear.Name = "btnClear"
@@ -610,7 +610,7 @@ Partial Class FrmMain
         btnSearch.ForeColor = SystemColors.ControlText
         btnSearch.HighEmphasis = True
         btnSearch.Icon = Nothing
-        btnSearch.Location = New Point(1076, 60)
+        btnSearch.Location = New Point(1076, 55)
         btnSearch.Margin = New Padding(4, 6, 4, 6)
         btnSearch.MouseState = MouseState.HOVER
         btnSearch.Name = "btnSearch"
@@ -641,7 +641,7 @@ Partial Class FrmMain
         btnDelete.Depth = 0
         btnDelete.HighEmphasis = True
         btnDelete.Icon = Nothing
-        btnDelete.Location = New Point(655, 14)
+        btnDelete.Location = New Point(773, 14)
         btnDelete.Margin = New Padding(4, 6, 4, 6)
         btnDelete.MouseState = MouseState.HOVER
         btnDelete.Name = "btnDelete"
@@ -664,7 +664,7 @@ Partial Class FrmMain
         btnEdit.ForeColor = SystemColors.ControlText
         btnEdit.HighEmphasis = True
         btnEdit.Icon = Nothing
-        btnEdit.Location = New Point(488, 14)
+        btnEdit.Location = New Point(606, 14)
         btnEdit.Margin = New Padding(4, 6, 4, 6)
         btnEdit.MouseState = MouseState.HOVER
         btnEdit.Name = "btnEdit"
@@ -687,7 +687,7 @@ Partial Class FrmMain
         btnNew.ForeColor = SystemColors.ControlText
         btnNew.HighEmphasis = True
         btnNew.Icon = Nothing
-        btnNew.Location = New Point(321, 14)
+        btnNew.Location = New Point(439, 14)
         btnNew.Margin = New Padding(4, 6, 4, 6)
         btnNew.MouseState = MouseState.HOVER
         btnNew.Name = "btnNew"
@@ -800,6 +800,7 @@ Partial Class FrmMain
         colDateOfBirth.HeaderText = "Date of birth"
         colDateOfBirth.Name = "colDateOfBirth"
         colDateOfBirth.ReadOnly = True
+        colDateOfBirth.Width = 90
         ' 
         ' colNotes
         ' 
@@ -897,15 +898,6 @@ Partial Class FrmMain
     Friend WithEvents mnuItmConfigureFields As ToolStripMenuItem
     Friend WithEvents ContactBindingSource As BindingSource
     Friend WithEvents ContactBindingSource1 As BindingSource
-    Friend WithEvents colId As DataGridViewTextBoxColumn
-    Friend WithEvents colName As DataGridViewTextBoxColumn
-    Friend WithEvents colPhone As DataGridViewTextBoxColumn
-    Friend WithEvents colEmail As DataGridViewTextBoxColumn
-    Friend WithEvents colAddress As DataGridViewTextBoxColumn
-    Friend WithEvents colCompany As DataGridViewTextBoxColumn
-    Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
-    Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
-    Friend WithEvents colNotes As DataGridViewTextBoxColumn
     Friend WithEvents mnuItmViewErrorLogs As ToolStripMenuItem
     Friend WithEvents lblCompany As Controls.MaterialLabel
     Friend WithEvents txtCompany As Controls.MaterialTextBox
@@ -919,5 +911,14 @@ Partial Class FrmMain
     Friend WithEvents txtDateOfBirth As Controls.MaterialTextBox
     Friend WithEvents lblJobTitle As Controls.MaterialLabel
     Friend WithEvents txtJobTitle As Controls.MaterialTextBox
+    Friend WithEvents colId As DataGridViewTextBoxColumn
+    Friend WithEvents colName As DataGridViewTextBoxColumn
+    Friend WithEvents colPhone As DataGridViewTextBoxColumn
+    Friend WithEvents colEmail As DataGridViewTextBoxColumn
+    Friend WithEvents colAddress As DataGridViewTextBoxColumn
+    Friend WithEvents colCompany As DataGridViewTextBoxColumn
+    Friend WithEvents colJobTitle As DataGridViewTextBoxColumn
+    Friend WithEvents colDateOfBirth As DataGridViewTextBoxColumn
+    Friend WithEvents colNotes As DataGridViewTextBoxColumn
 
 End Class

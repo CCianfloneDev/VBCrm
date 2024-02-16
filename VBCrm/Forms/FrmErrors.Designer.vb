@@ -123,7 +123,7 @@ Partial Class FrmErrors
         Controls.Add(txtErrors)
         Controls.Add(lblErrorLogs)
         Name = "FrmErrors"
-        StartPosition = FormStartPosition.CenterParent
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Errors"
         ResumeLayout(False)
         PerformLayout()

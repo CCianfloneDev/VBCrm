@@ -82,7 +82,7 @@ Partial Class FrmAbout
         Controls.Add(lnkLbl)
         Controls.Add(lblMessage)
         Name = "FrmAbout"
-        StartPosition = FormStartPosition.CenterParent
+        StartPosition = FormStartPosition.CenterScreen
         Text = "About - VBCrm"
         ResumeLayout(False)
         PerformLayout()

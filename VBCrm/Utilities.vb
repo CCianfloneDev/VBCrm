@@ -250,23 +250,23 @@ Module Utilities
     ''' </summary>
     ''' <param name="dgv">Datagridview to apply column settings to.</param>
     Public Sub SetLastVisibleColumnToFill(dgv As DataGridView)
-        ' Loop through all columns except the last one
-        For i As Integer = 0 To dgv.Columns.Count - 2
-            dgv.Columns(i).AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet
-        Next
+        Dim lastVisibleColumn As DataGridViewColumn = Nothing
+        Dim highestDisplayIndex As Integer = Integer.MinValue
 
-        ' Find the last visible column
-        Dim lastVisibleColumnIndex As Integer = -1
-        For i As Integer = dgv.Columns.Count - 1 To 0 Step -1
-            If dgv.Columns(i).Visible Then
-                lastVisibleColumnIndex = i
-                Exit For
+        ' first resize all columns to fit column header
+        dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.ColumnHeader)
+
+        ' Find the last visible column based on the highest display index
+        For Each column As DataGridViewColumn In dgv.Columns
+            If column.Visible AndAlso column.DisplayIndex > highestDisplayIndex Then
+                highestDisplayIndex = column.DisplayIndex
+                lastVisibleColumn = column
             End If
         Next
 
         ' Set AutoSizeMode of the last visible column to Fill
-        If lastVisibleColumnIndex >= 0 Then
-            dgv.Columns(lastVisibleColumnIndex).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        If lastVisibleColumn IsNot Nothing Then
+            lastVisibleColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         End If
     End Sub
 

@@ -349,7 +349,7 @@ Partial Class FrmCreateEdit
         Controls.Add(txtName)
         Controls.Add(txtPhoneNumber)
         Name = "FrmCreateEdit"
-        StartPosition = FormStartPosition.CenterParent
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Create Edit - Contact"
         ResumeLayout(False)
         PerformLayout()

@@ -37,6 +37,7 @@ Public Class FrmMain
             ApplyColorScheme(form:=Me, theme:=CurrentTheme)
             SetColumnVisibility()
             SetColumnDisplayIndex()
+            SetLastVisibleColumnToFill(dgvResults)
             SetSearchFieldVisibility()
 
             btnSearch.PerformClick()
@@ -484,8 +485,6 @@ Public Class FrmMain
                 column.Visible = value
             End If
         Next
-
-        SetLastVisibleColumnToFill(dgvResults)
     End Sub
 
     ''' <summary>

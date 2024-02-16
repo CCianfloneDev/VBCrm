@@ -22,87 +22,145 @@ Partial Class FrmSettings
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        pnlBody = New Panel()
-        pnlSearchCriteria = New Panel()
-        lblSearchCriteria = New Controls.MaterialLabel()
-        pnlGridSettings = New Panel()
         lblGridSettings = New Controls.MaterialLabel()
-        pnlBody.SuspendLayout()
+        pnlGridSettings = New Panel()
+        lblSearchCriteria = New Controls.MaterialLabel()
+        pnlSearchCriteria = New Panel()
+        btnGridSettingsCollapse = New Controls.MaterialButton()
+        btnSearchFieldsCollapse = New Controls.MaterialButton()
+        tbplBody = New TableLayoutPanel()
+        tbplBody.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' pnlBody
-        ' 
-        pnlBody.AutoSize = True
-        pnlBody.Controls.Add(pnlSearchCriteria)
-        pnlBody.Controls.Add(lblSearchCriteria)
-        pnlBody.Controls.Add(pnlGridSettings)
-        pnlBody.Controls.Add(lblGridSettings)
-        pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(3, 64)
-        pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(476, 326)
-        pnlBody.TabIndex = 7
-        ' 
-        ' pnlSearchCriteria
-        ' 
-        pnlSearchCriteria.AutoSize = True
-        pnlSearchCriteria.BorderStyle = BorderStyle.FixedSingle
-        pnlSearchCriteria.Dock = DockStyle.Fill
-        pnlSearchCriteria.Location = New Point(0, 60)
-        pnlSearchCriteria.Name = "pnlSearchCriteria"
-        pnlSearchCriteria.Size = New Size(476, 266)
-        pnlSearchCriteria.TabIndex = 2
-        ' 
-        ' lblSearchCriteria
-        ' 
-        lblSearchCriteria.AutoSize = True
-        lblSearchCriteria.Depth = 0
-        lblSearchCriteria.Dock = DockStyle.Top
-        lblSearchCriteria.Font = New Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel)
-        lblSearchCriteria.FontType = MaterialSkinManager.fontType.H5
-        lblSearchCriteria.Location = New Point(0, 31)
-        lblSearchCriteria.MouseState = MouseState.HOVER
-        lblSearchCriteria.Name = "lblSearchCriteria"
-        lblSearchCriteria.Size = New Size(159, 29)
-        lblSearchCriteria.TabIndex = 3
-        lblSearchCriteria.Text = "Search Criteria"
-        ' 
-        ' pnlGridSettings
-        ' 
-        pnlGridSettings.AutoSize = True
-        pnlGridSettings.BorderStyle = BorderStyle.FixedSingle
-        pnlGridSettings.Dock = DockStyle.Top
-        pnlGridSettings.Location = New Point(0, 29)
-        pnlGridSettings.Name = "pnlGridSettings"
-        pnlGridSettings.Size = New Size(476, 2)
-        pnlGridSettings.TabIndex = 1
         ' 
         ' lblGridSettings
         ' 
         lblGridSettings.AutoSize = True
         lblGridSettings.Depth = 0
-        lblGridSettings.Dock = DockStyle.Top
+        lblGridSettings.Dock = DockStyle.Right
         lblGridSettings.Font = New Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel)
         lblGridSettings.FontType = MaterialSkinManager.fontType.H5
-        lblGridSettings.Location = New Point(0, 0)
+        lblGridSettings.Location = New Point(16, 0)
         lblGridSettings.MouseState = MouseState.HOVER
         lblGridSettings.Name = "lblGridSettings"
         lblGridSettings.Size = New Size(146, 29)
         lblGridSettings.TabIndex = 0
         lblGridSettings.Text = "Grid Columns"
         ' 
+        ' pnlGridSettings
+        ' 
+        pnlGridSettings.AutoSize = True
+        pnlGridSettings.BorderStyle = BorderStyle.FixedSingle
+        tbplBody.SetColumnSpan(pnlGridSettings, 2)
+        pnlGridSettings.Dock = DockStyle.Fill
+        pnlGridSettings.Location = New Point(3, 32)
+        pnlGridSettings.Name = "pnlGridSettings"
+        pnlGridSettings.Size = New Size(496, 2)
+        pnlGridSettings.TabIndex = 1
+        ' 
+        ' lblSearchCriteria
+        ' 
+        lblSearchCriteria.AutoSize = True
+        lblSearchCriteria.Depth = 0
+        lblSearchCriteria.Dock = DockStyle.Right
+        lblSearchCriteria.Font = New Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel)
+        lblSearchCriteria.FontType = MaterialSkinManager.fontType.H5
+        lblSearchCriteria.Location = New Point(3, 37)
+        lblSearchCriteria.MouseState = MouseState.HOVER
+        lblSearchCriteria.Name = "lblSearchCriteria"
+        lblSearchCriteria.Size = New Size(159, 29)
+        lblSearchCriteria.TabIndex = 3
+        lblSearchCriteria.Text = "Search Criteria"
+        ' 
+        ' pnlSearchCriteria
+        ' 
+        pnlSearchCriteria.AutoSize = True
+        pnlSearchCriteria.BorderStyle = BorderStyle.FixedSingle
+        tbplBody.SetColumnSpan(pnlSearchCriteria, 2)
+        pnlSearchCriteria.Dock = DockStyle.Fill
+        pnlSearchCriteria.Location = New Point(3, 69)
+        pnlSearchCriteria.Name = "pnlSearchCriteria"
+        pnlSearchCriteria.Size = New Size(496, 578)
+        pnlSearchCriteria.TabIndex = 2
+        ' 
+        ' btnGridSettingsCollapse
+        ' 
+        btnGridSettingsCollapse.AutoSize = False
+        btnGridSettingsCollapse.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnGridSettingsCollapse.Cursor = Cursors.Hand
+        btnGridSettingsCollapse.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnGridSettingsCollapse.Depth = 0
+        btnGridSettingsCollapse.Dock = DockStyle.Left
+        btnGridSettingsCollapse.HighEmphasis = True
+        btnGridSettingsCollapse.Icon = Nothing
+        btnGridSettingsCollapse.Location = New Point(169, 6)
+        btnGridSettingsCollapse.Margin = New Padding(4, 6, 4, 6)
+        btnGridSettingsCollapse.MouseState = MouseState.HOVER
+        btnGridSettingsCollapse.Name = "btnGridSettingsCollapse"
+        btnGridSettingsCollapse.NoAccentTextColor = Color.Empty
+        btnGridSettingsCollapse.Size = New Size(73, 17)
+        btnGridSettingsCollapse.TabIndex = 5
+        btnGridSettingsCollapse.Text = "Collapse"
+        btnGridSettingsCollapse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text
+        btnGridSettingsCollapse.UseAccentColor = False
+        btnGridSettingsCollapse.UseVisualStyleBackColor = True
+        ' 
+        ' btnSearchFieldsCollapse
+        ' 
+        btnSearchFieldsCollapse.AutoSize = False
+        btnSearchFieldsCollapse.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        btnSearchFieldsCollapse.Cursor = Cursors.Hand
+        btnSearchFieldsCollapse.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
+        btnSearchFieldsCollapse.Depth = 0
+        btnSearchFieldsCollapse.Dock = DockStyle.Left
+        btnSearchFieldsCollapse.HighEmphasis = True
+        btnSearchFieldsCollapse.Icon = Nothing
+        btnSearchFieldsCollapse.Location = New Point(169, 43)
+        btnSearchFieldsCollapse.Margin = New Padding(4, 6, 4, 6)
+        btnSearchFieldsCollapse.MouseState = MouseState.HOVER
+        btnSearchFieldsCollapse.Name = "btnSearchFieldsCollapse"
+        btnSearchFieldsCollapse.NoAccentTextColor = Color.Empty
+        btnSearchFieldsCollapse.Size = New Size(73, 17)
+        btnSearchFieldsCollapse.TabIndex = 4
+        btnSearchFieldsCollapse.Text = "Collapse"
+        btnSearchFieldsCollapse.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text
+        btnSearchFieldsCollapse.UseAccentColor = False
+        btnSearchFieldsCollapse.UseVisualStyleBackColor = True
+        ' 
+        ' tbplBody
+        ' 
+        tbplBody.AutoSize = True
+        tbplBody.ColumnCount = 2
+        tbplBody.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.00971F))
+        tbplBody.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 66.99029F))
+        tbplBody.Controls.Add(btnGridSettingsCollapse, 1, 0)
+        tbplBody.Controls.Add(pnlSearchCriteria, 0, 3)
+        tbplBody.Controls.Add(pnlGridSettings, 0, 1)
+        tbplBody.Controls.Add(btnSearchFieldsCollapse, 1, 2)
+        tbplBody.Controls.Add(lblSearchCriteria, 0, 2)
+        tbplBody.Controls.Add(lblGridSettings, 0, 0)
+        tbplBody.Dock = DockStyle.Fill
+        tbplBody.Location = New Point(3, 64)
+        tbplBody.Name = "tbplBody"
+        tbplBody.RowCount = 4
+        tbplBody.RowStyles.Add(New RowStyle())
+        tbplBody.RowStyles.Add(New RowStyle())
+        tbplBody.RowStyles.Add(New RowStyle())
+        tbplBody.RowStyles.Add(New RowStyle())
+        tbplBody.Size = New Size(502, 650)
+        tbplBody.TabIndex = 6
+        ' 
         ' FrmSettings
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         AutoSize = True
-        ClientSize = New Size(482, 393)
-        Controls.Add(pnlBody)
+        ClientSize = New Size(508, 717)
+        Controls.Add(tbplBody)
         Name = "FrmSettings"
-        StartPosition = FormStartPosition.CenterParent
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Settings"
-        pnlBody.ResumeLayout(False)
-        pnlBody.PerformLayout()
+        tbplBody.ResumeLayout(False)
+        tbplBody.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -111,4 +169,7 @@ Partial Class FrmSettings
     Friend WithEvents lblGridSettings As Controls.MaterialLabel
     Friend WithEvents pnlSearchCriteria As Panel
     Friend WithEvents lblSearchCriteria As Controls.MaterialLabel
+    Friend WithEvents btnGridSettingsCollapse As Controls.MaterialButton
+    Friend WithEvents btnSearchFieldsCollapse As Controls.MaterialButton
+    Friend WithEvents tbplBody As TableLayoutPanel
 End Class
