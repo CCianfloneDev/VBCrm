@@ -24,7 +24,7 @@ Public Class FrmAbout
             ApplyColorScheme(form:=Me, theme:=Theme)
             lnkLbl.Font = New Font(lnkLbl.Font.FontFamily, 16, lnkLbl.Font.Style)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -39,7 +39,7 @@ Public Class FrmAbout
         Try
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -60,7 +60,7 @@ Public Class FrmAbout
                 .Verb = "open"
             })
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

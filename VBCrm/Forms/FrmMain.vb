@@ -44,7 +44,7 @@ Public Class FrmMain
             btnSearch.PerformClick()
             dgvResults.ClearSelection()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -57,7 +57,7 @@ Public Class FrmMain
         Try
             Utilities.DbOperations.CloseConnection()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -92,7 +92,7 @@ Public Class FrmMain
                 End If
             Next
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -105,7 +105,7 @@ Public Class FrmMain
         Try
             ShowAboutForm(CurrentTheme)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -133,7 +133,7 @@ Public Class FrmMain
             ApplyColorScheme(Me, selectedTheme)
             CurrentTheme = selectedTheme
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -146,7 +146,7 @@ Public Class FrmMain
         Try
             ExportDataGridViewToCSV(dgvResults)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -160,7 +160,7 @@ Public Class FrmMain
             ImportCSVToDatabase()
             btnSearch.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -185,7 +185,7 @@ Public Class FrmMain
                 MessageBox.Show(Me, "No emails found in the grid.", "No Emails", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -198,7 +198,7 @@ Public Class FrmMain
         Try
             btnNew.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -211,7 +211,7 @@ Public Class FrmMain
         Try
             btnEdit.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -224,7 +224,7 @@ Public Class FrmMain
         Try
             btnDelete.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -243,7 +243,7 @@ Public Class FrmMain
             Utilities.DbOperations.DeleteAllContacts()
             btnSearch.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -261,7 +261,7 @@ Public Class FrmMain
 
             editGridSettingsForm.ShowDialog(Me)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -279,7 +279,7 @@ Public Class FrmMain
 
             errorsForm.ShowDialog(Me)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -295,7 +295,7 @@ Public Class FrmMain
         Try
             btnEdit.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -311,7 +311,7 @@ Public Class FrmMain
 
             Utilities.DbOperations.UpdateColumnDisplayIndex(columnName, newIndex)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -344,7 +344,7 @@ Public Class FrmMain
             dgvResults.DefaultCellStyle.ForeColor = Color.Black
             dgvResults.ClearSelection()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -363,7 +363,7 @@ Public Class FrmMain
             createForm.ShowDialog(Me)
             btnSearch.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -402,7 +402,7 @@ Public Class FrmMain
             editForm.ShowDialog(Me)
             btnSearch.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -423,7 +423,7 @@ Public Class FrmMain
             Utilities.DbOperations.DeleteContactById(CInt(selectedRow.Cells(colId.Index).Value))
             btnSearch.PerformClick()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -436,7 +436,7 @@ Public Class FrmMain
         Try
             ClearFormControls(Me)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -459,7 +459,7 @@ Public Class FrmMain
                 btnSearch.PerformClick()
             End If
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

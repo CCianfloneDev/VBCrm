@@ -48,7 +48,7 @@ Public Class FrmCreateEdit
                 txtNotes.Text = .ContactNotes
             End With
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -61,7 +61,7 @@ Public Class FrmCreateEdit
         Try
             Utilities.DbOperations.CloseConnection()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -102,7 +102,7 @@ Public Class FrmCreateEdit
 
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -115,7 +115,7 @@ Public Class FrmCreateEdit
         Try
             Me.Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

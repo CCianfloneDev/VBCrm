@@ -34,7 +34,7 @@ Public Class FrmErrors
 
             txtErrors.Text = Errors
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -49,7 +49,7 @@ Public Class FrmErrors
         Try
             Close()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -63,7 +63,7 @@ Public Class FrmErrors
             Utilities.DbOperations.DeleteAllLogs()
             txtErrors.Text = ""
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

@@ -68,7 +68,7 @@ Public Class FrmSettings
 
             lblGridSettings.Select()
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -92,7 +92,7 @@ Public Class FrmSettings
 
             SetLastVisibleColumnToFill(FrmMain.dgvResults)
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -119,16 +119,38 @@ Public Class FrmSettings
                     Next
                 End If
             Next
-
-            'ArrangeControlsInTableLayoutPanel(FrmMain.tbplSearchCriteria)
-
         Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
             MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
+#End Region
+
+#Region "Button events"
+    ''' <summary>
+    ''' Handles the collapse button(s) click event.
+    ''' </summary>
+    Private Sub BtnCollapse_Click(sender As Object, e As EventArgs) Handles btnGridSettingsCollapse.Click, btnSearchFieldsCollapse.Click
+        Try
+            Dim collapseExpandButton As Button = CType(sender, Button)
+            Dim settingsPanel As Panel = GetPanel(collapseExpandButton)
+            Dim expanded As Boolean = Not settingsPanel.Visible
+
+            settingsPanel.Visible = Not settingsPanel.Visible
+
+            If expanded Then
+                collapseExpandButton.Text = "Collapse"
+            Else
+                collapseExpandButton.Text = "Expand"
+            End If
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 #End Region
 #End Region
 
@@ -149,29 +171,6 @@ Public Class FrmSettings
 
         Return Nothing
     End Function
-
-    ''' <summary>
-    ''' Handles the collapse button(s) click event.
-    ''' </summary>
-    Private Sub BtnCollapse_Click(sender As Object, e As EventArgs) Handles btnGridSettingsCollapse.Click, btnSearchFieldsCollapse.Click
-        Try
-            Dim collapseExpandButton As Button = CType(sender, Button)
-            Dim settingsPanel As Panel = GetPanel(collapseExpandButton)
-            Dim expanded As Boolean = Not settingsPanel.Visible
-
-            settingsPanel.Visible = Not settingsPanel.Visible
-
-            If expanded Then
-                collapseExpandButton.Text = "Collapse"
-            Else
-                collapseExpandButton.Text = "Expand"
-            End If
-        Catch ex As Exception
-            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message}"
-            Utilities.DbOperations.InsertErrorLog(errorMessage)
-            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
 
     ''' <summary>
     ''' Gets the settings panel associated with the passed collapsable button.
