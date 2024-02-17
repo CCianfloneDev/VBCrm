@@ -149,7 +149,7 @@ Partial Class FrmCreateEdit
         btnCancel.Name = "btnCancel"
         btnCancel.NoAccentTextColor = Color.Empty
         btnCancel.Size = New Size(73, 36)
-        btnCancel.TabIndex = 4
+        btnCancel.TabIndex = 9
         btnCancel.Text = "Cancel"
         btnCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnCancel.UseAccentColor = False
@@ -172,7 +172,7 @@ Partial Class FrmCreateEdit
         btnSave.Name = "btnSave"
         btnSave.NoAccentTextColor = Color.Empty
         btnSave.Size = New Size(73, 36)
-        btnSave.TabIndex = 3
+        btnSave.TabIndex = 8
         btnSave.Text = "Save"
         btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnSave.UseAccentColor = False
@@ -203,7 +203,7 @@ Partial Class FrmCreateEdit
         txtCompany.Multiline = False
         txtCompany.Name = "txtCompany"
         txtCompany.Size = New Size(157, 36)
-        txtCompany.TabIndex = 22
+        txtCompany.TabIndex = 4
         txtCompany.Text = ""
         txtCompany.TrailingIcon = Nothing
         txtCompany.UseTallSize = False
@@ -233,7 +233,7 @@ Partial Class FrmCreateEdit
         txtJobTitle.Multiline = False
         txtJobTitle.Name = "txtJobTitle"
         txtJobTitle.Size = New Size(157, 36)
-        txtJobTitle.TabIndex = 24
+        txtJobTitle.TabIndex = 5
         txtJobTitle.Text = ""
         txtJobTitle.TrailingIcon = Nothing
         txtJobTitle.UseTallSize = False
@@ -263,7 +263,7 @@ Partial Class FrmCreateEdit
         txtDateOfBirth.Multiline = False
         txtDateOfBirth.Name = "txtDateOfBirth"
         txtDateOfBirth.Size = New Size(157, 36)
-        txtDateOfBirth.TabIndex = 26
+        txtDateOfBirth.TabIndex = 6
         txtDateOfBirth.Text = ""
         txtDateOfBirth.TrailingIcon = Nothing
         txtDateOfBirth.UseTallSize = False
@@ -291,7 +291,7 @@ Partial Class FrmCreateEdit
         txtNotes.MouseState = MouseState.HOVER
         txtNotes.Name = "txtNotes"
         txtNotes.Size = New Size(224, 96)
-        txtNotes.TabIndex = 30
+        txtNotes.TabIndex = 7
         txtNotes.Text = ""
         ' 
         ' lblAddress
@@ -319,7 +319,7 @@ Partial Class FrmCreateEdit
         txtAddress.Multiline = False
         txtAddress.Name = "txtAddress"
         txtAddress.Size = New Size(157, 36)
-        txtAddress.TabIndex = 31
+        txtAddress.TabIndex = 3
         txtAddress.Text = ""
         txtAddress.TrailingIcon = Nothing
         txtAddress.UseTallSize = False

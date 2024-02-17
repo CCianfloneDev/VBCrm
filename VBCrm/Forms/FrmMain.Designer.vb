@@ -24,8 +24,8 @@ Partial Class FrmMain
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
-        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmContacts = New ToolStripMenuItem()
         mnuItmMassEmail = New ToolStripMenuItem()
@@ -124,10 +124,10 @@ Partial Class FrmMain
         mnuMenuStrip.Dock = DockStyle.Left
         mnuMenuStrip.Items.AddRange(New ToolStripItem() {mnuItmContacts, mnuItmData, mnuItmSettings, mnuItmHelp})
         mnuMenuStrip.LayoutStyle = ToolStripLayoutStyle.Table
-        mnuMenuStrip.Location = New Point(0, 0)
+        mnuMenuStrip.Location = New Point(3, 162)
         mnuMenuStrip.Name = "mnuMenuStrip"
-        mnuMenuStrip.Size = New Size(87, 449)
-        mnuMenuStrip.TabIndex = 2
+        mnuMenuStrip.Size = New Size(87, 453)
+        mnuMenuStrip.TabIndex = 3
         ' 
         ' mnuItmContacts
         ' 
@@ -139,7 +139,7 @@ Partial Class FrmMain
         mnuItmContacts.ImageAlign = ContentAlignment.MiddleLeft
         mnuItmContacts.ImageScaling = ToolStripItemImageScaling.None
         mnuItmContacts.Name = "mnuItmContacts"
-        mnuItmContacts.Size = New Size(122, 100)
+        mnuItmContacts.Size = New Size(62, 100)
         ' 
         ' mnuItmMassEmail
         ' 
@@ -294,7 +294,7 @@ Partial Class FrmMain
         txtNotes.Multiline = False
         txtNotes.Name = "txtNotes"
         txtNotes.Size = New Size(285, 36)
-        txtNotes.TabIndex = 4
+        txtNotes.TabIndex = 0
         txtNotes.Tag = "Notes"
         txtNotes.Text = ""
         txtNotes.TrailingIcon = Nothing
@@ -326,7 +326,7 @@ Partial Class FrmMain
         txtDateOfBirth.Multiline = False
         txtDateOfBirth.Name = "txtDateOfBirth"
         txtDateOfBirth.Size = New Size(138, 36)
-        txtDateOfBirth.TabIndex = 8
+        txtDateOfBirth.TabIndex = 0
         txtDateOfBirth.Tag = "Date of birth"
         txtDateOfBirth.Text = ""
         txtDateOfBirth.TrailingIcon = Nothing
@@ -358,7 +358,7 @@ Partial Class FrmMain
         txtJobTitle.Multiline = False
         txtJobTitle.Name = "txtJobTitle"
         txtJobTitle.Size = New Size(169, 36)
-        txtJobTitle.TabIndex = 3
+        txtJobTitle.TabIndex = 0
         txtJobTitle.Tag = "Job title"
         txtJobTitle.Text = ""
         txtJobTitle.TrailingIcon = Nothing
@@ -390,7 +390,7 @@ Partial Class FrmMain
         txtCompany.Multiline = False
         txtCompany.Name = "txtCompany"
         txtCompany.Size = New Size(153, 36)
-        txtCompany.TabIndex = 7
+        txtCompany.TabIndex = 0
         txtCompany.Tag = "Company"
         txtCompany.Text = ""
         txtCompany.TrailingIcon = Nothing
@@ -422,7 +422,7 @@ Partial Class FrmMain
         txtAddress.Multiline = False
         txtAddress.Name = "txtAddress"
         txtAddress.Size = New Size(164, 36)
-        txtAddress.TabIndex = 6
+        txtAddress.TabIndex = 0
         txtAddress.Tag = "Address"
         txtAddress.Text = ""
         txtAddress.TrailingIcon = Nothing
@@ -454,7 +454,7 @@ Partial Class FrmMain
         txtId.Multiline = False
         txtId.Name = "txtId"
         txtId.Size = New Size(184, 36)
-        txtId.TabIndex = 5
+        txtId.TabIndex = 0
         txtId.Tag = "ID"
         txtId.Text = ""
         txtId.TrailingIcon = Nothing
@@ -486,7 +486,7 @@ Partial Class FrmMain
         txtEmail.Multiline = False
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(181, 36)
-        txtEmail.TabIndex = 1
+        txtEmail.TabIndex = 0
         txtEmail.Tag = "Email"
         txtEmail.Text = ""
         txtEmail.TrailingIcon = Nothing
@@ -550,7 +550,7 @@ Partial Class FrmMain
         txtPhoneNumber.Multiline = False
         txtPhoneNumber.Name = "txtPhoneNumber"
         txtPhoneNumber.Size = New Size(157, 36)
-        txtPhoneNumber.TabIndex = 2
+        txtPhoneNumber.TabIndex = 0
         txtPhoneNumber.Tag = "Phone #"
         txtPhoneNumber.Text = ""
         txtPhoneNumber.TrailingIcon = Nothing
@@ -566,13 +566,13 @@ Partial Class FrmMain
         btnClear.ForeColor = SystemColors.ControlText
         btnClear.HighEmphasis = True
         btnClear.Icon = Nothing
-        btnClear.Location = New Point(179, 6)
+        btnClear.Location = New Point(90, 2)
         btnClear.Margin = New Padding(4, 6, 4, 6)
         btnClear.MouseState = MouseState.HOVER
         btnClear.Name = "btnClear"
         btnClear.NoAccentTextColor = Color.Empty
         btnClear.Size = New Size(66, 36)
-        btnClear.TabIndex = 10
+        btnClear.TabIndex = 1
         btnClear.Text = "Clear"
         btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnClear.UseAccentColor = False
@@ -588,13 +588,13 @@ Partial Class FrmMain
         btnSearch.ForeColor = SystemColors.ControlText
         btnSearch.HighEmphasis = True
         btnSearch.Icon = Nothing
-        btnSearch.Location = New Point(93, 6)
+        btnSearch.Location = New Point(4, 2)
         btnSearch.Margin = New Padding(4, 6, 4, 6)
         btnSearch.MouseState = MouseState.HOVER
         btnSearch.Name = "btnSearch"
         btnSearch.NoAccentTextColor = Color.Empty
         btnSearch.Size = New Size(78, 36)
-        btnSearch.TabIndex = 9
+        btnSearch.TabIndex = 0
         btnSearch.Text = "Search"
         btnSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained
         btnSearch.UseAccentColor = False
@@ -679,13 +679,12 @@ Partial Class FrmMain
         ' 
         ' pnlBody
         ' 
-        pnlBody.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         pnlBody.AutoSize = True
         pnlBody.Controls.Add(dgvResults)
-        pnlBody.Controls.Add(mnuMenuStrip)
-        pnlBody.Location = New Point(3, 166)
+        pnlBody.Dock = DockStyle.Fill
+        pnlBody.Location = New Point(90, 162)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(1372, 449)
+        pnlBody.Size = New Size(1285, 453)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -693,31 +692,31 @@ Partial Class FrmMain
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
         dgvResults.AllowUserToOrderColumns = True
-        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.Fixed3D
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = SystemColors.Control
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = SystemColors.Control
+        DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle4.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colAddress, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
         dgvResults.DataSource = ContactBindingSource1
         dgvResults.Dock = DockStyle.Fill
-        dgvResults.Location = New Point(87, 0)
+        dgvResults.Location = New Point(0, 0)
         dgvResults.MultiSelect = False
         dgvResults.Name = "dgvResults"
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(1285, 449)
+        dgvResults.Size = New Size(1285, 453)
         dgvResults.TabIndex = 0
         dgvResults.TabStop = False
         ' 
@@ -827,13 +826,15 @@ Partial Class FrmMain
         tbplSearchCriteria.Controls.Add(pnlName, 1, 0)
         tbplSearchCriteria.Controls.Add(pnlEmail, 2, 0)
         tbplSearchCriteria.Controls.Add(pnlPhoneNumber, 3, 0)
-        tbplSearchCriteria.Location = New Point(90, 64)
+        tbplSearchCriteria.Dock = DockStyle.Top
+        tbplSearchCriteria.Location = New Point(3, 64)
         tbplSearchCriteria.Name = "tbplSearchCriteria"
+        tbplSearchCriteria.Padding = New Padding(90, 0, 0, 0)
         tbplSearchCriteria.RowCount = 1
         tbplSearchCriteria.RowStyles.Add(New RowStyle())
         tbplSearchCriteria.RowStyles.Add(New RowStyle())
-        tbplSearchCriteria.Size = New Size(1288, 102)
-        tbplSearchCriteria.TabIndex = 30
+        tbplSearchCriteria.Size = New Size(1372, 98)
+        tbplSearchCriteria.TabIndex = 0
         ' 
         ' pnlButtons
         ' 
@@ -842,9 +843,9 @@ Partial Class FrmMain
         pnlButtons.Controls.Add(btnSearch)
         pnlButtons.Controls.Add(btnClear)
         pnlButtons.Dock = DockStyle.Fill
-        pnlButtons.Location = New Point(946, 51)
+        pnlButtons.Location = New Point(1036, 51)
         pnlButtons.Name = "pnlButtons"
-        pnlButtons.Size = New Size(339, 48)
+        pnlButtons.Size = New Size(339, 44)
         pnlButtons.TabIndex = 9
         ' 
         ' pnlDateOfBirth
@@ -854,9 +855,9 @@ Partial Class FrmMain
         pnlDateOfBirth.Controls.Add(lblDateOfBirth)
         pnlDateOfBirth.Controls.Add(txtDateOfBirth)
         pnlDateOfBirth.Dock = DockStyle.Fill
-        pnlDateOfBirth.Location = New Point(701, 51)
+        pnlDateOfBirth.Location = New Point(791, 51)
         pnlDateOfBirth.Name = "pnlDateOfBirth"
-        pnlDateOfBirth.Size = New Size(239, 48)
+        pnlDateOfBirth.Size = New Size(239, 44)
         pnlDateOfBirth.TabIndex = 8
         ' 
         ' pnlCompany
@@ -866,9 +867,9 @@ Partial Class FrmMain
         pnlCompany.Controls.Add(lblCompany)
         pnlCompany.Controls.Add(txtCompany)
         pnlCompany.Dock = DockStyle.Fill
-        pnlCompany.Location = New Point(461, 51)
+        pnlCompany.Location = New Point(551, 51)
         pnlCompany.Name = "pnlCompany"
-        pnlCompany.Size = New Size(234, 48)
+        pnlCompany.Size = New Size(234, 44)
         pnlCompany.TabIndex = 7
         ' 
         ' pnlAddress
@@ -878,9 +879,9 @@ Partial Class FrmMain
         pnlAddress.Controls.Add(lblAddress)
         pnlAddress.Controls.Add(txtAddress)
         pnlAddress.Dock = DockStyle.Fill
-        pnlAddress.Location = New Point(221, 51)
+        pnlAddress.Location = New Point(311, 51)
         pnlAddress.Name = "pnlAddress"
-        pnlAddress.Size = New Size(234, 48)
+        pnlAddress.Size = New Size(234, 44)
         pnlAddress.TabIndex = 6
         ' 
         ' pnlId
@@ -890,9 +891,9 @@ Partial Class FrmMain
         pnlId.Controls.Add(lblId)
         pnlId.Controls.Add(txtId)
         pnlId.Dock = DockStyle.Fill
-        pnlId.Location = New Point(3, 51)
+        pnlId.Location = New Point(93, 51)
         pnlId.Name = "pnlId"
-        pnlId.Size = New Size(212, 48)
+        pnlId.Size = New Size(212, 44)
         pnlId.TabIndex = 5
         ' 
         ' pnlNotes
@@ -902,7 +903,7 @@ Partial Class FrmMain
         pnlNotes.Controls.Add(lblNotes)
         pnlNotes.Controls.Add(txtNotes)
         pnlNotes.Dock = DockStyle.Fill
-        pnlNotes.Location = New Point(946, 3)
+        pnlNotes.Location = New Point(1036, 3)
         pnlNotes.Name = "pnlNotes"
         pnlNotes.Size = New Size(339, 42)
         pnlNotes.TabIndex = 4
@@ -914,7 +915,7 @@ Partial Class FrmMain
         pnlJobTitle.Controls.Add(lblJobTitle)
         pnlJobTitle.Controls.Add(txtJobTitle)
         pnlJobTitle.Dock = DockStyle.Fill
-        pnlJobTitle.Location = New Point(701, 3)
+        pnlJobTitle.Location = New Point(791, 3)
         pnlJobTitle.Name = "pnlJobTitle"
         pnlJobTitle.Size = New Size(239, 42)
         pnlJobTitle.TabIndex = 3
@@ -926,7 +927,7 @@ Partial Class FrmMain
         pnlName.Controls.Add(txtName)
         pnlName.Controls.Add(lblName)
         pnlName.Dock = DockStyle.Fill
-        pnlName.Location = New Point(3, 3)
+        pnlName.Location = New Point(93, 3)
         pnlName.Name = "pnlName"
         pnlName.Size = New Size(212, 42)
         pnlName.TabIndex = 0
@@ -938,7 +939,7 @@ Partial Class FrmMain
         pnlEmail.Controls.Add(lblEmail)
         pnlEmail.Controls.Add(txtEmail)
         pnlEmail.Dock = DockStyle.Fill
-        pnlEmail.Location = New Point(221, 3)
+        pnlEmail.Location = New Point(311, 3)
         pnlEmail.Name = "pnlEmail"
         pnlEmail.Size = New Size(234, 42)
         pnlEmail.TabIndex = 1
@@ -950,21 +951,24 @@ Partial Class FrmMain
         pnlPhoneNumber.Controls.Add(lblPhoneNumber)
         pnlPhoneNumber.Controls.Add(txtPhoneNumber)
         pnlPhoneNumber.Dock = DockStyle.Fill
-        pnlPhoneNumber.Location = New Point(461, 3)
+        pnlPhoneNumber.Location = New Point(551, 3)
         pnlPhoneNumber.Name = "pnlPhoneNumber"
         pnlPhoneNumber.Size = New Size(234, 42)
         pnlPhoneNumber.TabIndex = 2
         ' 
         ' btnMenuControl
         ' 
+        btnMenuControl.AutoSizeMode = AutoSizeMode.GrowAndShrink
         btnMenuControl.BackColor = Color.Transparent
+        btnMenuControl.Cursor = Cursors.Hand
         btnMenuControl.FlatAppearance.BorderSize = 0
+        btnMenuControl.FlatAppearance.MouseDownBackColor = Color.Transparent
         btnMenuControl.FlatStyle = FlatStyle.Flat
         btnMenuControl.Image = CType(resources.GetObject("btnMenuControl.Image"), Image)
         btnMenuControl.Location = New Point(3, 64)
         btnMenuControl.Name = "btnMenuControl"
-        btnMenuControl.Size = New Size(87, 96)
-        btnMenuControl.TabIndex = 12
+        btnMenuControl.Size = New Size(90, 54)
+        btnMenuControl.TabIndex = 2
         btnMenuControl.UseVisualStyleBackColor = False
         ' 
         ' FrmMain
@@ -974,6 +978,7 @@ Partial Class FrmMain
         ClientSize = New Size(1378, 683)
         Controls.Add(btnMenuControl)
         Controls.Add(pnlBody)
+        Controls.Add(mnuMenuStrip)
         Controls.Add(tbplSearchCriteria)
         Controls.Add(pnlBottom)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
