@@ -24,10 +24,30 @@ Public Class DbOperations
 #End Region
 
 #Region "Setting up database"
+
     ''' <summary>
     ''' Constructor to initialize the database.
     ''' </summary>
     Public Sub New()
+        InitializeDatabase()
+    End Sub
+
+    ''' <summary>
+    ''' Constructor to initialize the database with an option to purge all data.
+    ''' </summary>
+    ''' <param name="deleteAndMakeNew">If true, re-creates mydatabase.db file.</param>
+    Public Sub New(deleteAndMakeNew As Boolean)
+        If deleteAndMakeNew Then
+            PurgeExistingAndMakeNew()
+        Else
+            InitializeDatabase()
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Constructor to initialize the database.
+    ''' </summary>
+    Private Sub InitializeDatabase()
         Dim commonAppDataDir As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
         Dim databaseFilePath As String = Path.Combine(commonAppDataDir, "VBCrm", "mydatabase.db")
 
@@ -52,6 +72,24 @@ Public Class DbOperations
         CreateSearchCriteriaVisibilityTable()
         CreateColumnOrderTable()
         CreateErrorLogsTable()
+    End Sub
+
+    ''' <summary>
+    ''' Purges the existing mydatabase.db file and re-intializes one.
+    ''' </summary>
+    Private Sub PurgeExistingAndMakeNew()
+        CloseConnection()
+
+        ' Delete the database file
+        Dim commonAppDataDir As String = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
+        Dim databaseFilePath As String = Path.Combine(commonAppDataDir, "VBCrm", "mydatabase.db")
+
+        If File.Exists(databaseFilePath) Then
+            File.Delete(databaseFilePath)
+        End If
+
+        ' Reinitialize the database
+        InitializeDatabase()
     End Sub
 #End Region
 
@@ -790,7 +828,6 @@ Public Class DbOperations
             Return True
         End Using
     End Function
-#End Region
 
     ''' <summary>
     ''' Deletes all logs from the 'ErrorLogs' table.
@@ -805,6 +842,22 @@ Public Class DbOperations
             End Using
         End Using
     End Sub
+
+    ''' <summary>
+    ''' Deletes all preferences.
+    ''' </summary>
+    Public Sub DeleteAllPreferences()
+        Using connection As New SQLiteConnection(ConnectionString)
+            connection.Open()
+
+            Dim deleteLogsQuery As String = "DELETE FROM Themes; DELETE FROM ColumnVisibility; DELETE FROM SearchCriteriaVisibility; DELETE FROM ColumnOrder;"
+            Using command As New SQLiteCommand(deleteLogsQuery, connection)
+                command.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+#End Region
+
 
 #End Region
 

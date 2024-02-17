@@ -8,13 +8,13 @@ Imports MaterialSkin.Controls
 ''' </summary>
 Public Class FrmMain
 
+#Region "Properties"
     ''' <summary>
     ''' Indicates if the menu bar is expanded or not.
     ''' </summary>
     ''' <returns>True if the user has clicked the "hamburger icon" and the menu bar is open.</returns>
     Public Property IsMenuExpanded As Boolean = True
 
-#Region "Properties"
     ''' <summary>
     ''' Represents the currently selected Theme.
     ''' </summary>
@@ -64,38 +64,6 @@ Public Class FrmMain
 #End Region
 
 #Region "Menu events"
-
-    '''' <summary>
-    '''' Handles the main menu item click event.
-    '''' </summary>
-    'Private Sub MnuItmMenu_Click(sender As Object, e As EventArgs) Handles mnuItmMenu.Click
-    '    Try
-    '        Dim assembly As Assembly = Assembly.GetExecutingAssembly()
-    '        Dim image As Image
-
-    '        If Not Me.IsMenuExpanded Then
-    '            Me.IsMenuExpanded = True
-
-    '            image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
-    '        Else
-    '            Me.IsMenuExpanded = False
-
-    '            image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-closed.png"))
-    '        End If
-
-    '        mnuItmMenu.Image = image
-
-    '        For Each menuItem As ToolStripItem In mnuMenuStrip.Items
-    '            If menuItem.Name <> mnuItmMenu.Name Then
-    '                menuItem.Visible = Me.IsMenuExpanded
-    '            End If
-    '        Next
-    '    Catch ex As Exception
-    '        Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
-    '        Utilities.DbOperations.InsertErrorLog(errorMessage)
-    '        MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Sub
 
     ''' <summary>
     ''' Handles the about menu item click event.
@@ -230,16 +198,60 @@ Public Class FrmMain
     End Sub
 
     ''' <summary>
-    ''' Handles the purge data menu item click event.
+    ''' Handles the purge preferences menu item click event.
     ''' </summary>
-    Private Sub MnuItmPurgeData_Click(sender As Object, e As EventArgs) Handles mnuItmPurgeData.Click
+    Private Sub MnuItmPurgeContacts_Click(sender As Object, e As EventArgs) Handles mnuItmPurgeContacts.Click
         Try
-            If MessageBox.Show(Me, $"WARNING: This will delete ALL data and cannot be recovered...{NewLine}{NewLine} Would you like to continue?",
+            If MessageBox.Show(Me, $"WARNING: This will delete ALL Contacts and and cannot be recovered...{NewLine}{NewLine} Would you like to continue?",
                             My.Application.Info.Title & " - Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
                 Return
             End If
 
             Utilities.DbOperations.DeleteAllContacts()
+            btnSearch.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the purge preferences menu item click event.
+    ''' </summary>
+    Private Sub MnuItmPurgePreferences_Click(sender As Object, e As EventArgs) Handles mnuItmPurgePreferences.Click
+        Try
+            If MessageBox.Show(Me, $"WARNING: This will delete ALL Preferences and and cannot be recovered...{NewLine}{NewLine} Would you like to continue?",
+                            My.Application.Info.Title & " - Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+                Return
+            End If
+
+            Utilities.DbOperations.DeleteAllPreferences()
+            ApplyColorScheme(form:=Me, theme:=Themes.LightModeGreen)
+            ResetSearchFields()
+            ResetColumns()
+            btnSearch.PerformClick()
+        Catch ex As Exception
+            Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
+            Utilities.DbOperations.InsertErrorLog(errorMessage)
+            MessageBox.Show(Me, errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Handles the purge all menu item click event.
+    ''' </summary>
+    Private Sub MnuItmPurgeAll_Click(sender As Object, e As EventArgs) Handles mnuItmPurgeAll.Click
+        Try
+            If MessageBox.Show(Me, $"WARNING: This will delete ALL data and and cannot be recovered...{NewLine}{NewLine} Would you like to continue?",
+                My.Application.Info.Title & " - Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then
+                Return
+            End If
+
+            Utilities.DbOperations = New DbOperations(deleteAndMakeNew:=True)
+            ApplyColorScheme(form:=Me, theme:=Themes.LightModeGreen)
+            ResetSearchFields()
+            ResetColumns()
             btnSearch.PerformClick()
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
@@ -320,8 +332,11 @@ Public Class FrmMain
 
 #Region "Button events"
 
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnMenuControl.Click
+    ''' <summary>
+    ''' Handles the "hamburger" menu button click event.
+    ''' </summary>
+    ''' <remarks>Collapses/expands the menu and changes it's image.</remarks>
+    Private Sub BtnMenuControl_Click(sender As Object, e As EventArgs) Handles btnMenuControl.Click
         Try
             Dim assembly As Assembly = Assembly.GetExecutingAssembly()
             Dim image As Image
@@ -339,10 +354,6 @@ Public Class FrmMain
             btnMenuControl.Image = image
 
             mnuMenuStrip.Visible = Me.IsMenuExpanded
-
-            'For Each menuItem As ToolStripItem In mnuMenuStrip.Items
-            '    menuItem.Visible = Me.IsMenuExpanded
-            'Next
         Catch ex As Exception
             Dim errorMessage As String = $"{Reflection.MethodBase.GetCurrentMethod().Name}: {ex.Message} {ex.StackTrace}"
             Utilities.DbOperations.InsertErrorLog(errorMessage)
@@ -519,6 +530,16 @@ Public Class FrmMain
     End Sub
 
     ''' <summary>
+    ''' Resets the column visibility and column order settings to the defaults.
+    ''' </summary>
+    Private Sub ResetColumns()
+        For Each column As DataGridViewColumn In dgvResults.Columns
+            column.DisplayIndex = column.Index
+            column.Visible = True
+        Next
+    End Sub
+
+    ''' <summary>
     ''' Sets the column display index settings saved in the database.
     ''' </summary>
     Private Sub SetColumnDisplayIndex()
@@ -540,10 +561,10 @@ Public Class FrmMain
         Dim visibilityData As Dictionary(Of String, Boolean) = Utilities.DbOperations.GetSearchFieldVisibility()
 
         For Each panel As Control In tbplSearchCriteria.Controls
-            Debug.Print(panel.Name)
+            'Debug.Print(panel.Name)
             If panel.GetType() Is GetType(Panel) Then
                 For Each control As Control In panel.Controls
-                    Debug.Print(control.Name)
+                    'Debug.Print(control.Name)
                     If control.GetType() Is GetType(MaterialTextBox) OrElse control.GetType() Is GetType(MaterialLabel) Then
                         Dim value As Boolean = Nothing
 
@@ -551,6 +572,22 @@ Public Class FrmMain
                             control.Visible = value
                             panel.Visible = value
                         End If
+                    End If
+                Next
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Resets the search field visiblity settings to default.
+    ''' </summary>
+    Private Sub ResetSearchFields()
+        For Each panel As Control In tbplSearchCriteria.Controls
+            If panel.GetType() Is GetType(Panel) Then
+                For Each control As Control In panel.Controls
+                    If control.GetType() Is GetType(MaterialTextBox) OrElse control.GetType() Is GetType(MaterialLabel) Then
+                        control.Visible = True
+                        panel.Visible = True
                     End If
                 Next
             End If

@@ -137,7 +137,12 @@ Module Utilities
                 For Each row As DataGridViewRow In dgv.Rows
                     For Each cell As DataGridViewCell In row.Cells
                         If cell.Value IsNot Nothing Then
-                            streamWriter.Write(cell.Value.ToString() + ",")
+                            streamWriter.Write(cell.Value.ToString())
+                        End If
+
+                        ' Check if the current cell is not the last cell in the row
+                        If cell.ColumnIndex < row.Cells.Count - 1 Then
+                            streamWriter.Write(",")
                         End If
                     Next
                     streamWriter.WriteLine()
@@ -171,7 +176,7 @@ Module Utilities
                 Dim csvPath As String = openFileDialog.FileName
 
                 ' Validate the CSV file's column order
-                Dim expectedColumns As String() = {"ContactId", "ContactName", "ContactPhone", "ContactEmail, ContactAddress, ContactCompany, ContactJobTitle, ContactDateOfBirth, ContactNotes"}
+                Dim expectedColumns As String() = {"ContactId", "ContactName", "ContactPhone", "ContactEmail", "ContactAddress", "ContactCompany", "ContactJobTitle", "ContactDateOfBirth", "ContactNotes"}
                 Using reader As New StreamReader(csvPath)
                     Dim headers As String = reader.ReadLine()
                     Dim csvColumns = headers.Split(","c).Select(Function(s) s.Trim()).ToArray()
@@ -193,16 +198,24 @@ Module Utilities
 
                     While Not csvReader.EndOfData
                         Dim fields As String() = csvReader.ReadFields()
+                        Dim contactName As String = ""
+                        Dim phoneNumber As String = ""
+                        Dim email As String = ""
+                        Dim address As String = ""
+                        Dim company As String = ""
+                        Dim jobTitle As String = ""
+                        Dim dateOfBirth As String = ""
+                        Dim notes As String = ""
 
                         If currentRow > 0 Then ' Skip header row
-                            Dim contactName As String = fields(1).Trim()
-                            Dim phoneNumber As String = fields(2).Trim()
-                            Dim email As String = fields(3).Trim()
-                            Dim address As String = fields(4).Trim()
-                            Dim company As String = fields(4).Trim()
-                            Dim jobTitle As String = fields(5).Trim()
-                            Dim dateOfBirth As String = fields(6).Trim()
-                            Dim notes As String = fields(7).Trim()
+                            contactName = fields(1).Trim()
+                            phoneNumber = fields(2).Trim()
+                            email = fields(3).Trim()
+                            address = fields(4).Trim()
+                            company = fields(5).Trim()
+                            jobTitle = fields(6).Trim()
+                            dateOfBirth = fields(7).Trim()
+                            notes = fields(8).Trim()
 
                             If String.IsNullOrEmpty(contactName) Then
                                 invalidRows.Add(currentRow)
@@ -277,29 +290,5 @@ Module Utilities
             lastVisibleColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         End If
     End Sub
-
-    'Public Sub ArrangeControlsInTableLayoutPanel(tableLayoutPanel As TableLayoutPanel)
-    '    Dim rowCounter As Integer = 0
-    '    Dim columnCounter As Integer = 0
-
-    '    For Each panel As Panel In tableLayoutPanel.Controls.OfType(Of Panel)()
-    '        For Each control As Control In panel.Controls
-    '            If control.Visible Then
-    '                ' Set the row and column for the control
-    '                tableLayoutPanel.SetRow(panel, rowCounter)
-    '                tableLayoutPanel.SetColumn(panel, columnCounter)
-
-    '                ' Move to the next column
-    '                columnCounter += 1
-
-    '                ' Move to the next row if the current row is full
-    '                If columnCounter >= tableLayoutPanel.ColumnCount Then
-    '                    columnCounter = 0
-    '                    rowCounter += 1
-    '                End If
-    '            End If
-    '        Next
-    '    Next
-    'End Sub
 
 End Module

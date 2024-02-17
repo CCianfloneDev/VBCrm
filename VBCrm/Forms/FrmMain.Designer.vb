@@ -24,8 +24,8 @@ Partial Class FrmMain
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
-        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         mnuMenuStrip = New MenuStrip()
         mnuItmContacts = New ToolStripMenuItem()
         mnuItmMassEmail = New ToolStripMenuItem()
@@ -35,7 +35,10 @@ Partial Class FrmMain
         mnuItmData = New ToolStripMenuItem()
         mnuItmImportData = New ToolStripMenuItem()
         mnuItmExportData = New ToolStripMenuItem()
-        mnuItmPurgeData = New ToolStripMenuItem()
+        mnuItmPurge = New ToolStripMenuItem()
+        mnuItmPurgeContacts = New ToolStripMenuItem()
+        mnuItmPurgePreferences = New ToolStripMenuItem()
+        mnuItmPurgeAll = New ToolStripMenuItem()
         mnuItmSettings = New ToolStripMenuItem()
         mnuItmTheme = New ToolStripMenuItem()
         mnuItmDarkModePurple = New ToolStripMenuItem()
@@ -169,7 +172,7 @@ Partial Class FrmMain
         ' 
         mnuItmData.AutoSize = False
         mnuItmData.DisplayStyle = ToolStripItemDisplayStyle.Image
-        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurgeData})
+        mnuItmData.DropDownItems.AddRange(New ToolStripItem() {mnuItmImportData, mnuItmExportData, mnuItmPurge})
         mnuItmData.Image = CType(resources.GetObject("mnuItmData.Image"), Image)
         mnuItmData.ImageAlign = ContentAlignment.MiddleRight
         mnuItmData.ImageScaling = ToolStripItemImageScaling.None
@@ -180,20 +183,39 @@ Partial Class FrmMain
         ' mnuItmImportData
         ' 
         mnuItmImportData.Name = "mnuItmImportData"
-        mnuItmImportData.Size = New Size(146, 22)
-        mnuItmImportData.Text = "Import data"
+        mnuItmImportData.Size = New Size(180, 22)
+        mnuItmImportData.Text = "Import CSV data"
         ' 
         ' mnuItmExportData
         ' 
         mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.Size = New Size(146, 22)
-        mnuItmExportData.Text = "Export data"
+        mnuItmExportData.Size = New Size(180, 22)
+        mnuItmExportData.Text = "Export CSV data"
         ' 
-        ' mnuItmPurgeData
+        ' mnuItmPurge
         ' 
-        mnuItmPurgeData.Name = "mnuItmPurgeData"
-        mnuItmPurgeData.Size = New Size(146, 22)
-        mnuItmPurgeData.Text = "Purge all data"
+        mnuItmPurge.DropDownItems.AddRange(New ToolStripItem() {mnuItmPurgeContacts, mnuItmPurgePreferences, mnuItmPurgeAll})
+        mnuItmPurge.Name = "mnuItmPurge"
+        mnuItmPurge.Size = New Size(180, 22)
+        mnuItmPurge.Text = "Purge"
+        ' 
+        ' mnuItmPurgeContacts
+        ' 
+        mnuItmPurgeContacts.Name = "mnuItmPurgeContacts"
+        mnuItmPurgeContacts.Size = New Size(180, 22)
+        mnuItmPurgeContacts.Text = "Purge Contacts"
+        ' 
+        ' mnuItmPurgePreferences
+        ' 
+        mnuItmPurgePreferences.Name = "mnuItmPurgePreferences"
+        mnuItmPurgePreferences.Size = New Size(180, 22)
+        mnuItmPurgePreferences.Text = "Purge Preferences"
+        ' 
+        ' mnuItmPurgeAll
+        ' 
+        mnuItmPurgeAll.Name = "mnuItmPurgeAll"
+        mnuItmPurgeAll.Size = New Size(180, 22)
+        mnuItmPurgeAll.Text = "Purge All"
         ' 
         ' mnuItmSettings
         ' 
@@ -204,14 +226,14 @@ Partial Class FrmMain
         mnuItmSettings.ImageAlign = ContentAlignment.MiddleRight
         mnuItmSettings.ImageScaling = ToolStripItemImageScaling.None
         mnuItmSettings.Name = "mnuItmSettings"
-        mnuItmSettings.Size = New Size(60, 100)
+        mnuItmSettings.Size = New Size(62, 100)
         mnuItmSettings.Text = "&Settings"
         ' 
         ' mnuItmTheme
         ' 
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.Size = New Size(167, 22)
+        mnuItmTheme.Size = New Size(180, 22)
         mnuItmTheme.Text = "Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -241,7 +263,7 @@ Partial Class FrmMain
         ' mnuItmConfigureFields
         ' 
         mnuItmConfigureFields.Name = "mnuItmConfigureFields"
-        mnuItmConfigureFields.Size = New Size(167, 22)
+        mnuItmConfigureFields.Size = New Size(180, 22)
         mnuItmConfigureFields.Text = "Configure fields..."
         ' 
         ' mnuItmHelp
@@ -259,13 +281,13 @@ Partial Class FrmMain
         ' mnuItmAbout
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
-        mnuItmAbout.Size = New Size(164, 22)
+        mnuItmAbout.Size = New Size(180, 22)
         mnuItmAbout.Text = "About..."
         ' 
         ' mnuItmViewErrorLogs
         ' 
         mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
-        mnuItmViewErrorLogs.Size = New Size(164, 22)
+        mnuItmViewErrorLogs.Size = New Size(180, 22)
         mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
         ' lblNotes
@@ -692,19 +714,19 @@ Partial Class FrmMain
         dgvResults.AllowUserToAddRows = False
         dgvResults.AllowUserToDeleteRows = False
         dgvResults.AllowUserToOrderColumns = True
-        DataGridViewCellStyle3.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
-        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.BackColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        dgvResults.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         dgvResults.AutoGenerateColumns = False
         dgvResults.BorderStyle = BorderStyle.Fixed3D
         dgvResults.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
-        DataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = SystemColors.Control
-        DataGridViewCellStyle4.Font = New Font("Segoe UI", 9F)
-        DataGridViewCellStyle4.ForeColor = SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = DataGridViewTriState.True
-        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Control
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        dgvResults.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         dgvResults.ColumnHeadersHeight = 40
         dgvResults.Columns.AddRange(New DataGridViewColumn() {colId, colName, colPhone, colEmail, colAddress, colCompany, colJobTitle, colDateOfBirth, colNotes})
         dgvResults.ContextMenuStrip = cMnu
@@ -967,7 +989,7 @@ Partial Class FrmMain
         btnMenuControl.Image = CType(resources.GetObject("btnMenuControl.Image"), Image)
         btnMenuControl.Location = New Point(3, 64)
         btnMenuControl.Name = "btnMenuControl"
-        btnMenuControl.Size = New Size(90, 54)
+        btnMenuControl.Size = New Size(90, 48)
         btnMenuControl.TabIndex = 2
         btnMenuControl.UseVisualStyleBackColor = False
         ' 
@@ -1053,7 +1075,7 @@ Partial Class FrmMain
     Friend WithEvents mnuItmData As ToolStripMenuItem
     Friend WithEvents mnuItmExportData As ToolStripMenuItem
     Friend WithEvents mnuItmImportData As ToolStripMenuItem
-    Friend WithEvents mnuItmPurgeData As ToolStripMenuItem
+    Friend WithEvents mnuItmPurge As ToolStripMenuItem
     Friend WithEvents mnuItmContacts As ToolStripMenuItem
     Friend WithEvents mnuItmMassEmail As ToolStripMenuItem
     Friend WithEvents btnDelete As Controls.MaterialButton
@@ -1097,5 +1119,8 @@ Partial Class FrmMain
     Friend WithEvents pnlCompany As Panel
     Friend WithEvents pnlAddress As Panel
     Friend WithEvents btnMenuControl As Button
+    Friend WithEvents mnuItmPurgeContacts As ToolStripMenuItem
+    Friend WithEvents mnuItmPurgePreferences As ToolStripMenuItem
+    Friend WithEvents mnuItmPurgeAll As ToolStripMenuItem
 
 End Class
