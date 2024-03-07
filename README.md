@@ -2,8 +2,9 @@
 
 This project is a Customer Relationship Management (CRM) application built using VB.NET, utilizing SQLite as the local database and MaterialSkin.2 for enhanced UI components.
 
-## Themes (which save to the database to persist your chosen theme)
 
+<!-- Outdated images
+## Themes (which save to the database to persist your chosen theme)
 ### Dark Mode - Purple:
 | Main form | Create/edit form | About form |
 |--------------------|--------------------|--------------------|
@@ -25,14 +26,14 @@ This project is a Customer Relationship Management (CRM) application built using
 | Main form | Create/edit form | About form |
 |--------------------|--------------------|--------------------|
 | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/1c9544b5-2552-4fbc-b81b-9ba556044b76)| ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/45fcd7e7-62d5-4995-8d20-99ad28111c75) | ![image](https://github.com/CCianfloneDev/VBCrm/assets/24930067/db26ce71-8bc5-45b7-9793-5418e00d6682) |
-
+-->
 ## Features
 
-- **SQLite Database:** Local database setup using SQLite for storing and managing customer data.
+- **SQLite Database:** Local database setup using SQLite for storing and managing data. So there is no need to connect or setup your own database, the inital launch of the application will handle all of that.
 - **MaterialSkin.2 UI:** Enhanced user interface powered by MaterialSkin.2 controls for a modern look and feel.
-- **Customization:** Light mode and dark mode with numerous theme options available to the user. Users can also edit the column order of the grid and the visibility of columns via a menu item. All changes are saved to the database and applied on launch.
+- **Customization:** Light mode and dark mode with numerous theme options available to the user. You can also edit the column order of the grid and the visibility of columns via a menu item, as well as hide/show any or all search criteria as you wish. All changes are saved to the database and applied on launch.
 - **Data management:** Allows users to export and import data via .CSV files, as well as purging all contents.
-- **Customer management:** CRUD (Create, Read, Update, Delete) operations for managing customer records.
+- **Record management:** CRUD (Create, Read, Update, Delete) operations for managing records.
 
 ## Prerequisites
 
