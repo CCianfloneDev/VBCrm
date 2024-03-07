@@ -131,6 +131,7 @@ Partial Class FrmMain
         mnuMenuStrip.Name = "mnuMenuStrip"
         mnuMenuStrip.Size = New Size(87, 453)
         mnuMenuStrip.TabIndex = 3
+        mnuMenuStrip.Visible = False
         ' 
         ' mnuItmContacts
         ' 
@@ -183,38 +184,38 @@ Partial Class FrmMain
         ' mnuItmImportData
         ' 
         mnuItmImportData.Name = "mnuItmImportData"
-        mnuItmImportData.Size = New Size(180, 22)
+        mnuItmImportData.Size = New Size(160, 22)
         mnuItmImportData.Text = "Import CSV data"
         ' 
         ' mnuItmExportData
         ' 
         mnuItmExportData.Name = "mnuItmExportData"
-        mnuItmExportData.Size = New Size(180, 22)
+        mnuItmExportData.Size = New Size(160, 22)
         mnuItmExportData.Text = "Export CSV data"
         ' 
         ' mnuItmPurge
         ' 
         mnuItmPurge.DropDownItems.AddRange(New ToolStripItem() {mnuItmPurgeContacts, mnuItmPurgePreferences, mnuItmPurgeAll})
         mnuItmPurge.Name = "mnuItmPurge"
-        mnuItmPurge.Size = New Size(180, 22)
+        mnuItmPurge.Size = New Size(160, 22)
         mnuItmPurge.Text = "Purge"
         ' 
         ' mnuItmPurgeContacts
         ' 
         mnuItmPurgeContacts.Name = "mnuItmPurgeContacts"
-        mnuItmPurgeContacts.Size = New Size(180, 22)
+        mnuItmPurgeContacts.Size = New Size(169, 22)
         mnuItmPurgeContacts.Text = "Purge Contacts"
         ' 
         ' mnuItmPurgePreferences
         ' 
         mnuItmPurgePreferences.Name = "mnuItmPurgePreferences"
-        mnuItmPurgePreferences.Size = New Size(180, 22)
+        mnuItmPurgePreferences.Size = New Size(169, 22)
         mnuItmPurgePreferences.Text = "Purge Preferences"
         ' 
         ' mnuItmPurgeAll
         ' 
         mnuItmPurgeAll.Name = "mnuItmPurgeAll"
-        mnuItmPurgeAll.Size = New Size(180, 22)
+        mnuItmPurgeAll.Size = New Size(169, 22)
         mnuItmPurgeAll.Text = "Purge All"
         ' 
         ' mnuItmSettings
@@ -233,7 +234,7 @@ Partial Class FrmMain
         ' 
         mnuItmTheme.DropDownItems.AddRange(New ToolStripItem() {mnuItmDarkModePurple, mnuItmDarkModeGreen, mnuItmLightModeBlue, mnuItmLightModeGreen})
         mnuItmTheme.Name = "mnuItmTheme"
-        mnuItmTheme.Size = New Size(180, 22)
+        mnuItmTheme.Size = New Size(167, 22)
         mnuItmTheme.Text = "Theme"
         ' 
         ' mnuItmDarkModePurple
@@ -263,7 +264,7 @@ Partial Class FrmMain
         ' mnuItmConfigureFields
         ' 
         mnuItmConfigureFields.Name = "mnuItmConfigureFields"
-        mnuItmConfigureFields.Size = New Size(180, 22)
+        mnuItmConfigureFields.Size = New Size(167, 22)
         mnuItmConfigureFields.Text = "Configure fields..."
         ' 
         ' mnuItmHelp
@@ -281,13 +282,13 @@ Partial Class FrmMain
         ' mnuItmAbout
         ' 
         mnuItmAbout.Name = "mnuItmAbout"
-        mnuItmAbout.Size = New Size(180, 22)
+        mnuItmAbout.Size = New Size(164, 22)
         mnuItmAbout.Text = "About..."
         ' 
         ' mnuItmViewErrorLogs
         ' 
         mnuItmViewErrorLogs.Name = "mnuItmViewErrorLogs"
-        mnuItmViewErrorLogs.Size = New Size(180, 22)
+        mnuItmViewErrorLogs.Size = New Size(164, 22)
         mnuItmViewErrorLogs.Text = "View Error Logs..."
         ' 
         ' lblNotes
@@ -704,9 +705,9 @@ Partial Class FrmMain
         pnlBody.AutoSize = True
         pnlBody.Controls.Add(dgvResults)
         pnlBody.Dock = DockStyle.Fill
-        pnlBody.Location = New Point(90, 162)
+        pnlBody.Location = New Point(3, 162)
         pnlBody.Name = "pnlBody"
-        pnlBody.Size = New Size(1285, 453)
+        pnlBody.Size = New Size(1372, 453)
         pnlBody.TabIndex = 5
         ' 
         ' dgvResults
@@ -738,7 +739,7 @@ Partial Class FrmMain
         dgvResults.ReadOnly = True
         dgvResults.RowHeadersVisible = False
         dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvResults.Size = New Size(1285, 453)
+        dgvResults.Size = New Size(1372, 453)
         dgvResults.TabIndex = 0
         dgvResults.TabStop = False
         ' 

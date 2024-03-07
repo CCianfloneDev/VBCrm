@@ -53,10 +53,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="https://github.com/CCianfloneDev/VBCrm"/>
     <ROW Property="ARPURLUPDATEINFO" Value="https://github.com/CCianfloneDev/VBCrm/releases"/>
     <ROW Property="Manufacturer" Value="VBCrm"/>
-    <ROW Property="ProductCode" Value="1033:{42B666BD-BFF4-40CC-8E77-5FBAF8DCD7CA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{0093DE7A-2FF7-4ED8-B055-F22C88864BE5} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="VBCrm"/>
-    <ROW Property="ProductVersion" Value="1.0.5" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.0.6" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{76A9B439-1C55-4145-AD73-32689821F3FA}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

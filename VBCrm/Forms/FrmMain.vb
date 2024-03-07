@@ -13,7 +13,7 @@ Public Class FrmMain
     ''' Indicates if the menu bar is expanded or not.
     ''' </summary>
     ''' <returns>True if the user has clicked the "hamburger icon" and the menu bar is open.</returns>
-    Public Property IsMenuExpanded As Boolean = True
+    Public Property IsMenuExpanded As Boolean = False
 
     ''' <summary>
     ''' Represents the currently selected Theme.
@@ -344,7 +344,7 @@ Public Class FrmMain
             If Not Me.IsMenuExpanded Then
                 Me.IsMenuExpanded = True
 
-                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-opened.png"))
+                image = New Bitmap(assembly.GetManifestResourceStream("VBCrm.menu-open.png"))
             Else
                 Me.IsMenuExpanded = False
 
